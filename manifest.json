@@ -1,0 +1,10 @@
+{
+  "name": "3C工芸 会社紹介",
+  "short_name": "3C工芸",
+  "start_url": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0c0a16",
+  "theme_color": "#0c0a16",
+  "icons": [{ "src": "img/logo_mark.png", "sizes": "640x623", "type": "image/png" }]
+}

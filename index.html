@@ -1,0 +1,1102 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#0c0a16">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="3C工芸">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="img/logo_mark.png">
+<title>3C工芸 会社紹介</title>
+<style>
+:root{
+  --bg:#0c0a16; --bg2:#140f24; --card:#181230; --line:#2d2450;
+  --fg:#f3effb; --mut:#aaa0c8; --dim:#6f6694;
+  --gold:#b078ff; --gold2:#d6c3ff; --wood:#5a4a8a;
+  --sat:env(safe-area-inset-top,0px); --sab:env(safe-area-inset-bottom,0px);
+  --sal:env(safe-area-inset-left,0px); --sar:env(safe-area-inset-right,0px);
+  --nav:58px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overscroll-behavior:none}
+body{overflow:hidden;position:fixed;inset:0}
+#deck{position:absolute;inset:0;display:flex;height:100%;transition:transform .48s cubic-bezier(.3,.9,.3,1);will-change:transform;touch-action:pan-y}
+.slide{flex:0 0 100vw;width:100vw;height:100%;overflow-y:auto;overflow-x:hidden;position:relative;
+  padding:calc(18px + var(--sat)) max(18px,var(--sar)) calc(var(--nav) + 14px + var(--sab)) max(18px,var(--sal));
+  scrollbar-width:none}
+.slide::-webkit-scrollbar{display:none}
+.slide.photo-bg{padding:0}
+.in{max-width:560px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.in.top{justify-content:flex-start;padding-top:8px}
+@media (min-width:900px){.slide{flex-basis:100vw}.in{max-width:760px}}
+
+/* type */
+.kicker{font-size:10.5px;letter-spacing:.16em;color:var(--gold);text-transform:uppercase;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+h1{font-size:clamp(30px,9vw,46px);line-height:1.22;margin:0;font-weight:700;letter-spacing:.02em}
+h2{font-size:clamp(22px,6.6vw,32px);line-height:1.28;margin:0;font-weight:700;letter-spacing:.01em}
+h3{font-size:17px;margin:0;font-weight:700}
+p{margin:0;line-height:1.75;font-size:15px}
+p.lead{font-size:16px;color:var(--fg)}
+.mut{color:var(--mut)}.dim{color:var(--dim)}.small{font-size:12.5px;line-height:1.6}
+.gold{color:var(--gold)}
+.serif{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif}
+.rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent);width:72px}
+
+/* cover */
+.cover{background:radial-gradient(120% 80% at 50% 110%,#2a1850 0%,var(--bg) 60%)}
+.cover .in{align-items:flex-start}
+.logo{width:120px;color:var(--gold2)}
+.logo svg{width:100%;height:auto;display:block}
+.hint{display:flex;align-items:center;gap:8px;color:var(--mut);font-size:13px}
+.hint .arrow{width:34px;height:18px;overflow:hidden}
+.hint .arrow svg{width:34px;height:18px;animation:nudge 1.8s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(7px)}}
+
+/* photo hero */
+.hero{position:relative;height:100%;min-height:100%}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.78)}
+.hero .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,10,22,.25) 0%,rgba(12,10,22,0) 35%,rgba(12,10,22,.92) 100%)}
+.hero h1{font-size:clamp(26px,7.4vw,40px)}
+.hero .txt{position:absolute;left:max(20px,var(--sal));right:max(20px,var(--sar));bottom:calc(var(--nav) + 18px + var(--sab));display:flex;flex-direction:column;gap:10px}
+
+/* cards */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 14px}
+.card h3{font-size:15px;margin-bottom:4px}
+.num{font-size:clamp(30px,9vw,40px);font-weight:700;color:var(--gold2);line-height:1.05;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.num small{font-size:14px;color:var(--mut);margin-left:3px;font-weight:600}
+.lab{font-size:12px;color:var(--mut);margin-top:4px;letter-spacing:.04em}
+
+/* photo strips */
+.strip{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -18px;padding:0 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.strip::-webkit-scrollbar{display:none}
+.strip figure{flex:0 0 78%;scroll-snap-align:center;margin:0;position:relative;border-radius:12px;overflow:hidden;background:var(--bg2)}
+.strip figure.sq{flex-basis:62%}
+.strip figure img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.strip figure.wide img{aspect-ratio:4/3}
+.strip figcaption,.tile figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 9px;font-size:12px;line-height:1.4;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.72))}
+.strip.tall figure img{aspect-ratio:3/4}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tiles.c3{grid-template-columns:1fr 1fr 1fr}
+.tile{position:relative;border-radius:10px;overflow:hidden;margin:0;background:var(--bg2)}
+.tile img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.tile.w2{grid-column:span 2}.tile.w2 img{aspect-ratio:2/1}
+.tile figcaption{font-size:11px;padding-top:18px;line-height:1.35}
+.tiles.c3 .tile figcaption{font-size:10.5px;padding:14px 7px 7px}
+.ph{cursor:zoom-in}
+.chip{display:inline-block;font-size:11px;padding:3px 9px;border:1px solid var(--line);border-radius:999px;color:var(--mut)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+
+/* enter animations */
+.a{opacity:0;transform:translateY(16px)}
+.slide.on .a{animation:rise .62s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i,0)*90ms + 80ms)}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.a{opacity:1;transform:none}.slide.on .a{animation:none}}
+
+/* nav */
+#nav{position:absolute;left:0;right:0;bottom:0;height:calc(var(--nav) + var(--sab));padding:0 max(14px,var(--sal)) var(--sab) max(14px,var(--sar));display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,rgba(12,10,22,0),rgba(12,10,22,.96) 40%);z-index:20}
+#nav button{appearance:none;border:1px solid var(--line);background:rgba(24,18,48,.9);color:var(--fg);border-radius:12px;height:40px;min-width:44px;padding:0 12px;font-size:14px;display:flex;align-items:center;justify-content:center;gap:6px;backdrop-filter:blur(8px)}
+#nav button:active{background:#2d2450}
+#nav button svg{width:16px;height:16px}
+#prog{flex:1;display:flex;align-items:center;gap:6px;height:40px;cursor:pointer}
+#bar{flex:1;height:3px;background:#231b3e;border-radius:3px;overflow:hidden;position:relative}
+#bar i{position:absolute;left:0;top:0;bottom:0;background:var(--gold);width:0;transition:width .4s}
+#cnt{font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums;min-width:46px;text-align:center}
+
+/* menu */
+#menu{position:absolute;inset:0;background:rgba(12,10,22,.96);z-index:30;display:none;flex-direction:column;padding:calc(16px + var(--sat)) max(18px,var(--sar)) calc(18px + var(--sab)) max(18px,var(--sal));overflow-y:auto}
+#menu.open{display:flex}
+#menu h3{font-size:12px;letter-spacing:.2em;color:var(--gold);margin:6px 0 10px}
+#menu ol{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+#menu li{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;border:1px solid transparent;font-size:15px}
+#menu li.cur{border-color:var(--line);background:var(--card)}
+#menu li b{color:var(--dim);font-weight:600;font-size:12px;min-width:22px;font-variant-numeric:tabular-nums}
+#menu li .sec{color:var(--dim);font-size:11px;margin-left:auto}
+#menu .close{margin-top:12px;align-self:flex-end;border:1px solid var(--line);background:none;color:var(--fg);border-radius:10px;padding:8px 14px;font-size:14px}
+
+/* lightbox */
+#lb{position:absolute;inset:0;background:#000;z-index:40;display:none;align-items:center;justify-content:center;touch-action:none}
+#lb.open{display:flex}
+#lb img{max-width:100vw;max-height:100%;object-fit:contain;display:block;transition:opacity .2s}
+#lb .cap{position:absolute;left:0;right:0;bottom:calc(14px + var(--sab));text-align:center;font-size:13px;color:#ddd;padding:0 20px}
+#lb .x{position:absolute;top:calc(12px + var(--sat));right:max(12px,var(--sar));width:40px;height:40px;border-radius:20px;background:rgba(255,255,255,.14);border:0;color:#fff;font-size:22px;line-height:40px;text-align:center}
+#lb .n{position:absolute;top:calc(22px + var(--sat));left:max(16px,var(--sal));font-size:12px;color:#bbb;font-variant-numeric:tabular-nums}
+
+/* process */
+.proc{position:relative;display:grid;gap:10px}
+.step{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start}
+.step .n{width:40px;height:40px;border-radius:20px;border:1.5px solid var(--gold);color:var(--gold2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;font-variant-numeric:tabular-nums;background:var(--bg)}
+.step h3{font-size:16px}
+.step p{font-size:13.5px;color:var(--mut)}
+.proc .ln{position:absolute;left:19px;top:20px;bottom:20px;width:2px;background:var(--line);z-index:0}
+.proc .ln i{display:block;width:100%;background:var(--gold);height:0;transition:height 2.2s cubic-bezier(.3,.7,.3,1)}
+.slide.on .proc .ln i{height:100%}
+.step{position:relative;z-index:1}
+
+/* sequence */
+.seq{position:relative;border-radius:14px;overflow:hidden;background:#fff;aspect-ratio:1/1;cursor:pointer}
+.seq img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .7s;background:#fff}
+.seq img.cur{opacity:1}
+.seq .sl{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;font-size:13px;display:flex;justify-content:space-between;align-items:flex-end}
+.seq .dots{display:flex;gap:4px}
+.seq .dots i{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.4)}
+.seq .dots i.cur{background:var(--gold)}
+
+/* rings canvas */
+.cv{position:relative;border-radius:14px;overflow:hidden;background:radial-gradient(80% 70% at 50% 60%,#1d1535,#0c0a16);aspect-ratio:1/1.05}
+.cv canvas{width:100%;height:100%;display:block}
+.cv .hud{position:absolute;left:12px;bottom:10px;font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums;line-height:1.5}
+.cv .hud b{color:var(--gold2);font-size:22px;font-weight:700}
+.cv .tap{position:absolute;right:12px;bottom:10px;font-size:11px;color:var(--dim)}
+
+/* sites table */
+.srows{display:grid;gap:0}
+.srow{padding:9px 0;border-bottom:1px solid var(--line)}
+.srow .sh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:3px}
+.srow .sh span{color:var(--gold);font-weight:600;font-size:13px}
+.srow .sh em{font-style:normal;color:var(--mut);font-size:11.5px;white-space:nowrap}
+.srow p{font-size:12.5px;line-height:1.6;color:var(--fg)}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+td,th{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;line-height:1.5}
+th{color:var(--gold);font-weight:600;white-space:nowrap;width:30%}
+td.k{color:var(--mut);white-space:nowrap;text-align:right}
+.foot{font-size:10px;color:var(--dim);text-align:right;margin-top:6px;letter-spacing:.04em}
+.row{display:flex;gap:12px;align-items:center}
+.ic{width:38px;height:38px;flex:0 0 38px;border-radius:10px;background:var(--bg2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--gold2)}
+.ic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.contact dl{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;margin:0;font-size:14px}
+.contact dt{color:var(--gold);font-size:12px;letter-spacing:.1em;padding-top:2px}
+.contact dd{margin:0}
+.qr{width:110px;height:110px;border-radius:10px;background:#fff;padding:6px}
+.qr img{width:100%;height:100%;display:block}
+@media (orientation:landscape) and (max-height:520px){
+  .in{max-width:92vw;display:grid;grid-template-columns:1fr 1fr;align-content:center;column-gap:24px}
+  .in>h2,.in>h1,.in>.kicker,.in>.rule{grid-column:1/-1}
+  .cv,.seq{aspect-ratio:16/10}
+}
+
+/* v2 additions */
+/* lock */
+#lock{position:absolute;inset:0;z-index:60;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
+#lock[hidden]{display:none}
+#lock .bx{width:100%;max-width:340px;text-align:center}
+#lock img{width:96px;height:auto;margin:0 auto 14px;display:block}
+#lock h3{margin:0 0 4px;font-size:18px}
+#lock p{color:var(--mut);font-size:13px;margin:0 0 16px}
+#lock input{width:100%;box-sizing:border-box;font-size:17px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);outline:none;text-align:center;letter-spacing:.08em}
+#lock input:focus{border-color:var(--gold)}
+#lock button{margin-top:10px;width:100%;font-size:15px;padding:12px;border-radius:12px;border:0;background:var(--gold);color:#140c28;font-weight:700}
+#lock .err{color:#ff8fa3;min-height:18px;margin-top:8px;font-size:12.5px}
+#lock .foot{margin-top:18px;font-size:10.5px;color:var(--dim)}
+.vcards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.vcard{position:relative;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.vcard img{width:100%;aspect-ratio:16/11;object-fit:cover;display:block;opacity:.85}
+.vcard b{display:block;font-size:12.5px;padding:7px 10px 1px;font-weight:700}
+.vcard small{display:block;font-size:10.5px;color:var(--mut);padding:0 10px 8px}
+.vcard.cur{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.vcard.cur img{opacity:1}
+.vcard.cur::after{content:'表示中';position:absolute;top:8px;left:8px;font-size:10px;padding:2px 7px;border-radius:999px;background:var(--gold);color:#140c28;font-weight:700}
+.viewer .tabs[hidden]{display:none}
+.viewer .vname{position:absolute;left:12px;top:10px;font-size:12.5px;color:var(--fg);background:rgba(12,10,22,.55);padding:4px 9px;border-radius:999px;backdrop-filter:blur(6px)}
+.logo-wrap{display:block;width:150px;cursor:pointer;user-select:none;-webkit-user-select:none;margin-left:-14px}
+.logo-wrap .logo-mark{width:150px;height:150px;display:block;overflow:visible}
+.marq{display:grid;gap:8px;margin:0 -18px;overflow:hidden}
+.mrow{overflow:hidden;width:100%}
+.mtrack{display:flex;gap:8px;width:max-content;animation:drift 42s linear infinite}
+.r2 .mtrack{animation-direction:reverse;animation-duration:50s}
+.marq:active .mtrack{animation-play-state:paused}
+.mi{flex:0 0 auto;width:62vw;max-width:340px;margin:0;border-radius:12px;overflow:hidden;background:var(--bg2);position:relative}
+.mi img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.mtrack{animation:none}}
+.strip{display:grid;grid-template-columns:1fr 1fr;gap:8px;overflow:visible;margin:0;padding:0;scroll-snap-type:none}
+.strip figure{flex:none;scroll-snap-align:none}
+.strip figure:first-child{grid-column:span 2}
+.strip figure:first-child img{aspect-ratio:16/10}
+.strip figure img{aspect-ratio:1/1}
+.strip.tall figure img{aspect-ratio:4/5}
+.strip figure.wide img{aspect-ratio:4/3}
+.strip figure.wide:first-child img{aspect-ratio:16/10}
+/* photo wall */
+.wall{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:calc((100vw - 36px - 15px)/6);grid-auto-flow:dense;gap:3px;margin:0 -8px;max-width:100%;overflow:hidden;contain:paint}
+.wall .wi{position:relative;border-radius:4px;background:transparent;margin:0}
+.wall .wi .k{position:absolute;inset:0;border-radius:4px;overflow:hidden;background:var(--bg2);opacity:0;transform:translate(var(--dx),var(--dy)) scale(.25);transition:transform .9s cubic-bezier(.2,.9,.25,1.05),opacity .7s ease-out;transition-delay:var(--d,0ms);will-change:transform,opacity}
+.wall .wi.in .k{opacity:1;transform:none}
+.wall .wi img{width:100%;height:100%;object-fit:cover;display:block}
+.wall .xl{grid-column:span 3;grid-row:span 3}.wall .l{grid-column:span 2;grid-row:span 2}.wall .w{grid-column:span 2}.wall .t{grid-row:span 2}
+.wallhead{position:sticky;top:0;z-index:2;padding:6px 0 30px;margin:0 -18px -22px;padding-left:18px;padding-right:18px;background:linear-gradient(180deg,var(--bg) 0%,var(--bg) 55%,rgba(12,10,22,.92) 70%,rgba(12,10,22,.6) 85%,rgba(12,10,22,0) 100%);pointer-events:none}
+.wallhead *{pointer-events:auto}
+.stars{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1px 1px at 20% 30%,rgba(214,195,255,.5),transparent 60%),radial-gradient(1px 1px at 70% 10%,rgba(214,195,255,.35),transparent 60%),radial-gradient(1.5px 1.5px at 40% 80%,rgba(176,120,255,.4),transparent 60%),radial-gradient(1px 1px at 85% 60%,rgba(214,195,255,.4),transparent 60%),radial-gradient(1px 1px at 10% 70%,rgba(214,195,255,.3),transparent 60%)}
+@media (prefers-reduced-motion:reduce){.wall .wi .k{transition:none;opacity:1;transform:none}}
+.slide.done .a{opacity:1;transform:none;animation:none}
+.kicker{padding-right:44px}
+.vid{position:relative;border-radius:14px;overflow:hidden;background:#000}
+.vid video{width:100%;display:block}
+.vid .sl{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#fff;font-size:12.5px}
+.viewer{position:relative;border-radius:14px;overflow:hidden;background:radial-gradient(80% 70% at 50% 60%,#1d1535,#0c0a16);aspect-ratio:1/1.05;touch-action:none}
+.viewer canvas{width:100%;height:100%;display:block}
+.viewer .tabs{position:absolute;left:0;right:0;top:0;display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;padding:10px 10px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch;background:linear-gradient(rgba(12,10,22,.85),rgba(12,10,22,0))}
+.viewer .tabs::-webkit-scrollbar{display:none}
+.viewer .tabs button{white-space:nowrap;flex:0 0 auto;appearance:none;border:1px solid var(--line);background:rgba(24,18,48,.85);color:var(--mut);border-radius:999px;padding:5px 10px;font-size:11.5px}
+.viewer .tabs button.cur{color:var(--fg);border-color:var(--gold);background:rgba(176,120,255,.18)}
+.viewer .hint{position:absolute;left:12px;bottom:10px;font-size:11px;color:var(--dim)}
+.viewer .ld{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:13px;background:rgba(12,10,22,.6)}
+.viewer .ld.off{display:none}
+#fs{position:absolute;top:calc(10px + var(--sat));right:max(10px,var(--sar));z-index:21;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:rgba(24,18,48,.75);color:var(--mut);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+#fs svg{width:16px;height:16px}
+#tip{position:absolute;inset:0;z-index:35;background:rgba(12,10,22,.94);display:none;align-items:center;justify-content:center;padding:24px}
+#tip.open{display:flex}
+#tip .bx{max-width:360px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+#tip h3{margin:0 0 10px;font-size:16px}
+#tip ol{margin:0 0 12px;padding-left:20px;font-size:14px;line-height:1.8}
+#tip button{appearance:none;border:1px solid var(--line);background:none;color:var(--fg);border-radius:10px;padding:8px 14px;font-size:14px}
+.big2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.big2 .tile img{aspect-ratio:3/4}
+.q{font-size:14.5px;line-height:1.8;color:var(--fg)}
+.q b{color:var(--gold2);font-weight:600}
+</style>
+</head>
+<body>
+<div id="lock"><form id="lockf" autocomplete="off"><div class="bx"><img src="img/logo_mark.png" alt="3C"><h3>3C工芸 会社紹介</h3><p>パスワードを入力してください</p><input id="lockin" type="password" inputmode="text" autocapitalize="off" autocorrect="off" placeholder="パスワード"><button type="submit">開く</button><div class="err" id="lockerr"></div><div class="foot">株式会社３C工芸 ／ この資料は関係者向けです</div></div></form></div><button id="fs" aria-label="全画面"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+<div id="deck">
+
+<!-- 1 表紙 -->
+<section class="slide cover" data-t="表紙" data-sec="">
+  <div class="in">
+    <div class="logo-wrap a" id="logo-anim" style="--i:0" role="img" aria-label="3C"><svg class="logo-mark" viewBox="0 0 512 512"></svg></div>
+    <div class="rule a" style="--i:1"></div>
+    <h1 class="a serif" style="--i:2">想いを、<br>木でかたちに。</h1>
+    <p class="kicker a" style="--i:3">Custom Woodworking Factory</p>
+    <p class="mut a" style="--i:4">株式会社３C工芸 ── 会社紹介<br><span class="small">店舗什器・オーダー家具・別注家具の製作工場（大阪・堺市美原区）</span></p>
+    <div class="hint a" style="--i:6"><span class="arrow"><svg viewBox="0 0 34 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9h26M22 3l6 6-6 6"/></svg></span>スワイプで進む／戻る。左下のボタンで目次</div>
+  </div>
+</section>
+
+<!-- 2 理念 -->
+<section class="slide photo-bg" data-t="ともにつくる" data-sec="会社">
+  <div class="hero">
+    <img data-src="img/f3_workers.jpg" alt="">
+    <div class="ov"></div>
+    <div class="txt">
+      <p class="kicker a" style="--i:0">Our Philosophy</p>
+      <h1 class="serif a" style="--i:1">ともに、つくる。</h1>
+      <p class="a" style="--i:2">お客様とともに、仲間とともに、空間の価値をつくる。<br>設計はしません。いただいた図面をもとに相談を重ね、構造を検討し、製作から塗装までを自社で行う家具づくりの専門集団です。</p>
+      <p class="small mut a" style="--i:3">代表取締役　新里 優</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 数字 -->
+<section class="slide" data-t="数字で見る3C工芸" data-sec="会社">
+  <div class="in">
+    <p class="kicker a" style="--i:0">3C Kogei in Numbers</p>
+    <h2 class="a" style="--i:1">数字で見る、3C工芸。</h2>
+    <div class="grid2">
+      <div class="card a" style="--i:2"><div class="num">2015<small>.11</small></div><div class="lab">設立 ── 受注生産一筋</div></div>
+      <div class="card a" style="--i:3"><div class="num"><span data-count="24">0</span><small>名</small></div><div class="lab">社員数（事務所・工場・塗装）</div></div>
+      <div class="card a" style="--i:4"><div class="num"><span data-count="2">0</span><small>工場</small></div><div class="lab">第2・第3工場（堺市美原区）</div></div>
+      <div class="card a" style="--i:5"><div class="num"><span data-count="270">0</span><small>現場超</small></div><div class="lab">2023〜2026年の納品現場</div></div>
+      <div class="card a" style="--i:6"><div class="num">900<small>万円</small></div><div class="lab">資本金</div></div>
+      <div class="card a" style="--i:7"><div class="num">自社<small>塗装</small></div><div class="lab">塗装ブース・調色室を自社工場に</div></div>
+    </div>
+    <p class="small dim a" style="--i:8">オーダー家具／店舗什器／別注家具の3領域。いただいた図面から構造を検討し、加工・組立・塗装・検査まで自社の手で。</p>
+  </div>
+</section>
+
+<!-- 4 3拠点 -->
+<section class="slide" data-t="3つの拠点とメンバー" data-sec="会社">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Three Sites</p>
+    <h2 class="a" style="--i:1">美原の2工場、<br>24名のメンバー。</h2>
+    <div class="card a" style="--i:2">
+      <div class="row"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V8l7-5 7 5v13M9 21v-6h6v6"/></svg></div><div><h3>第3工場（1F・2F）　<span class="gold">20名</span></h3><p class="small mut">堺市美原区太井 ── 現在の中心拠点。事務所 6名／1F 加工 7名／2F 組立 5名／塗装 2名。NCルーター・レーザー・3Dプリンター・塗装ブース</p></div></div>
+    </div>
+    <div class="card a" style="--i:3">
+      <div class="row"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21V10l6 3V10l6 3V10l6 3v8H3z"/><path d="M7 21v-4h3v4"/></svg></div><div><h3>第2工場　<span class="gold">4名</span></h3><p class="small mut">堺市美原区今井 ── 加工・組立。パネルソー・プレス機</p></div></div>
+    </div>
+    <div class="card a" style="--i:4">
+      <div class="row"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21V10l6 3V10l6 3V10l6 3v8H3z"/><path d="M7 21v-4h3v4M14 21v-4h3v4"/></svg></div><div><h3>本社（松原）</h3><p class="small mut">大阪府松原市岡 ── 火災後の復旧工事中。事務所機能は第3工場に移しています</p></div></div>
+    </div>
+    <div class="strip a" style="--i:5">
+      <figure class="wide"><img class="ph" data-src="img/ext_f1.jpg" alt=""><figcaption>第2工場（美原・今井）</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/f3_ext.jpg" alt=""><figcaption>第3工場（美原・太井）</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/f3_wide.jpg" alt=""><figcaption>第3工場 1F 加工フロア</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/f1_meet.jpg" alt=""><figcaption>図面を囲んで打合せ</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/hq_1f.jpg" alt=""><figcaption>本社ビル（松原）1F 事務所 ── 復旧工事前の姿</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/hq_2f.jpg" alt=""><figcaption>本社ビル 2F ── 打合せスペース</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/f3_in2026.jpg" alt=""><figcaption>第3工場 1F ── 2026年3月、機械を移した直後</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/f2_in2.jpg" alt=""><figcaption>第2工場 ── 床を打ち直した内部（2025年12月）</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/f3_wide3.jpg" alt=""><figcaption>第3工場 2F 組立フロア</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 5 工場の中 -->
+<section class="slide" data-t="工場の中" data-sec="会社">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Inside the Factory</p>
+    <h2 class="a" style="--i:1">木が、什器になる<br>途中の時間。</h2>
+    <p class="mut a" style="--i:2">図面が部材になり、部材が什器になる。その途中にこそ、私たちの技術があります。</p>
+    <div class="tiles a" style="--i:3">
+      <figure class="tile w2"><img class="ph" data-src="img/f3_wide2.jpg" alt=""><figcaption>第3工場 1F ── 材料棚と加工機</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_bench.jpg" alt=""><figcaption>組立ベンチ</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_parts.jpg" alt=""><figcaption>NCで切り出した扇形部材</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f1_in.jpg" alt=""><figcaption>第2工場 搬出口</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_wide3.jpg" alt=""><figcaption>第3工場 2F</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 6 設備 -->
+<section class="slide" data-t="設備" data-sec="会社">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Equipment</p>
+    <h2 class="a" style="--i:1">木工機械と、塗装と、<br>デジタル加工。</h2>
+    <div class="tiles c3 a" style="--i:2">
+      <figure class="tile"><img class="ph" data-src="img/f3_saw.jpg" alt=""><figcaption>昇降盤</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_panelsaw.jpg" alt=""><figcaption>パネルソー</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_press.jpg" alt=""><figcaption>プレス機</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f2_dust.jpg" alt=""><figcaption>集塵設備</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_booth.jpg" alt=""><figcaption>塗装ブース</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_paintroom.jpg" alt=""><figcaption>調色室</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_nc.jpg" alt=""><figcaption>NCルーター</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_laser.jpg" alt=""><figcaption>レーザー加工機</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_3dp.jpg" alt=""><figcaption>3Dプリンター</figcaption></figure>
+    </div>
+    <div class="chips a" style="--i:3"><span class="chip">昇降盤</span><span class="chip">パネルソー</span><span class="chip">プレス機</span><span class="chip">集塵ダクト</span><span class="chip">塗装ブース・調色室</span><span class="chip">NCルーター</span><span class="chip">レーザー加工機</span><span class="chip">3Dプリンター</span><span class="chip">3Dスキャナー（Revopoint MIRACO）</span><span class="chip">製作図・3D部材データ</span></div>
+  </div>
+</section>
+
+<!-- 7 工程 -->
+<section class="slide" data-t="図面から出荷まで" data-sec="会社">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Our Process</p>
+    <h2 class="a" style="--i:1">図面から、出荷まで。</h2>
+    <div class="proc">
+      <div class="ln"><i></i></div>
+      <div class="step a" style="--i:2"><div class="n">01</div><div><h3>相談</h3><p>いただいた図面をもとに、仕様と納まりを打合せ</p></div></div>
+      <div class="step a" style="--i:3"><div class="n">02</div><div><h3>構造検討（3D）</h3><p>製作図に起こし、3Dで部材に分解して構造と加工方法を検討</p></div></div>
+      <div class="step a" style="--i:4"><div class="n">03</div><div><h3>加工</h3><p>木工機械とNCで部材を加工。曲面も定尺板から切り出す</p></div></div>
+      <div class="step a" style="--i:5"><div class="n">04</div><div><h3>組立</h3><p>工場で組み上げ、精度を整える</p></div></div>
+      <div class="step a" style="--i:6"><div class="n">05</div><div><h3>塗装</h3><p>自社ブースで塗装・仕上げ。調色室で色を合わせる</p></div></div>
+      <div class="step a" style="--i:7"><div class="n">06</div><div><h3>検査・出荷</h3><p>寸法と仕上がりを確認し、現場へ出荷</p></div></div>
+    </div>
+    <p class="small dim a" style="--i:8">ひとつの什器を、同じ社員が出荷まで見届けます。</p>
+  </div>
+</section>
+
+<!-- 8 強み -->
+<section class="slide" data-t="三つの確かさ" data-sec="会社">
+  <div class="in">
+    <p class="kicker a" style="--i:0">Our Strengths</p>
+    <h2 class="a" style="--i:1">三つの、確かさ。</h2>
+    <div class="card a" style="--i:2"><h3 class="gold">01　図面から、構造を検討</h3><p class="small mut">いただいた図面をもとにご相談し、構造と加工方法を検討して製作図に落とし込みます。「どう作れば納まるか」から一緒に考えます。</p></div>
+    <div class="card a" style="--i:3"><h3 class="gold">02　複雑な形状も、大型物件も</h3><p class="small mut">NCルーター・レーザー加工機・3Dプリンター・プレス機を自社工場に配備。曲面や球面に近い複雑形状、大型什器の多店舗展開まで対応します。</p></div>
+    <div class="card a" style="--i:4"><h3 class="gold">03　塗装まで、自社の手で</h3><p class="small mut">自社の塗装ブースと調色室で、色合わせから仕上げまで一貫。機械が出せない精度は、社員の手が最後に整えます。</p></div>
+  </div>
+</section>
+
+<!-- 木工1 曲げ・R -->
+<section class="slide" data-t="曲げ・R ── 曲面の仕事" data-sec="木工">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Woodwork 01 ── Curves</p>
+    <h2 class="a" style="--i:1">曲面を、木で<br>つくる。</h2>
+    <p class="q a" style="--i:2"><b>曲げ合板＋NCリブ</b>で下地をつくり、スキンを巻いて化粧を貼る。R形のカウンター、楕円のベンチ、縦リブの曲面。3Cがいちばん多くつくっている形です。</p>
+    <div class="strip tall a" style="--i:3">
+      <figure><img class="ph" data-src="img/k981.jpg" alt=""><figcaption>リブ仕上げのR形カウンター（心斎橋ライム）</figcaption></figure>
+      <figure><img class="ph" data-src="img/m19.jpg" alt=""><figcaption>縦リブのR曲面カウンター（シェアオフィス）</figcaption></figure>
+      <figure><img class="ph" data-src="img/k252.jpg" alt=""><figcaption>R曲面ルーバーソファ（ドーミー山科）</figcaption></figure>
+      <figure><img class="ph" data-src="img/k834.jpg" alt=""><figcaption>柱巻きのRカウンター（どうとんぼり神座 関空店）</figcaption></figure>
+      <figure><img class="ph" data-src="img/f_clamp1.jpg" alt=""><figcaption>曲げ合板を巻いて組み立て（シックスセンシズ京都）</figcaption></figure>
+      <figure><img class="ph" data-src="img/k286.jpg" alt=""><figcaption>オーバル型リングベンチ（瀬戸内海放送 本社）</figcaption></figure>
+      <figure><img class="ph" data-src="img/k605.jpg" alt=""><figcaption>円筒形什器（Aesop 関西国際空港）</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 木工2 格子・組子・寄木 -->
+<section class="slide" data-t="格子・組子・寄木" data-sec="木工">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Woodwork 02 ── Lattice &amp; Joinery</p>
+    <h2 class="a" style="--i:1">格子、組子、寄木。<br>手の仕事。</h2>
+    <p class="q a" style="--i:2">透かしの組子アーチ、照明を仕込んだ格子棚、木口を寄せた天板。<b>機械が出せない精度は、社員の手が最後に整えます。</b></p>
+    <div class="tiles a" style="--i:3">
+      <figure class="tile w2"><img class="ph" data-src="img/k378.jpg" alt="" style="aspect-ratio:3/2"><figcaption>組子透かしのアーチスクリーン（後楽園飯店）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/g171.jpg" alt=""><figcaption>照明入り格子棚（シックスセンシズ京都）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/g299.jpg" alt=""><figcaption>木口寄木天板のビッグテーブル（御堂筋ダイビル）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/g1036.jpg" alt=""><figcaption>木格子の店舗ファサード（赤福 阪神梅田本店）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/k540.jpg" alt=""><figcaption>ウォルナットのショーケース（GIRARD-PERREGAUX）</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 木工3 塗装・仕上げ -->
+<section class="slide" data-t="塗装・仕上げ" data-sec="木工">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Woodwork 03 ── Finishing</p>
+    <h2 class="a" style="--i:1">色を合わせ、<br>自社で塗る。</h2>
+    <p class="q a" style="--i:2">塗装ブースと調色室を自社工場に。<b>指定色の調色から、着色・クリア・艶の調整まで</b>、外注せずに仕上げます。メラミン・突板・無垢、素材ごとの表情を揃えます。</p>
+    <div class="tiles a" style="--i:3">
+      <figure class="tile w2"><img class="ph" data-src="img/f3_paint.jpg" alt="" style="aspect-ratio:3/2;object-position:center 30%"><figcaption>調色 ── 指定色に合わせる</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_booth.jpg" alt=""><figcaption>塗装ブース</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_paintroom.jpg" alt=""><figcaption>調色室 ── 塗料と色見本</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_booth2.jpg" alt=""><figcaption>塗装ブースで乾燥中の什器</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/m266.jpg" alt=""><figcaption>白塗装のフロントカウンター（ウォーターマークホテル）</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 木工4 仮組み・検品 -->
+<section class="slide" data-t="組立・検品・出荷" data-sec="木工">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Woodwork 04 ── Assembly &amp; Inspection</p>
+    <h2 class="a" style="--i:1">工場で組んで、<br>確かめてから出す。</h2>
+    <p class="q a" style="--i:2">大型の什器も、現場で初めて組むことはしません。<b>工場で組み上げて仕上げ、納まり・寸法・仕上がりを確認してから出荷。</b>現場での手戻りをなくします。</p>
+    <div class="strip tall a" style="--i:3">
+      <figure><img class="ph" data-src="img/f_assy6.jpg" alt=""><figcaption>出荷前の検品（シックスセンシズ京都）</figcaption></figure>
+      <figure><img class="ph" data-src="img/alb_cnt2.jpg" alt=""><figcaption>曲面カウンター 完成（ALBION／フランス屋 ゆめタウン廿日市）</figcaption></figure>
+      <figure><img class="ph" data-src="img/k1117.jpg" alt=""><figcaption>楕円テーブル（EXPO2025 大阪・関西万博）</figcaption></figure>
+      <figure><img class="ph" data-src="img/rise_done2.jpg" alt=""><figcaption>積層リングのカウンター（ライズ鉾町）</figcaption></figure>
+      <figure><img class="ph" data-src="img/f3_bench.jpg" alt=""><figcaption>組立ベンチでの作業</figcaption></figure>
+      <figure><img class="ph" data-src="img/k598.jpg" alt=""><figcaption>R付きロングカウンター（立教小学校）</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 9 シックスセンシズ 扉 -->
+<section class="slide photo-bg" data-t="シックスセンシズ京都" data-sec="事例">
+  <div class="hero">
+    <img data-src="img/g132.jpg" alt="">
+    <div class="ov"></div>
+    <div class="txt">
+      <p class="kicker a" style="--i:0">Case 01 ── Kyoto, 2024</p>
+      <h1 class="serif a" style="--i:1">シックスセンシズ京都</h1>
+      <p class="a" style="--i:2">2024年開業のラグジュアリーホテル。スパ・客室まわりの造作家具一式と、物販エリアのリテールカウンターを製作・据付しました。</p>
+      <div class="chips a" style="--i:3"><span class="chip">曲面カウンター</span><span class="chip">照明を仕込んだ格子棚</span><span class="chip">薬箪笥の壁面収納</span><span class="chip">リテールカウンター</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 シックスセンシズ スパ・客室 -->
+<section class="slide" data-t="シックスセンシズ スパ・客室" data-sec="事例">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Six Senses ── Spa &amp; Rooms</p>
+    <h2 class="a" style="--i:1">スパ・客室まわりの<br>造作家具一式。</h2>
+    <div class="strip tall a" style="--i:2">
+      <figure><img class="ph" data-src="img/g177.jpg" alt=""><figcaption>客室まわり ── 照明入り格子棚と曲面家具</figcaption></figure>
+      <figure><img class="ph" data-src="img/g114.jpg" alt=""><figcaption>曲面カウンター＋楕円の照明ニッチ</figcaption></figure>
+      <figure><img class="ph" data-src="img/g171.jpg" alt=""><figcaption>照明入り格子棚（正面）</figcaption></figure>
+      <figure><img class="ph" data-src="img/g132.jpg" alt=""><figcaption>格子棚と曲面ソファ台</figcaption></figure>
+      <figure><img class="ph" data-src="img/g153.jpg" alt=""><figcaption>格子棚と曲面家具</figcaption></figure>
+      <figure><img class="ph" data-src="img/ss_21.jpg" alt=""><figcaption>曲面のソファ台とカウンター</figcaption></figure>
+      <figure><img class="ph" data-src="img/ss_22.jpg" alt=""><figcaption>照明を仕込んだ飾り棚</figcaption></figure>
+      <figure><img class="ph" data-src="img/ss_23.jpg" alt=""><figcaption>格子のカウンターと背面棚</figcaption></figure>
+      <figure><img class="ph" data-src="img/ss_24.jpg" alt=""><figcaption>黒いカウンターと収納</figcaption></figure>
+      <figure><img class="ph" data-src="img/ss_25.jpg" alt=""><figcaption>引出しの壁面収納</figcaption></figure>
+      <figure><img class="ph" data-src="img/ss_26.jpg" alt=""><figcaption>照明入りキャビネット</figcaption></figure>
+      <figure><img class="ph" data-src="img/ss_27.jpg" alt=""><figcaption>洗面のミラーと収納</figcaption></figure>
+      <figure><img class="ph" data-src="img/ss_28.jpg" alt=""><figcaption>照明を仕込んだ建具</figcaption></figure>
+      <figure><img class="ph" data-src="img/ss_29.jpg" alt=""><figcaption>シャワーブースの造作</figcaption></figure>
+      <figure><img class="ph" data-src="img/ss_30.jpg" alt=""><figcaption>壁面の飾り棚</figcaption></figure>
+      <figure><img class="ph" data-src="img/ss_31.jpg" alt=""><figcaption>丸い鏡の壁面</figcaption></figure>
+      <figure><img class="ph" data-src="img/ss_32.jpg" alt=""><figcaption>手洗台</figcaption></figure>
+    </div>
+    <p class="small mut a" style="--i:3">曲面と直線、格子と間接照明。設置写真はすべて現地で撮影したものです。写真をタップで拡大。</p>
+  </div>
+</section>
+
+<!-- シックスセンシズ その他の造作 -->
+<section class="slide" data-t="シックスセンシズ ── 館内の造作" data-sec="事例">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Six Senses ── Throughout the Hotel</p>
+    <h2 class="a" style="--i:1">館内のあちこちに、<br>3Cの造作。</h2>
+    <div class="tiles a" style="--i:2">
+      <figure class="tile w2"><img class="ph" data-src="img/ss_01.jpg" alt="" style="aspect-ratio:16/10"><figcaption>木ルーバーのパーティション</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ss_03.jpg" alt=""><figcaption>格子のカウンター（スパ レセプション）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ss_04.jpg" alt=""><figcaption>楕円の照明ミラー</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ss_06.jpg" alt=""><figcaption>照明を仕込んだ収納棚</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ss_07.jpg" alt=""><figcaption>壁面の飾り棚</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ss_08.jpg" alt=""><figcaption>ロッカー什器（チェンジングルーム）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ss_09.jpg" alt=""><figcaption>ダブルヴァニティ</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ss_10.jpg" alt=""><figcaption>手洗台</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ss_11.jpg" alt=""><figcaption>ミラーキャビネット</figcaption></figure>
+      <figure class="tile w2"><img class="ph" data-src="img/ss_12.jpg" alt="" style="aspect-ratio:16/10"><figcaption>キッチンの固定棚</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ss_13.jpg" alt=""><figcaption>デスクのニッチ</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ss_14.jpg" alt=""><figcaption>廊下の壁面パネル</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ss_15.jpg" alt=""><figcaption>壁面の飾り棚と間接照明</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ss_16.jpg" alt=""><figcaption>照明を仕込んだ壁面</figcaption></figure>
+    </div>
+    <p class="small mut a" style="--i:3">手洗台・ヴァニティ・ロッカー・固定棚・ニッチ・格子・見切り材まで、館内約90品目を製作しました（2023〜2024年）。</p>
+  </div>
+</section>
+
+<!-- リテールカウンター 3D 分解アニメ（Fusion画面収録） -->
+<section class="slide" data-t="リテールカウンター 3D分解" data-sec="事例">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Six Senses ── Retail / 3D</p>
+    <h2 class="a" style="--i:1">3Dで構造を検討し、<br>部材に分解する。</h2>
+    <div class="vid a" style="--i:2"><video data-src="vid/retail_explode.mp4" muted loop playsinline preload="none" poster="img/r3d_whole.jpg"></video><div class="sl">Fusion 360 の分解表示 ── 天板・側板・リング・台輪がユニットごとに分かれる</div></div>
+    <div class="tiles a" style="--i:3">
+      <figure class="tile"><img class="ph" data-src="img/r3d_exploded.jpg" alt=""><figcaption>リング状の部材に分解</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/r3d_color.jpg" alt=""><figcaption>全ユニットの部材構成</figcaption></figure>
+    </div>
+    <p class="small mut a" style="--i:4">いただいた図面をもとに、ひとつの什器を部材単位まで分解し、どの板からどう切り出すかを製作前に決めます。</p>
+  </div>
+</section>
+
+<!-- 12 リテールカウンター 2D・板取り -->
+<section class="slide" data-t="リテールカウンター 板取り" data-sec="事例">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Six Senses ── Retail / 2D</p>
+    <h2 class="a" style="--i:1">部材を展開し、<br>板取りして、NCへ。</h2>
+    <div class="tiles a" style="--i:2">
+      <figure class="tile w2"><img class="ph" data-src="img/r2d_nest.jpg" alt="" style="aspect-ratio:2.2/1;object-fit:cover;background:#fff"><figcaption>部材ごとの展開図（NC用の輪郭データ）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/r2d_plan.jpg" alt="" style="background:#fff"><figcaption>平面 ── 部材の重なり</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/r_draw.jpg" alt="" style="background:#fff"><figcaption>製作図（平面・断面）</figcaption></figure>
+    </div>
+    <p class="small mut a" style="--i:3">3Dデータから各部材の輪郭を取り出し、定尺板への板取りを行ってNCルーターで加工。曲面の下地も、リブとスキンに分解して板から切り出します。</p>
+  </div>
+</section>
+
+<!-- 13 リテールカウンター 製作 -->
+<section class="slide" data-t="リテールカウンター 製作" data-sec="事例">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Six Senses ── Retail / Factory</p>
+    <h2 class="a" style="--i:1">工場で組み上げ、<br>仕上げる。</h2>
+    <div class="strip tall a" style="--i:2">
+      <figure><img class="ph" data-src="img/f_boards.jpg" alt=""><figcaption>積層用の板材</figcaption></figure>
+      <figure><img class="ph" data-src="img/f_parts.jpg" alt=""><figcaption>NCで切り出した天板部材</figcaption></figure>
+      <figure><img class="ph" data-src="img/f_clamp1.jpg" alt=""><figcaption>リング状の側板を曲げて組み立て</figcaption></figure>
+      <figure><img class="ph" data-src="img/f_ring.jpg" alt=""><figcaption>内側のリブ構造</figcaption></figure>
+      <figure><img class="ph" data-src="img/f_oval.jpg" alt=""><figcaption>楕円リング（黒メラミン）</figcaption></figure>
+      <figure><img class="ph" data-src="img/f_assy1.jpg" alt=""><figcaption>ユニットを重ねて組み立て</figcaption></figure>
+      <figure><img class="ph" data-src="img/f_assy4.jpg" alt=""><figcaption>3段構成の全体</figcaption></figure>
+      <figure><img class="ph" data-src="img/f_assy6.jpg" alt=""><figcaption>出荷前の検品</figcaption></figure>
+    </div>
+    <p class="kicker a" style="--i:3" style="margin-top:6px">Finished in the Factory</p>
+    <div class="tiles a" style="--i:4">
+      <figure class="tile w2"><img class="ph" data-src="img/f_fin2.jpg" alt="" style="aspect-ratio:4/3"><figcaption>黒い突板を貼って、工場で仕上げたところ</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f_fin1.jpg" alt=""><figcaption>側板の突板仕上げ</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f_fin3.jpg" alt=""><figcaption>3ユニットを組んだ状態</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f_floor.jpg" alt=""><figcaption>工場の床で全体を組み立て</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f_fin4.jpg" alt=""><figcaption>出荷前の全景</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 14 リテールカウンター 完成 -->
+<section class="slide" data-t="リテールカウンター 据付" data-sec="事例">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Six Senses ── Retail / Installed</p>
+    <h2 class="a" style="--i:1">現地に据付、<br>完成。</h2>
+    <div class="strip tall a" style="--i:2">
+      <figure><img class="ph" data-src="img/s_inst1.jpg" alt=""><figcaption>物販エリア全景</figcaption></figure>
+      <figure><img class="ph" data-src="img/s_inst3.jpg" alt=""><figcaption>3段の円形カウンター</figcaption></figure>
+      <figure><img class="ph" data-src="img/s_inst6.jpg" alt=""><figcaption>シンク一体の天板まわり</figcaption></figure>
+      <figure><img class="ph" data-src="img/s_inst4.jpg" alt=""><figcaption>曲面の側板と天板の小口</figcaption></figure>
+      <figure><img class="ph" data-src="img/s_inst5.jpg" alt=""><figcaption>格子棚の壁面と一体に</figcaption></figure>
+      <figure><img class="ph" data-src="img/s_inst2.jpg" alt=""><figcaption>照明が入った夜の表情</figcaption></figure>
+      <figure><img class="ph" data-src="img/s_inst7.jpg" alt=""><figcaption>上から見た重なり</figcaption></figure>
+    </div>
+    <div class="card a" style="--i:3"><div class="row"><div class="ic" style="width:64px;height:64px;flex-basis:64px;border-radius:12px;overflow:hidden"><img data-src="img/f3_bench.jpg" alt="" style="width:100%;height:100%;object-fit:cover"></div><div><h3>つくっているのは、木工の社員です。</h3><p class="small mut">図面を読み、曲面を組み、突板を貼り、塗って仕上げる。熟練の木工技術を持つ社員が、一台ずつ手がけています。</p></div></div></div>
+    <div class="grid3 a" style="--i:4">
+      <div class="card"><div class="num" style="font-size:22px">3D</div><div class="lab">構造検討</div></div>
+      <div class="card"><div class="num" style="font-size:22px">NC</div><div class="lab">板取り・加工</div></div>
+      <div class="card"><div class="num" style="font-size:22px">据付</div><div class="lab">工場で完成→現地</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 積層リング アニメ -->
+<section class="slide" data-t="積層リングのカウンター（3D部品分解）" data-sec="事例">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Case 02 ── ライズ鉾町（京都）2026</p>
+    <h2 class="a" style="--i:1">すり鉢状の曲面を、<br>72枚のリングに分解。</h2>
+    <div class="cv a" style="--i:2" id="ringbox">
+      <canvas id="rings"></canvas>
+      <div class="hud"><b id="rc">0</b> / 72 枚<br><span id="rz">z 0 mm</span></div>
+      <div class="tap">タップでもう一度</div>
+    </div>
+    <p class="small mut a" style="--i:3">実際の3Dデータ（半径・高さ・角度）から描画。下向きに傾いた曲面壁を、30mmのランバー材から削り出す円弧の帯72枚に分けて積層します。</p>
+  </div>
+</section>
+
+<!-- 16 積層リング NCデータ -->
+<section class="slide" data-t="積層リング NCデータ" data-sec="事例">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Case 02 ── NC Data</p>
+    <h2 class="a" style="--i:1">どの部材が、<br>どこに来るか。</h2>
+    <div class="tiles a" style="--i:2">
+      <figure class="tile w2"><img class="ph" data-src="img/nc_section.jpg" alt="" style="aspect-ratio:1.6/1;object-fit:contain;background:#fff"><figcaption>組立位置を3Dと断面で確認（部番つき）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/nc_map.jpg" alt="" style="background:#fff;object-fit:contain"><figcaption>3×6板への板取り ── 帯ごとに色分け</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/nc_request.jpg" alt="" style="background:#fff;object-fit:cover;object-position:top"><figcaption>NC加工依頼書（1枚ごと）</figcaption></figure>
+    </div>
+    <div class="grid3 a" style="--i:3">
+      <div class="card"><div class="num" style="font-size:24px"><span data-count="72">0</span></div><div class="lab">部材</div></div>
+      <div class="card"><div class="num" style="font-size:24px"><span data-count="15">0</span><small>枚</small></div><div class="lab">3×6 ランバー t30</div></div>
+      <div class="card"><div class="num" style="font-size:24px">26.5<small>h</small></div><div class="lab">NC加工時間</div></div>
+    </div>
+    <p class="small mut a" style="--i:4">傾斜面は3D等高線で0.03mmまで削り、他の辺は0.8mmの皮を残して板から外れないようにし、加工後に手で切り離します。</p>
+  </div>
+</section>
+
+<!-- ライズ 完成 -->
+<section class="slide" data-t="積層リング 完成（工場）" data-sec="事例">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Case 02 ── Completed</p>
+    <h2 class="a" style="--i:1">72枚を削り出して、<br>積む。</h2>
+    <div class="big2 a" style="--i:2">
+      <figure class="tile"><img class="ph" data-src="img/rise_done2.jpg" alt=""><figcaption>外側 ── 削り出した帯を積んだ曲面</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/rise_done1.jpg" alt=""><figcaption>内側 ── 棚と開口</figcaption></figure>
+    </div>
+    <p class="small mut a" style="--i:3">レセプションカウンター（ライズ鉾町・京都）。工場での完成時。3Dで72枚に分解した帯を1枚ずつNCで削り出し、積み上げて器のかたちにしています。</p>
+  </div>
+</section>
+
+<!-- I'm donut ? 寺町三条 -->
+<section class="slide" data-t="I'm donut ? 寺町三条 ── 積層と曲げ" data-sec="事例">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Case 03 ── I'm donut ? 寺町三条（京都）2026</p>
+    <h2 class="a" style="--i:1">8mのS字カウンターを、<br>積層と曲げでつくる。</h2>
+    <div class="cv a" style="--i:2;aspect-ratio:1/0.78" id="dnbox"><canvas id="dn"></canvas><div class="hud"><b id="dc">0</b> / 84 枚 積層<br><span id="dz">曲げベニヤ 0%</span></div><div class="tap">タップでもう一度</div></div>
+    <div class="tiles a" style="--i:2">
+      <figure class="tile w2"><img class="ph" data-src="img/imd_f1.jpg" alt="" style="aspect-ratio:16/9"><figcaption>全長約8.2mのS字の物販カウンター（工場完成時）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/imd_f2.jpg" alt=""><figcaption>オープン棚とSUS天板の受け</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/imd_plan.jpg" alt="" style="background:#fff;object-fit:contain"><figcaption>平面 ── S字の外周壁</figcaption></figure>
+    </div>
+    <div class="tiles a" style="--i:3">
+      <figure class="tile w2"><img class="ph" data-src="img/imd_sec.jpg" alt="" style="aspect-ratio:2.2/1;background:#fff;object-fit:contain"><figcaption>外周壁の内訳 ── 積層スキン3区間（NC）＋曲げベニヤt9</figcaption></figure>
+    </div>
+    <p class="q a" style="--i:4">外周壁は下端20mm→上端75mmへ傾く壁。曲率のきつい3区間は<b>28段×3ピース＝84点の積層スキンをNCで削り出し</b>（斜め小口・1段ごとに約1.8mm外へ）、残り約5.9mは<b>曲げベニヤt9</b>で巻いて仕上げました。</p>
+    <div class="grid3 a" style="--i:5">
+      <div class="card"><div class="num" style="font-size:24px">84<small>点</small></div><div class="lab">積層スキン（NC）</div></div>
+      <div class="card"><div class="num" style="font-size:24px">10<small>枚</small></div><div class="lab">ランバー t18〜30</div></div>
+      <div class="card"><div class="num" style="font-size:24px">8.2<small>m</small></div><div class="lab">外周壁の全長</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ALBION 完成 -->
+<section class="slide" data-t="円形カウンター 完成（工場）" data-sec="事例">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Case 04 ── Completed</p>
+    <h2 class="a" style="--i:1">扇形の部材が、<br>円になる。</h2>
+    <div class="strip a" style="--i:2">
+      <figure class="wide"><img class="ph" data-src="img/alb_cnt3.jpg" alt=""><figcaption>ディスプレイカウンター ── 曲面の本体と棚</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/alb_shelf2.jpg" alt=""><figcaption>3段の曲面ディスプレイ棚</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/alb_shelf3.jpg" alt=""><figcaption>棚板の小口と曲面</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/alb_cnt1.jpg" alt=""><figcaption>カウンターの端部</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/alb_high2.jpg" alt=""><figcaption>ハイカウンター（着席側）</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/alb_round.jpg" alt=""><figcaption>円形什器 Al-10</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/alb_shima.jpg" alt=""><figcaption>ALBION シマ什器</figcaption></figure>
+    </div>
+    <p class="small mut a" style="--i:3">化粧品フロアの円形什器一式（ALBION）。工場での完成時。同じフロアの大型什器・柱巻き・ポイント什器も製作しました。</p>
+  </div>
+</section>
+
+<!-- 3Dビューア -->
+<section class="slide" data-t="3Dデータを回してみる" data-sec="3D">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">3D Viewer ── Touch to Rotate</p>
+    <h2 class="a" style="--i:1">指で回せる、<br>実際の3Dデータ。</h2>
+    <div class="viewer a" style="--i:2" id="viewer">
+      <canvas id="v3d"></canvas>
+      <div class="tabs" id="vtabs" hidden></div>
+      <div class="vname" id="vname"></div>
+      <div class="hint">1本指で回転 ・ 2本指でズーム／移動</div>
+      <div class="ld" id="vld">読み込み中…</div>
+    </div>
+    <p class="small mut a" style="--i:3">下のカードをタップでモデルを切り替え</p>
+    <div class="vcards a" style="--i:4" id="vcards"></div>
+    <p class="small mut a" style="--i:5" id="vnote">製作前に部材分けまで検討した3Dデータです。図面をいただいた段階で、こうした形でご相談できます。</p>
+  </div>
+</section>
+
+<!-- 3Dスキャナー -->
+<section class="slide" data-t="3Dスキャナー" data-sec="3D">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">3D Scanner ── Revopoint MIRACO</p>
+    <h2 class="a" style="--i:1">現場や機械を、<br>そのまま3Dに。</h2>
+    <div class="vid a" style="--i:2"><video data-src="vid/scan_demo.mp4" muted loop playsinline preload="none" poster="img/scan_cloud.jpg"></video><div class="sl">ボール盤のテーブルをスキャン → 点群 → CADで台座を設計</div></div>
+    <div class="tiles a" style="--i:3">
+      <figure class="tile"><img class="ph" data-src="img/scan_dev.jpg" alt=""><figcaption>ハンディ3Dスキャナー</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/scan_cad.jpg" alt="" style="background:#fff;object-fit:contain"><figcaption>スキャンデータに合わせて部材を設計</figcaption></figure>
+    </div>
+    <p class="q a" style="--i:4"><b>R形状の面にぴったり合う家具</b>、入り組んだ形状にはまる部材、現場をスキャンして後から寸法を測る。実測の手間と誤差を減らします。</p>
+  </div>
+</section>
+
+<!-- 事務所 拡張スペース -->
+<section class="slide photo-bg" data-t="事務所の拡張スペース（自社設計）" data-sec="3D">
+  <div class="hero">
+    <img data-src="img/ex_r1.jpg" alt="">
+    <div class="ov"></div>
+    <div class="txt">
+      <p class="kicker a" style="--i:0">Our Office ── Mezzanine Extension</p>
+      <h1 class="serif a" style="--i:1">拡張スペースも、<br>3Dで。</h1>
+      <p class="a" style="--i:2">事務所の中2階を広げる計画。現場を3Dスキャンし、その上にガラスの手摺・格子のカウンター・木の柱を置いて検討しました。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 事務所 拡張スペース 詳細 -->
+<section class="slide" data-t="拡張スペース ── スキャンから設計へ" data-sec="3D">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Our Office ── Scan to Design</p>
+    <h2 class="a" style="--i:1">スキャンした現場に、<br>そのまま描く。</h2>
+    <div class="strip a" style="--i:2">
+      <figure class="wide"><img class="ph" data-src="img/ex_r2.jpg" alt=""><figcaption>スキャンデータの上に設計 ── ガラス手摺と格子カウンター</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/ex_r3.jpg" alt=""><figcaption>カウンター越しの見え方</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/ex_r4.jpg" alt=""><figcaption>木の柱と間接照明</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/ex_scan.jpg" alt=""><figcaption>現場の3Dスキャン（吹抜けまわり）</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/ex_dim.jpg" alt=""><figcaption>スキャンから寸法を取る</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/ex_draw.jpg" alt=""><figcaption>ガラス手摺の製作図</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/ex_site.jpg" alt=""><figcaption>現場 ── 吹抜けと既存の手摺</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/ex_table.jpg" alt=""><figcaption>テーブルの設計案</figcaption></figure>
+    </div>
+    <p class="small mut a" style="--i:4">3Dスキャン → 寸法 → 設計 → 製作図まで、お客様の案件と同じ道具で。自社の空間で試したことを、仕事に生かしています。</p>
+    <div class="vid a" style="--i:5"><video data-src="vid/bld_tour.mp4" muted loop playsinline preload="none" poster="img/bld_v4.jpg"></video><div class="sl">3Cビル ── 建物全体を階ごとに検討したときの3D</div></div>
+  </div>
+</section>
+
+<!-- 17 3D→NC 他 -->
+<section class="slide" data-t="3Dから部材へ" data-sec="事例">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">3D to Parts</p>
+    <h2 class="a" style="--i:1">すべての部材を、<br>3Dで分解してからNCへ。</h2>
+    <div class="tiles a" style="--i:2">
+      <figure class="tile w2"><img class="ph" data-src="img/nc0022_persp.jpg" alt="" style="aspect-ratio:2.2/1;object-fit:cover;background:#fff"><figcaption>エントランスカウンター・ルーバーの部材一式（3D）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_parts.jpg" alt=""><figcaption>切り出した扇形テーブルの部材</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/k286.jpg" alt=""><figcaption>オーバル型リングベンチ（放送局本社）</figcaption></figure>
+    </div>
+    <p class="small mut a" style="--i:3">曲面・R形状・大型の什器ほど、3Dで部材に分解してから加工する効果が大きくなります。図面のご相談から、部材データの共有までお受けします。</p>
+  </div>
+</section>
+
+<!-- 18 設置実績 -->
+<section class="slide" data-t="設置実績（店舗・オフィス）" data-sec="実績">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Selected Works ── Installed</p>
+    <h2 class="a" style="--i:1">百貨店、アパレル、<br>オフィスラウンジ。</h2>
+    <div class="marq a" style="--i:2"><div class="mrow r1"><div class="mtrack"><figure class="mi"><img class="ph" data-src="img/g1048.jpg" alt="" data-cap="鶴屋八幡 京阪百貨店守口店 ── L字ショーケースカウンター"></figure><figure class="mi"><img class="ph" data-src="img/g1036.jpg" alt="" data-cap="赤福 阪神梅田本店 ── 木格子の店舗ファサード"></figure><figure class="mi"><img class="ph" data-src="img/g1039.jpg" alt="" data-cap="赤福 ── 販売カウンター・什器"></figure><figure class="mi"><img class="ph" data-src="img/g1150.jpg" alt="" data-cap="Heather ルミネ横浜 ── ロゴ壁と楕円テーブル什器"></figure><figure class="mi"><img class="ph" data-src="img/g1151.jpg" alt="" data-cap="Heather ── アーチ型木製ディスプレイ棚"></figure><figure class="mi"><img class="ph" data-src="img/g1048.jpg" alt="" data-cap="鶴屋八幡 京阪百貨店守口店 ── L字ショーケースカウンター"></figure><figure class="mi"><img class="ph" data-src="img/g1036.jpg" alt="" data-cap="赤福 阪神梅田本店 ── 木格子の店舗ファサード"></figure><figure class="mi"><img class="ph" data-src="img/g1039.jpg" alt="" data-cap="赤福 ── 販売カウンター・什器"></figure><figure class="mi"><img class="ph" data-src="img/g1150.jpg" alt="" data-cap="Heather ルミネ横浜 ── ロゴ壁と楕円テーブル什器"></figure><figure class="mi"><img class="ph" data-src="img/g1151.jpg" alt="" data-cap="Heather ── アーチ型木製ディスプレイ棚"></figure></div></div><div class="mrow r2"><div class="mtrack"><figure class="mi"><img class="ph" data-src="img/g299.jpg" alt="" data-cap="御堂筋ダイビル 共用ラウンジ ── 木口寄木天板のビッグテーブル"></figure><figure class="mi"><img class="ph" data-src="img/g291.jpg" alt="" data-cap="御堂筋ダイビル ── プランター一体部"></figure><figure class="mi"><img class="ph" data-src="img/wworks_03_office_lounge.jpg" alt="" data-cap="企業オフィス ── ラウンジ楕円テーブル"></figure><figure class="mi"><img class="ph" data-src="img/wworks_04_office_shelf.jpg" alt="" data-cap="企業オフィス ── R形状の壁面シェルフ＋ベンチ"></figure><figure class="mi"><img class="ph" data-src="img/g1048.jpg" alt="" data-cap="鶴屋八幡 京阪百貨店守口店 ── L字ショーケースカウンター"></figure><figure class="mi"><img class="ph" data-src="img/g299.jpg" alt="" data-cap="御堂筋ダイビル 共用ラウンジ ── 木口寄木天板のビッグテーブル"></figure><figure class="mi"><img class="ph" data-src="img/g291.jpg" alt="" data-cap="御堂筋ダイビル ── プランター一体部"></figure><figure class="mi"><img class="ph" data-src="img/wworks_03_office_lounge.jpg" alt="" data-cap="企業オフィス ── ラウンジ楕円テーブル"></figure><figure class="mi"><img class="ph" data-src="img/wworks_04_office_shelf.jpg" alt="" data-cap="企業オフィス ── R形状の壁面シェルフ＋ベンチ"></figure><figure class="mi"><img class="ph" data-src="img/g1048.jpg" alt="" data-cap="鶴屋八幡 京阪百貨店守口店 ── L字ショーケースカウンター"></figure></div></div></div>
+    <p class="small mut a" style="--i:3">上下2段で流れます。タップで拡大。</p>
+  </div>
+</section>
+
+<!-- 製作実績 宇宙の壁 -->
+<section class="slide" data-t="製作実績" data-sec="実績" id="wallslide">
+  <div class="stars"></div>
+  <div class="in top" style="gap:8px">
+    <div class="wallhead">
+      <p class="kicker a" style="--i:0">Works ── At the Factory</p>
+      <h2 class="a" style="--i:1">つくってきたもの。</h2><span id="wn" hidden></span>
+      <p class="small mut a" style="--i:2">2023〜2026年の工場完成写真。下にスクロール。タップで拡大</p><span id="wsites" hidden></span>
+    </div>
+    <div class="wall a" style="--i:3" id="wall"></div>
+    <p class="foot" style="text-align:left;margin-top:10px">写真は出荷前の工場で撮影したもの。現場名はお客様の店名・施設名のみ表記</p>
+  </div>
+</section>
+
+<!-- 20 納品先 -->
+<section class="slide" data-t="主な納品先" data-sec="実績">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Clients ── 2023〜2026</p>
+    <h2 class="a" style="--i:1">主な納品先。</h2>
+    <div class="srows a" style="--i:2"><div class="srow"><div class="sh"><span>ハイブランド・専門店</span><em>30件前後</em></div><p>HERMES／GIRARD-PERREGAUX／Ulysse Nardin／Swatch／ISSEY MIYAKE／Vivienne Westwood／IPSA／SK-II／Aesop／ANTEPRIMA／Heather／BEAMS／familiar／FANCL／TWG Tea／ミキハウス</p></div><div class="srow"><div class="sh"><span>百貨店 食品売場</span><em>数件</em></div><p>鶴屋八幡／赤福／フランス屋</p></div><div class="srow"><div class="sh"><span>チェーン店舗</span><em>60件超</em></div><p>JINS／どうとんぼり神座／吉野家／コメダ珈琲／すき家／マクドナルド／KFC／サーティワン／タリーズ／鳥貴族／やよい軒／森塾</p></div><div class="srow"><div class="sh"><span>ホテル・レジャー</span><em>約20件</em></div><p>シックスセンシズ京都／エースホテル京都／ふふ軽井沢／サンカラホテル屋久島／スイスホテル南海大阪／琵琶湖ホテル／APAホテル／ウォーターマークホテル／なんばオリエンタルホテル／ドーミー山科／サントリー山崎蒸溜所</p></div><div class="srow"><div class="sh"><span>飲食店</span><em>30件超</em></div><p>後楽園飯店／ビフテキのカワムラ／心斎橋ライム／焼肉きんぐ／牛かつもと村／炭火焼鳥 塚田 ほか</p></div><div class="srow"><div class="sh"><span>オフィス・企業施設</span><em>約15件</em></div><p>川崎重工業 神戸本社／瀬戸内放送 岡山本社／御堂筋ダイビル／MathWorks／霞ヶ関キャピタル／関電不動産／清水建設／エミレーツ航空</p></div><div class="srow"><div class="sh"><span>公共・大型施設</span><em>数件</em></div><p>EXPO2025 大阪・関西万博／関西国際空港／門司港レトロ／ラコリーナ近江八幡</p></div><div class="srow"><div class="sh"><span>医療・教育</span><em>30件超</em></div><p>兵庫医科大学 新病棟／大阪大学医学部附属病院／立教小学校／東海大学／保育園・幼稚園／歯科医院 20院超</p></div></div>
+    <p class="foot a" style="--i:3">件数は2023〜2026年に納品した現場数のおおよその目安</p>
+  </div>
+</section>
+
+<!-- 21 協力会社として -->
+<section class="slide" data-t="協力会社としてできること" data-sec="ご提案">
+  <div class="in">
+    <p class="kicker a" style="--i:0">As Your Partner</p>
+    <h2 class="a" style="--i:1">協力会社として、<br>お受けできること。</h2>
+    <div class="card a" style="--i:2"><div class="row"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM4 9h16M9 9v11"/></svg></div><div><h3>図面からの構造検討・製作図</h3><p class="small mut">いただいた実施設計図から納まりと加工方法を検討。3Dで部材に分解してご提案します（設計は行いません）。</p></div></div></div>
+    <div class="card a" style="--i:3"><div class="row"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 17c4-8 14-8 18 0M3 17h18"/><path d="M12 11v6"/></svg></div><div><h3>曲面・R・大型の什器</h3><p class="small mut">積層リング、曲げ合板＋NCリブ、円形・楕円什器。複雑形状を得意としています。</p></div></div></div>
+    <div class="card a" style="--i:4"><div class="row"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 5h7v7H3zM14 5h7v7h-7zM3 16h7v5H3zM14 16h7v5h-7z"/></svg></div><div><h3>多店舗展開・量産</h3><p class="small mut">チェーン店舗の什器一式を、同じ品質で店舗数分。NCデータを使い回せる体制です。</p></div></div></div>
+    <div class="card a" style="--i:5"><div class="row"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v10M8 9l4 4 4-4M4 17h16v4H4z"/></svg></div><div><h3>塗装・検品まで一貫</h3><p class="small mut">自社塗装で色合わせまで。工場で組み上げて仕上げ、検品してから出荷します。</p></div></div></div>
+    <div class="card a" style="--i:6"><div class="row"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/></svg></div><div><h3>3D・NCデータの共有</h3><p class="small mut">部材データ・部品表・加工依頼書をお渡しできます。設計者・現場との連携がスムーズです。</p></div></div></div>
+  </div>
+</section>
+
+<!-- 22 連絡先 -->
+<section class="slide cover" data-t="会社概要・連絡先" data-sec="ご提案">
+  <div class="in contact">
+    <div class="logo a" style="--i:0"><img src="img/logo_mark.png" alt="3C" style="width:120px;height:auto;display:block;margin-left:-8px"></div>
+    <h2 class="serif a" style="--i:1">木の可能性を広げ、<br>空間に価値を創る。</h2>
+    <dl class="a" style="--i:2">
+      <dt>社名</dt><dd>株式会社３C工芸（3C KOGEI CO., LTD.）</dd>
+      <dt>代表</dt><dd>代表取締役　新里 優</dd>
+      <dt>設立</dt><dd>2015年11月　資本金 900万円</dd>
+      <dt>本社</dt><dd>〒580-0014　大阪府松原市岡7丁目64-2<br><span class="mut small">火災後の復旧工事中（事務所は第3工場）</span></dd>
+      <dt>工場</dt><dd>第3工場　堺市美原区太井404-12（事務所）<br>第2工場　堺市美原区今井95-1</dd>
+      <dt>TEL</dt><dd><a href="tel:0723496182" style="color:var(--fg)">072-349-6182</a>　<span class="mut">FAX 072-349-6183</span></dd>
+      <dt>Mail</dt><dd><a href="mailto:info@3ck.jp" style="color:var(--fg)">info@3ck.jp</a></dd>
+      <dt>Web</dt><dd><a href="https://3ck.jp" style="color:var(--gold2)">3ck.jp</a></dd>
+    </dl>
+    <div class="row a" style="--i:3"><div class="qr"><img src="img/qr_3ck.png" alt="3ck.jp"></div><p class="small mut">公式サイト 3ck.jp<br>施工事例・会社概要</p></div>
+    <p class="foot a" style="--i:4">© 2026 MR Design · v2.1.0</p>
+  </div>
+</section>
+
+</div>
+
+<!-- nav -->
+<div id="nav">
+  <button id="bMenu" aria-label="目次"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>目次</button>
+  <div id="prog"><div id="bar"><i></i></div><span id="cnt">1 / 1</span></div>
+  <button id="bPrev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button id="bNext" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+
+<div id="menu"><h3>CONTENTS</h3><ol id="toc"></ol><button class="close" id="bClose">閉じる</button></div>
+<div id="tip"><div class="bx"><h3>iPhoneで全画面にするには</h3><ol><li>Safariの「共有」ボタンをタップ</li><li>「ホーム画面に追加」を選ぶ</li><li>ホーム画面のアイコンから開くと、アドレスバーなしの全画面になります</li></ol><button id="tipx">閉じる</button></div></div>
+<div id="lb"><span class="n" id="lbn"></span><button class="x" id="lbx" aria-label="閉じる">×</button><img id="lbi" alt=""><div class="cap" id="lbc"></div></div>
+
+<script>(function(){const H='10d8cf5b3e7ffa5c0c48c62181203aeaf29aa305c4be67eadbb1333833373500';const L=document.getElementById('lock');const ok=()=>{L.hidden=true;try{localStorage.setItem('pf_ok',H)}catch(e){}};try{if(localStorage.getItem('pf_ok')===H){L.hidden=true;}}catch(e){}async function sha(s){const b=new TextEncoder().encode(s);const d=await crypto.subtle.digest('SHA-256',b);return [...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,'0')).join('');}document.getElementById('lockf').addEventListener('submit',async e=>{e.preventDefault();const v=document.getElementById('lockin').value.trim();const h=await sha('3cpitch:'+v);if(h===H){ok();}else{document.getElementById('lockerr').textContent='パスワードが違います';}});})();</script>
+<script src="lib/logo-anim.js?v=20261006" defer></script>
+<script>
+window.BUILD='20261006182930';
+(() => {
+const deck=document.getElementById('deck'), slides=[...document.querySelectorAll('.slide')], N=slides.length;
+let cur=0, seqTimer=null, ringsRAF=null;
+const bar=document.querySelector('#bar i'), cnt=document.getElementById('cnt');
+
+// lazy images: load current ±1 first, then everything else in the background one by one
+let bgQueue=null;
+function bgLoad(){ if(bgQueue) return; bgQueue=[...document.querySelectorAll('img[data-src]')]; const step=()=>{ const im=bgQueue.shift(); if(!im) return; if(im.dataset.src){ im.src=im.dataset.src; im.removeAttribute('data-src'); } const nx=()=>setTimeout(step,60); im.complete?nx():(im.onload=nx, im.onerror=nx); }; step(); }
+setTimeout(bgLoad,2500);
+function loadImgs(i){ for(const k of [i-1,i,i+1]) if(slides[k]) slides[k].querySelectorAll('video[data-src]').forEach(v=>{v.src=v.dataset.src; v.removeAttribute('data-src'); v.load();}); for(const k of [i-1,i,i+1]) if(slides[k]) slides[k].querySelectorAll('img[data-src]').forEach(im=>{const u=im.dataset.src; im.removeAttribute('data-src'); let n=0; im.onerror=()=>{ if(n++<4) setTimeout(()=>{ im.src=u+'?r='+n; }, 500+n*900); }; im.src=u;}); }
+function go(i,push=true){
+  i=Math.max(0,Math.min(N-1,i)); if(i===cur && slides[i].classList.contains('on')) return;
+  if(slides[cur]){ slides[cur].classList.remove('on'); slides[cur].classList.remove('done'); } cur=i;
+  deck.style.transform=`translateX(${-i*100}vw)`;
+  loadImgs(i); slides[i].scrollTop=0;
+  void slides[i].offsetWidth; slides[i].classList.add('on');
+  bar.style.width=((i+1)/N*100)+'%'; cnt.textContent=(i+1)+' / '+N;
+  if(push) history.replaceState(null,'','#'+(i+1));
+  onEnter(i);
+  clearTimeout(window._doneT); window._doneT=setTimeout(()=>slides[i].classList.add('done'),1300);
+}
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+addEventListener('keydown',e=>{ if(lb.classList.contains('open')){ if(e.key==='Escape')closeLb(); if(e.key==='ArrowRight')lbGo(1); if(e.key==='ArrowLeft')lbGo(-1); return;} if(e.key==='ArrowRight'||e.key===' ')go(cur+1); if(e.key==='ArrowLeft')go(cur-1); if(e.key==='Escape')menu.classList.remove('open'); });
+addEventListener('resize',()=>{deck.style.transition='none';deck.style.transform=`translateX(${-cur*100}vw)`;requestAnimationFrame(()=>deck.style.transition='');});
+
+// swipe (horizontal only; vertical scroll + strip scroll stay native)
+let sx=0,sy=0,st=0,tracking=false,inStrip=false;
+deck.addEventListener('touchstart',e=>{ if(e.target.closest('.viewer,.cv')){tracking=false;return;} const t=e.touches[0];sx=t.clientX;sy=t.clientY;st=Date.now();tracking=true;inStrip=!!e.target.closest('.strip');},{passive:true});
+deck.addEventListener('touchend',e=>{ if(!tracking)return; tracking=false; const t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy, dt=Date.now()-st;
+  if(Math.abs(dx)<Math.abs(dy)*1.3) return;
+  if(Math.abs(dx)>60 || (Math.abs(dx)>30 && dt<250)) go(cur+(dx<0?1:-1)); },{passive:true});
+// mouse drag for desktop preview
+let mx=null; deck.addEventListener('mousedown',e=>{mx=e.target.closest('.viewer,.cv')?null:e.clientX;}); addEventListener('mouseup',e=>{ if(mx===null)return; const dx=e.clientX-mx; mx=null; if(Math.abs(dx)>80) go(cur+(dx<0?1:-1)); });
+
+// menu
+const menu=document.getElementById('menu'), toc=document.getElementById('toc');
+slides.forEach((s,i)=>{const li=document.createElement('li');li.innerHTML=`<b>${String(i+1).padStart(2,'0')}</b><span>${s.dataset.t}</span><span class="sec">${s.dataset.sec||''}</span>`;li.onclick=()=>{menu.classList.remove('open');go(i);};toc.appendChild(li);});
+document.getElementById('bMenu').onclick=()=>{[...toc.children].forEach((li,i)=>li.classList.toggle('cur',i===cur));menu.classList.add('open');};
+document.getElementById('bClose').onclick=()=>menu.classList.remove('open');
+document.getElementById('prog').onclick=document.getElementById('bMenu').onclick;
+
+// lightbox
+const lb=document.getElementById('lb'), lbi=document.getElementById('lbi'), lbc=document.getElementById('lbc'), lbn=document.getElementById('lbn');
+let lbList=[], lbIdx=0;
+function openLb(list,i){lbList=list;lbIdx=i;showLb();lb.classList.add('open');}
+function showLb(){const im=lbList[lbIdx];lbi.style.opacity=0;const src=im.dataset.m||im.dataset.src||im.src;const pre=new Image();pre.onload=()=>{lbi.src=src;lbi.style.opacity=1;};pre.src=src;const cap=im.closest('figure')?.querySelector('figcaption')?.textContent||im.dataset.cap||'';lbc.textContent=cap;lbn.textContent=(lbIdx+1)+' / '+lbList.length;}
+function lbGo(d){lbIdx=(lbIdx+d+lbList.length)%lbList.length;showLb();}
+function closeLb(){lb.classList.remove('open');}
+document.getElementById('lbx').onclick=closeLb;
+lb.addEventListener('click',e=>{ if(e.target===lb||e.target===lbi){ /* tap left/right third to move */ const x=e.clientX/innerWidth; if(lbList.length>1 && x>0.66) lbGo(1); else if(lbList.length>1 && x<0.33) lbGo(-1); else closeLb(); } });
+let lx=0,ly=0; lb.addEventListener('touchstart',e=>{lx=e.touches[0].clientX;ly=e.touches[0].clientY;},{passive:true});
+lb.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-lx,dy=e.changedTouches[0].clientY-ly; if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)) lbGo(dx<0?1:-1); else if(dy>80&&Math.abs(dy)>Math.abs(dx)) closeLb();},{passive:true});
+document.querySelectorAll('.slide').forEach(s=>{ s.addEventListener('click',e=>{ const im=e.target.closest('img.ph'); if(!im) return; const list=[...s.querySelectorAll('img.ph')]; openLb(list,list.indexOf(im)); }); });
+
+// counters
+function countUp(el){const to=+el.dataset.count, t0=performance.now(), d=1100; const f=t=>{const p=Math.min(1,(t-t0)/d), e=1-Math.pow(1-p,3); el.textContent=Math.round(to*e); if(p<1) requestAnimationFrame(f);}; requestAnimationFrame(f);}
+
+// sequence (slide 11)
+const seq=document.getElementById('seq1'); let seqI=0;
+if(seq){ const imgs=[...seq.querySelectorAll('img')], dots=seq.querySelector('.dots'), cap=seq.querySelector('.cap'); imgs.forEach(()=>dots.appendChild(document.createElement('i')));
+  function show(i){seqI=(i+imgs.length)%imgs.length; imgs.forEach((im,k)=>im.classList.toggle('cur',k===seqI)); [...dots.children].forEach((d,k)=>d.classList.toggle('cur',k===seqI)); cap.textContent=imgs[seqI].dataset.cap;}
+  seq.addEventListener('click',()=>{show(seqI+1); restartSeq();});
+  function restartSeq(){clearInterval(seqTimer); seqTimer=setInterval(()=>show(seqI+1),3200);}
+  seq._start=()=>{show(0);restartSeq();}; seq._stop=()=>clearInterval(seqTimer);
+}
+
+// rings (slide 15): real geometry from data/rings.json
+const box=document.getElementById('ringbox'), cv=document.getElementById('rings'); let rings=null, ringT0=0;
+fetch('data/rings.json').then(r=>r.json()).then(j=>{rings=j.sort((a,b)=>a.z0-b.z0||a.a0-b.a0);}).catch(()=>{});
+const rc=document.getElementById('rc'), rz=document.getElementById('rz');
+function drawRings(now){
+  if(!rings) {ringsRAF=requestAnimationFrame(drawRings);return;}
+  const dpr=Math.min(2,devicePixelRatio||1), W=box.clientWidth, H=box.clientHeight;
+  if(cv.width!==W*dpr){cv.width=W*dpr;cv.height=H*dpr;}
+  const g=cv.getContext('2d'); g.setTransform(dpr,0,0,dpr,0,0); g.clearRect(0,0,W,H);
+  const t=(now-ringT0)/1000;
+  const total=rings.length, per=0.05, dur=0.55, start=0.5;
+  const yaw=-0.35+t*0.12, pitch=0.62; // camera elevation
+  const cy=Math.cos(yaw), sy=Math.sin(yaw), sp=Math.sin(pitch), cp=Math.cos(pitch);
+  const S=Math.min(W,H)/3150; const cx=W/2, cz=H*0.5;
+  const P=(x,y,z)=>{const X=x*cy-y*sy, Y=x*sy+y*cy; return [cx+X*S, cz+(Y*sp-z*cp)*S, Y];};
+  // floor ellipse
+  g.strokeStyle='rgba(176,120,255,.28)'; g.lineWidth=1; g.beginPath(); for(let a=0;a<=360;a+=6){const r=a*Math.PI/180,p=P(1350*Math.cos(r),-600+1350*Math.sin(r),0); a?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]);} g.stroke();
+  let placed=0, topZ=0;
+  const items=rings.map((r,k)=>{const p=Math.min(1,Math.max(0,(t-start-k*per)/dur)); if(p>=1)placed++; if(p>0)topZ=Math.max(topZ,r.z1); return {r,p,k};});
+  // draw order: by z0 then depth
+  items.filter(o=>o.p>0).forEach(o=>{
+    const {r,p}=o; const e=1-Math.pow(1-p,3), lift=(1-e)*500; const z0=r.z0+lift, z1=r.z1+lift;
+    const steps=18, a0=r.a0*Math.PI/180, a1=r.a1*Math.PI/180;
+    const arc=(rad,z)=>{const out=[];for(let i=0;i<=steps;i++){const a=a0+(a1-a0)*i/steps;out.push(P(rad*Math.cos(a),rad*Math.sin(a),z));}return out;};
+    const oT=arc(r.ro,z1), oB=arc(r.ro,z0), iT=arc(r.ri,z1), iB=arc(r.ri,z0);
+    g.globalAlpha=0.25+0.75*e;
+    // inner wall (visible from inside: camera looks into the bowl)
+    g.fillStyle='#6e5f9e'; g.beginPath(); iT.forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1])); for(let i=iB.length-1;i>=0;i--)g.lineTo(iB[i][0],iB[i][1]); g.closePath(); g.fill();
+    // outer wall segments shaded by angle
+    for(let i=0;i<steps;i++){const am=a0+(a1-a0)*(i+.5)/steps; const nx=Math.cos(am+yaw), l=0.45+0.55*Math.max(0,(nx*0.3+Math.sin(am+yaw)*-0.95)); const c=Math.round(90+100*l); g.fillStyle=`rgb(${c-5},${c-20},${c+30})`; g.beginPath(); g.moveTo(oT[i][0],oT[i][1]); g.lineTo(oT[i+1][0],oT[i+1][1]); g.lineTo(oB[i+1][0],oB[i+1][1]); g.lineTo(oB[i][0],oB[i][1]); g.closePath(); g.fill();}
+    // end caps
+    g.fillStyle='#a393d2'; [[0],[steps]].forEach(([i])=>{g.beginPath();g.moveTo(oT[i][0],oT[i][1]);g.lineTo(iT[i][0],iT[i][1]);g.lineTo(iB[i][0],iB[i][1]);g.lineTo(oB[i][0],oB[i][1]);g.closePath();g.fill();});
+    // top face
+    g.fillStyle=r.s==='L'?'#ebe2ff':'#dccdfb'; g.strokeStyle='rgba(40,25,70,.55)'; g.lineWidth=.6;
+    g.beginPath(); oT.forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1])); for(let i=iT.length-1;i>=0;i--)g.lineTo(iT[i][0],iT[i][1]); g.closePath(); g.fill(); g.stroke();
+  });
+  g.globalAlpha=1;
+  rc.textContent=placed; rz.textContent='高さ '+Math.round(topZ)+' mm';
+  ringsRAF=requestAnimationFrame(drawRings);
+}
+function startRings(){cancelAnimationFrame(ringsRAF); ringT0=performance.now(); ringsRAF=requestAnimationFrame(drawRings);}
+function stopRings(){cancelAnimationFrame(ringsRAF); ringsRAF=null;}
+box&&box.addEventListener('click',startRings);
+
+function onEnter(i){
+  const s=slides[i];
+  document.querySelectorAll('video').forEach(v=>{ if(s.contains(v)){ v.play&&v.play().catch(()=>{}); } else { v.pause&&v.pause(); } });
+  if(albbox){ s.contains(albbox)?startAlb():stopAlb(); }
+  if(dnbox){ s.contains(dnbox)?startDn():stopDn(); }
+  if(viewer){ s.contains(viewer)?viewerOn():viewerOff(); }
+  if(wall && s.contains(wall)){ if(!wallBuilt) buildWall(); else resetWall(); }
+  if(i===0 && window.playLogoAnim && window._logoPlayed){ window.playLogoAnim(); } window._logoPlayed=true;
+  s.querySelectorAll('[data-count]').forEach(countUp);
+  if(seq){ s.contains(seq)?seq._start():seq._stop(); }
+  if(box){ s.contains(box)?startRings():stopRings(); }
+}
+
+
+// ---- photo wall ----
+const wall=document.getElementById('wall'); let wallBuilt=false;
+async function buildWall(){ if(wallBuilt||!wall) return; wallBuilt=true; const list=await fetch('wall/wall.json?v='+(window.BUILD||'')).then(r=>r.json()).catch(()=>[]); document.getElementById('wn').textContent=list.length;
+  const frag=document.createDocumentFragment(); list.forEach((o,i)=>{ const d=document.createElement('figure'); d.className='wi '+o.s; const ang=Math.random()*Math.PI*2, r=120+Math.random()*260; d.style.setProperty('--dx',Math.cos(ang)*r+'px'); d.style.setProperty('--dy',Math.sin(ang)*r+'px'); d.style.setProperty('--d',Math.round(Math.random()*260)+'ms'); const k=document.createElement('div'); k.className='k'; const im=document.createElement('img'); im.className='ph'; im.decoding='async'; im.dataset.t=o.t; im.dataset.m=o.m; im.dataset.cap=o.c; im.alt=''; let tries=0; im.onerror=()=>{ if(tries++<4) setTimeout(()=>{ im.src=o.t+'?r='+tries; }, 600+tries*900); }; k.appendChild(im); d.appendChild(k); frag.appendChild(d); }); wall.appendChild(frag); sizeWall();
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{ if(e.isIntersecting){ const im=e.target.querySelector('img'); if(im&&!im.src){ im.src=im.dataset.t; } e.target.classList.add('in'); io.unobserve(e.target);} });},{root:wall.closest('.slide'),rootMargin:'0px 0px 260px 0px',threshold:0.01}); wall.querySelectorAll('.wi').forEach(el=>io.observe(el)); }
+function sizeWall(){ if(!wall) return; const w=wall.clientWidth; if(!w) return; const cols=Math.max(6, Math.round(w/70)); wall.style.gridTemplateColumns='repeat('+cols+',1fr)'; wall.style.gridAutoRows=((w-3*(cols-1))/cols)+'px'; }
+if(wall){ new ResizeObserver(sizeWall).observe(wall); addEventListener('resize',sizeWall); }
+function resetWall(){ if(!wall) return; wall.querySelectorAll('.wi.in').forEach(el=>el.classList.remove('in')); const io=new IntersectionObserver(es=>{es.forEach(e=>{ if(e.isIntersecting){ const im=e.target.querySelector('img'); if(im&&!im.src){ im.src=im.dataset.t; } e.target.classList.add('in'); io.unobserve(e.target);} });},{root:wall.closest('.slide'),rootMargin:'0px 0px 260px 0px',threshold:0.01}); wall.querySelectorAll('.wi').forEach(el=>io.observe(el)); }
+
+const albbox=null; function startAlb(){} function stopAlb(){}
+
+// ---- I'm donut: 積層 + 曲げベニヤ animation (geometry from the bom section) ----
+const dnbox=document.getElementById('dnbox'), dcv=document.getElementById('dn'); let DN=null, dnT0=0, dnRAF=null;
+fetch('data/donut.json').then(r=>r.json()).then(j=>{DN=j;}).catch(()=>{});
+const dc=document.getElementById('dc'), dz=document.getElementById('dz');
+function drawDn(now){
+  if(!DN){dnRAF=requestAnimationFrame(drawDn);return;}
+  const dpr=Math.min(2,devicePixelRatio||1), W=dnbox.clientWidth, H=dnbox.clientHeight; if(!W||!H){dnRAF=requestAnimationFrame(drawDn);return;}
+  if(dcv.width!==Math.round(W*dpr)||dcv.height!==Math.round(H*dpr)){dcv.width=Math.round(W*dpr);dcv.height=Math.round(H*dpr);}
+  const g=dcv.getContext('2d'); g.setTransform(dpr,0,0,dpr,0,0); g.clearRect(0,0,W,H);
+  const t=(now-dnT0)/1000, yaw=-0.35+t*0.05, pitch=0.9;
+  const cy=Math.cos(yaw), sy=Math.sin(yaw), sp=Math.sin(pitch), cp=Math.cos(pitch);
+  const S=W/7400, cx=W/2, cz=H*0.52;
+  const P=(x,y,z)=>{const X=x*cy-y*sy, Y=x*sy+y*cy; return [cx+X*S, cz+(Y*sp-z*cp)*S];};
+  const poly=(pts,z,fill,stroke,lw)=>{g.beginPath(); pts.forEach((p,i)=>{const q=P(p[0],p[1],z); i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]);}); g.closePath(); if(fill){g.fillStyle=fill;g.fill();} if(stroke){g.strokeStyle=stroke;g.lineWidth=lw||.6;g.stroke();}};
+  const H0=DN.h, NL=DN.layers;
+  // floor outline (dashed)
+  g.setLineDash([4,4]); DN.segs.filter(s=>s.k==='top').forEach(s=>poly(s.pts,0,null,'rgba(176,120,255,.35)',1)); g.setLineDash([]);
+  // laminated: layers rise in all 3 pieces, bottom to top
+  const lamStart=0.4, perL=0.09; let placed=0;
+  const lamSegs=DN.segs.filter(s=>s.k==='lam');
+  for(let k=0;k<NL;k++){ const p=Math.min(1,Math.max(0,(t-lamStart-k*perL)/0.5)); if(p<=0) break; const e=1-Math.pow(1-p,3); const z=18+k*30; const lift=(1-e)*300;
+    lamSegs.forEach(s=>{ if(!s.c){ s.c=[s.pts.reduce((a,q)=>a+q[0],0)/s.pts.length, s.pts.reduce((a,q)=>a+q[1],0)/s.pts.length]; } const off=k*1.8; const pts=s.pts.map(q=>{const dx=q[0]-s.c[0], dy=q[1]-s.c[1], L=Math.hypot(dx,dy)||1; return [q[0]+dx/L*off*0.3, q[1]+dy/L*off*0.3];}); g.globalAlpha=0.35+0.65*e; poly(pts,z+lift,'#dccdfb','rgba(40,25,70,.75)',.7); });
+    if(p>=1) placed+=lamSegs.length; }
+  g.globalAlpha=1;
+  // bent veneer: wraps along each segment after lamination
+  const bentStart=lamStart+NL*perL+0.3, bentDur=2.2; const bp=Math.min(1,Math.max(0,(t-bentStart)/bentDur)); const be=1-Math.pow(1-bp,2);
+  DN.segs.filter(s=>s.k==='bent').forEach(s=>{ const n=s.pts.length, m=Math.floor(n*be); if(m<2) return;
+    for(let i=0;i<m-1;i++){ const a=s.pts[i], b=s.pts[i+1]; const q0=P(a[0],a[1],0), q1=P(b[0],b[1],0), q2=P(b[0],b[1],H0), q3=P(a[0],a[1],H0); g.beginPath(); g.moveTo(q0[0],q0[1]); g.lineTo(q1[0],q1[1]); g.lineTo(q2[0],q2[1]); g.lineTo(q3[0],q3[1]); g.closePath(); g.fillStyle='rgba(199,170,255,.55)'; g.fill(); g.strokeStyle='rgba(40,25,70,.35)'; g.lineWidth=.4; g.stroke(); }
+    // leading edge
+    const le=s.pts[m-1]; const e0=P(le[0],le[1],0), e1=P(le[0],le[1],H0); g.beginPath(); g.moveTo(e0[0],e0[1]); g.lineTo(e1[0],e1[1]); g.strokeStyle='#d6c3ff'; g.lineWidth=1.5; g.stroke(); });
+  // SUS top
+  const topStart=bentStart+bentDur+0.2; const tp=Math.min(1,Math.max(0,(t-topStart)/0.8)); if(tp>0){ g.globalAlpha=tp; DN.segs.filter(s=>s.k==='top').forEach(s=>{ const zz=H0+3+(1-tp)*200; poly(s.pts,zz-3,'rgba(120,130,150,.9)','rgba(40,25,70,.5)',.6); poly(s.pts,zz,'rgba(214,222,236,.78)','rgba(60,50,90,.7)',.8); }); g.globalAlpha=1; }
+  dc.textContent=Math.min(84,placed); dz.textContent= bp>0 ? ('曲げベニヤ '+Math.round(bp*100)+'%') : '積層スキン 28段×3ピース';
+  dnRAF=requestAnimationFrame(drawDn);
+}
+function startDn(){cancelAnimationFrame(dnRAF); dnT0=performance.now(); dnRAF=requestAnimationFrame(drawDn);}
+function stopDn(){cancelAnimationFrame(dnRAF); dnRAF=null;}
+dnbox&&dnbox.addEventListener('click',startDn);
+
+// ---- 3D viewer (three.js, loaded on demand) ----
+const viewer=document.getElementById('viewer'); let V=null, vReady=false, vModels=[], vCur=-1;
+document.getElementById('vld').addEventListener('click',()=>{ if(!vReady) viewerOn(); });
+function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=rej; document.head.appendChild(s);});}
+async function viewerOn(){
+  if(!vReady){ vReady=true;
+    try{
+      await loadScript('lib/three.min.js');
+      await loadScript('lib/OrbitControls.js');
+      vModels=await fetch('data/models.json?v='+(window.BUILD||'')).then(r=>r.json());
+      initViewer();
+    }catch(e){ document.getElementById('vld').textContent='3Dの読み込みに失敗 ── タップで再試行'; vReady=false; return; }
+  }
+  if(V) V.active=true, V.loop();
+}
+function viewerOff(){ if(V) V.active=false; }
+function initViewer(){
+  const cv=document.getElementById('v3d'), W=viewer.clientWidth, H=viewer.clientHeight;
+  const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true}); renderer.setPixelRatio(Math.min(2,devicePixelRatio||1)); renderer.setSize(W,H,false);
+  const scene=new THREE.Scene(); const cam=new THREE.PerspectiveCamera(40,W/H,10,100000); cam.position.set(0,-6000,4000); cam.up.set(0,0,1);
+  const ctl=new THREE.OrbitControls(cam,cv); ctl.enableDamping=true; ctl.dampingFactor=.08; ctl.rotateSpeed=.7; ctl.autoRotate=true; ctl.autoRotateSpeed=.8;
+  cv.addEventListener('pointerdown',()=>{ctl.autoRotate=false;});
+  scene.add(new THREE.HemisphereLight(0xffffff,0x3a2d5c,1.05)); const dl=new THREE.DirectionalLight(0xffffff,.75); dl.position.set(3000,-4000,6000); scene.add(dl);
+  const group=new THREE.Group(); scene.add(group);
+  V={active:true, renderer, scene, cam, ctl, group, loop(){ if(!V.active) return; ctl.update(); renderer.render(scene,cam); requestAnimationFrame(V.loop); }};
+  const tabs=document.getElementById('vtabs'); vModels.forEach((m,i)=>{const b=document.createElement('button'); b.textContent=m.name; b.onclick=()=>loadModel(i); tabs.appendChild(b);});
+  const cards=document.getElementById('vcards'); vModels.forEach((m,i)=>{const c=document.createElement('div'); c.className='vcard'; c.innerHTML='<img src="'+m.thumb+'" alt=""><b>'+(m.short||m.name)+'</b><small>'+(m.sub||'')+'</small>'; c.onclick=()=>loadModel(i); cards.appendChild(c);});
+  addEventListener('resize',()=>{const W=viewer.clientWidth,H=viewer.clientHeight; renderer.setSize(W,H,false); cam.aspect=W/H; cam.updateProjectionMatrix();});
+  loadModel(0); V.loop();
+}
+async function loadModel(i){
+  if(i===vCur) return; vCur=i; const m=vModels[i]; const ld=document.getElementById('vld'); ld.classList.remove('off'); ld.textContent='読み込み中… '+m.name;
+  [...document.getElementById('vtabs').children].forEach((b,k)=>b.classList.toggle('cur',k===i)); [...document.getElementById('vcards').children].forEach((c,k)=>c.classList.toggle('cur',k===i)); document.getElementById('vname').textContent=m.short||m.name; document.getElementById('vnote').textContent=m.note||'';
+  while(V.group.children.length) V.group.remove(V.group.children[0]);
+  const buf=await fetch(m.file).then(r=>r.arrayBuffer()); const dv=new DataView(buf); const hl=dv.getUint32(0,true); const hdr=JSON.parse(new TextDecoder().decode(new Uint8Array(buf,4,hl)));
+  const off=4+hl; const pos=new Float32Array(buf.slice(off,off+hdr.nv*12)); const idx=new Uint32Array(buf.slice(off+hdr.nv*12,off+hdr.nv*12+hdr.nt*12));
+  const geo=new THREE.BufferGeometry(); geo.setAttribute('position',new THREE.BufferAttribute(pos,3)); geo.setIndex(new THREE.BufferAttribute(idx,1));
+  // per-group color by height
+  const col=new Float32Array(hdr.nv*3); let ti=0; const zs=hdr.groups.map(g=>g[2]); const zmin=Math.min(...hdr.groups.map(g=>g[1])), zmax=Math.max(...zs);
+  hdr.groups.forEach(([nt,z0,z1],k)=>{ const u=(z1-zmin)/Math.max(1,zmax-zmin); const c=new THREE.Color().setHSL(0.72-0.06*u, 0.35+0.25*u, 0.62+0.22*u); for(let q=0;q<nt*3;q++){ const v=idx[ti+q]; col[v*3]=c.r; col[v*3+1]=c.g; col[v*3+2]=c.b; } ti+=nt*3; });
+  geo.setAttribute('color',new THREE.BufferAttribute(col,3)); geo.computeVertexNormals();
+  const mesh=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.75,metalness:.05,side:THREE.DoubleSide}));
+  const edges=new THREE.LineSegments(new THREE.EdgesGeometry(geo,25),new THREE.LineBasicMaterial({color:0x2a1f4a,transparent:true,opacity:.35}));
+  geo.computeBoundingBox(); const bb=geo.boundingBox, c=bb.getCenter(new THREE.Vector3()), sz=bb.getSize(new THREE.Vector3()); const R=Math.max(sz.x,sz.y,sz.z);
+  mesh.position.sub(c); edges.position.sub(c); V.group.add(mesh); V.group.add(edges);
+  V.cam.position.set(R*0.9,-R*1.3,R*0.9); V.ctl.target.set(0,0,0); V.cam.near=R/200; V.cam.far=R*20; V.cam.updateProjectionMatrix(); V.ctl.autoRotate=true; V.ctl.update();
+  ld.classList.add('off');
+}
+
+// ---- fullscreen ----
+const fs=document.getElementById('fs'), tip=document.getElementById('tip');
+const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+if(standalone) fs.style.display='none';
+fs.onclick=()=>{ const el=document.documentElement; if(el.requestFullscreen||el.webkitRequestFullscreen){ if(document.fullscreenElement||document.webkitFullscreenElement){ (document.exitFullscreen||document.webkitExitFullscreen).call(document); } else { (el.requestFullscreen||el.webkitRequestFullscreen).call(el).catch?.(()=>tip.classList.add('open')); } } else { tip.classList.add('open'); } };
+document.getElementById('tipx').onclick=()=>tip.classList.remove('open');
+
+// start
+const h=parseInt(location.hash.slice(1))||1; cur=-1; go(h-1,false);
+addEventListener('hashchange',()=>{const k=parseInt(location.hash.slice(1))||1; if(k-1!==cur) go(k-1,false);});
+})();
+</script>
+</body>
+</html>
