@@ -258,10 +258,42 @@ td.k{color:var(--mut);white-space:nowrap;text-align:right}
 .big2 .tile img{aspect-ratio:3/4}
 .q{font-size:14.5px;line-height:1.8;color:var(--fg)}
 .q b{color:var(--gold2);font-weight:600}
+
+/* ---- タブレット（iPad 縦 768〜 / 横 1024〜）・PC ---- */
+@media (min-width:700px){
+  .in{max-width:700px}
+  .tiles{grid-template-columns:repeat(3,1fr)}
+  .tiles .tile.w2{grid-column:span 2}
+  .tiles.c3{grid-template-columns:repeat(3,1fr)}
+  .strip{grid-template-columns:repeat(3,1fr)}
+  .strip figure:first-child{grid-column:span 3}
+  .strip figure:first-child img{aspect-ratio:21/9}
+  .vcards{grid-template-columns:repeat(3,1fr)}
+  .cv,.viewer{aspect-ratio:16/11}
+  .vid video{max-height:62vh;object-fit:cover}
+  .hero .txt{left:50%;transform:translateX(-50%);width:min(92vw,760px);right:auto}
+  .marq .mi{width:40vw;max-width:360px}
+  h1{font-size:44px}h2{font-size:32px}p{font-size:16px}.small{font-size:13.5px}.q{font-size:16px}
+  #nav{padding-left:max(24px,var(--sal));padding-right:max(24px,var(--sar))}
+  #prog{max-width:520px;margin:0 auto}
+}
+@media (min-width:1000px){
+  .in{max-width:860px}
+  .tiles.c3{grid-template-columns:repeat(3,1fr)}
+  .vcards{grid-template-columns:repeat(5,1fr)}
+  .cv,.viewer{aspect-ratio:16/10}
+  .slide{padding-left:max(32px,var(--sal));padding-right:max(32px,var(--sar))}
+}
+/* iPad横（高さは十分あるので2カラムにはせず、幅だけ使う） */
+@media (orientation:landscape) and (min-width:900px) and (min-height:600px){
+  .in{max-width:900px}
+  .cv,.viewer,.vid{max-width:560px;margin-left:auto;margin-right:auto;width:100%}
+}
 </style>
 </head>
 <body>
-<div id="lock"><form id="lockf" autocomplete="off"><div class="bx"><img src="img/logo_mark.png" alt="3C"><h3>3C工芸 会社紹介</h3><p>パスワードを入力してください</p><input id="lockin" type="password" inputmode="text" autocapitalize="off" autocorrect="off" placeholder="パスワード"><button type="submit">開く</button><div class="err" id="lockerr"></div><div class="foot">株式会社３C工芸 ／ この資料は関係者向けです</div></div></form></div><button id="fs" aria-label="全画面"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+<div id="lock"><form id="lockf" autocomplete="off"><div class="bx"><img src="img/logo_mark.png" alt="3C"><h3>3C工芸 会社紹介</h3><p>パスワードを入力してください</p><input id="lockin" type="password" inputmode="text" autocapitalize="off" autocorrect="off" placeholder="パスワード"><button type="submit">開く</button><div class="err" id="lockerr"></div><div class="foot">株式会社３C工芸 ／ この資料は関係者向けです</div></div></form></div>
+<button id="fs" aria-label="全画面"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
 <div id="deck">
 
 <!-- 1 表紙 -->
@@ -840,10 +872,9 @@ td.k{color:var(--mut);white-space:nowrap;text-align:right}
       <dt>Web</dt><dd><a href="https://3ck.jp" style="color:var(--gold2)">3ck.jp</a></dd>
     </dl>
     <div class="row a" style="--i:3"><div class="qr"><img src="img/qr_3ck.png" alt="3ck.jp"></div><p class="small mut">公式サイト 3ck.jp<br>施工事例・会社概要</p></div>
-    <p class="foot a" style="--i:4">© 2026 MR Design · v2.2.0</p>
+    <p class="foot a" style="--i:4">© 2026 MR Design · v2.3.0</p>
   </div>
 </section>
-
 </div>
 
 <!-- nav -->
@@ -857,11 +888,14 @@ td.k{color:var(--mut);white-space:nowrap;text-align:right}
 <div id="menu"><h3>CONTENTS</h3><ol id="toc"></ol><button class="close" id="bClose">閉じる</button></div>
 <div id="tip"><div class="bx"><h3>iPhoneで全画面にするには</h3><ol><li>Safariの「共有」ボタンをタップ</li><li>「ホーム画面に追加」を選ぶ</li><li>ホーム画面のアイコンから開くと、アドレスバーなしの全画面になります</li></ol><button id="tipx">閉じる</button></div></div>
 <div id="lb"><span class="n" id="lbn"></span><button class="x" id="lbx" aria-label="閉じる">×</button><img id="lbi" alt=""><div class="cap" id="lbc"></div></div>
-
-<script>(function(){const H='10d8cf5b3e7ffa5c0c48c62181203aeaf29aa305c4be67eadbb1333833373500';const L=document.getElementById('lock');const ok=()=>{L.hidden=true;try{localStorage.setItem('pf_ok',H)}catch(e){}};try{if(localStorage.getItem('pf_ok')===H){L.hidden=true;}}catch(e){}async function sha(s){const b=new TextEncoder().encode(s);const d=await crypto.subtle.digest('SHA-256',b);return [...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,'0')).join('');}document.getElementById('lockf').addEventListener('submit',async e=>{e.preventDefault();const v=document.getElementById('lockin').value.trim();const h=await sha('3cpitch:'+v);if(h===H){ok();}else{document.getElementById('lockerr').textContent='パスワードが違います';}});})();</script>
-<script src="lib/logo-anim.js?v=20261006" defer></script>
+<script>(function(){const H='10d8cf5b3e7ffa5c0c48c62181203aeaf29aa305c4be67eadbb1333833373500';const L=document.getElementById('lock');const ok=()=>{L.hidden=true;try{localStorage.setItem('pf_ok',H)}catch(e){}};
+try{if(localStorage.getItem('pf_ok')===H){L.hidden=true;}}catch(e){}
+async function sha(s){const b=new TextEncoder().encode(s);const d=await crypto.subtle.digest('SHA-256',b);return [...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+document.getElementById('lockf').addEventListener('submit',async e=>{e.preventDefault();const v=document.getElementById('lockin').value.trim();const h=await sha('3cpitch:'+v);if(h===H){ok();}else{document.getElementById('lockerr').textContent='パスワードが違います';}});})();
+</script>
+<script src="lib/logo-anim.js?v=20261009" defer></script>
 <script>
-window.BUILD='20261006184716';
+window.BUILD='20261009104224';
 (() => {
 const deck=document.getElementById('deck'), slides=[...document.querySelectorAll('.slide')], N=slides.length;
 let cur=0, seqTimer=null, ringsRAF=null;
