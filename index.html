@@ -893,9 +893,9 @@ try{if(localStorage.getItem('pf_ok')===H){L.hidden=true;}}catch(e){}
 async function sha(s){const b=new TextEncoder().encode(s);const d=await crypto.subtle.digest('SHA-256',b);return [...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,'0')).join('');}
 document.getElementById('lockf').addEventListener('submit',async e=>{e.preventDefault();const v=document.getElementById('lockin').value.trim();const h=await sha('3cpitch:'+v);if(h===H){ok();}else{document.getElementById('lockerr').textContent='パスワードが違います';}});})();
 </script>
-<script src="lib/logo-anim.js?v=20261009" defer></script>
+<script src="lib/logo-anim.js?v=20261013" defer></script>
 <script>
-window.BUILD='20261009104224';
+window.BUILD='20261013225457';
 (() => {
 const deck=document.getElementById('deck'), slides=[...document.querySelectorAll('.slide')], N=slides.length;
 let cur=0, seqTimer=null, ringsRAF=null;
@@ -1130,6 +1130,35 @@ document.getElementById('tipx').onclick=()=>tip.classList.remove('open');
 // start
 const h=parseInt(location.hash.slice(1))||1; cur=-1; go(h-1,false);
 addEventListener('hashchange',()=>{const k=parseInt(location.hash.slice(1))||1; if(k-1!==cur) go(k-1,false);});
+})();
+</script>
+<script>
+// © 2026 MR Design · サービスワーカー登録と「保存中／新しい内容」の小さな表示（sw.js とセット）
+(function(){
+  if(!('serviceWorker' in navigator) || !window.isSecureContext) return;
+  let pill=null, firstTime=!localStorage.getItem('pitchSaved');
+  function show(text, onTap){
+    if(!pill){ pill=document.createElement('div'); pill.id='swpill';
+      pill.style.cssText='position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));z-index:9999;'
+        +'background:rgba(20,16,34,.92);color:#eee;border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 16px;'
+        +'font:13px/1.4 -apple-system,"Hiragino Sans",sans-serif;box-shadow:0 6px 24px rgba(0,0,0,.35);transition:opacity .4s;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)';
+      document.body.appendChild(pill); }
+    pill.textContent=text; pill.style.opacity=1; pill.onclick=onTap||null; pill.style.cursor=onTap?'pointer':'default';
+  }
+  function hide(ms){ if(pill) setTimeout(()=>{ if(pill) pill.style.opacity=0; }, ms||0); }
+  navigator.serviceWorker.addEventListener('message', e=>{
+    const m=e.data||{};
+    if(m.t==='sync' && m.total>0 && firstTime) show('オフライン用に保存中 '+m.done+' / '+m.total);
+    if(m.t==='synced'){
+      if(!m.failed) localStorage.setItem('pitchSaved', m.build);
+      if((m.build && window.BUILD && m.build!==window.BUILD) || m.changed>0) show('新しい内容があります · タップで更新', ()=>location.reload());
+      else if(firstTime && m.total>0){ show(m.failed? '保存できなかった分があります（次に開いた時に続き）' : 'オフラインでも見られるようになりました'); hide(3500); firstTime=false; }
+      else hide();
+    }
+  });
+  const kick=()=>navigator.serviceWorker.ready.then(r=>r.active&&r.active.postMessage('sync')).catch(()=>{});
+  navigator.serviceWorker.register('sw.js').then(kick).catch(()=>{});
+  document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='visible') kick(); });
 })();
 </script>
 </body>
