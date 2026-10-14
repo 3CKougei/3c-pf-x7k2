@@ -289,6 +289,38 @@ td.k{color:var(--mut);white-space:nowrap;text-align:right}
   .in{max-width:900px}
   .cv,.viewer,.vid{max-width:560px;margin-left:auto;margin-right:auto;width:100%}
 }
+
+/* ---- 3Dスライド（v2.5・iframe で x/hero.html と x/nc.html を出す。中身は src/x/）---- */
+.x3d{position:relative;overflow:hidden;background:#15100c}
+.x3d .x3d-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none}
+.x3d iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;opacity:0;transition:opacity .6s;background:transparent}
+.x3d iframe.live{opacity:1}
+.slide.x3d-hero{padding:0;background:#15100c}
+.x3d.full{position:absolute;inset:0}
+.x3d-hero iframe{pointer-events:none}  /* 表紙の次はスワイプを最優先（3Dは見るだけ） */
+.x3d-hero .ov{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(12,10,22,.2) 0%,rgba(12,10,22,0) 26%,rgba(12,10,22,.35) 52%,rgba(12,10,22,.9) 78%,rgba(12,10,22,.97) 100%)}
+.x3d-hero .txt{position:absolute;left:max(22px,var(--sal));right:max(22px,var(--sar));bottom:calc(var(--nav) + 20px + var(--sab));display:flex;flex-direction:column;gap:8px}
+.x3d-hero h1{font-size:clamp(36px,10.5vw,56px);letter-spacing:.1em;font-weight:600;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.x3d-hero p.mut{letter-spacing:.16em;font-size:14px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);margin-top:8px;padding-top:12px;border-top:1px solid rgba(214,195,255,.2)}
+.facts>div{padding:0 0 0 12px;border-left:1px solid rgba(214,195,255,.2);white-space:nowrap}
+.facts>div:first-child{border-left:0;padding-left:0}
+.facts b{font-size:clamp(22px,6.6vw,30px);color:var(--gold2);font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.facts small{font-size:12px;color:var(--mut);margin-left:2px;font-weight:600}
+.facts small.pre{margin:0 2px 0 0}
+.facts span{display:block;font-size:11.5px;color:var(--mut);letter-spacing:.08em;margin-top:1px}
+.x3d-hero .note{font-size:10.5px;line-height:1.6;color:var(--dim)}
+.x3d.box{border-radius:14px;border:1px solid var(--line);background:#d6d0c6;height:clamp(340px,calc(100vh - 300px),640px);height:clamp(340px,calc(100svh - 300px),640px)}
+@media (min-width:700px){
+  .x3d-hero .txt{left:50%;right:auto;transform:translateX(-50%);width:min(92vw,760px)}
+  .x3d-hero h1{font-size:60px}
+  .facts{max-width:520px}
+}
+@media (orientation:landscape) and (max-height:520px){
+  .in>.x3d{grid-column:1/-1;height:calc(100vh - 140px)}
+  .x3d-hero .txt{bottom:calc(var(--nav) + 8px)}
+  .x3d-hero h1{font-size:30px}
+}
 </style>
 </head>
 <body>
@@ -305,6 +337,26 @@ td.k{color:var(--mut);white-space:nowrap;text-align:right}
     <p class="kicker a" style="--i:3">Custom Woodworking Factory</p>
     <p class="mut a" style="--i:4">株式会社３C工芸 ── 会社紹介<br><span class="small">店舗什器・オーダー家具・別注家具の製作工場（大阪・堺市美原区）</span></p>
     <div class="hint a" style="--i:6"><span class="arrow"><svg viewBox="0 0 34 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9h26M22 3l6 6-6 6"/></svg></span>スワイプで進む／戻る。左下のボタンで目次</div>
+  </div>
+</section>
+
+<!-- 2 3D 工房の光（中身は src の x フォルダ hero） -->
+<section class="slide x3d-hero" data-t="木と、つくる（3D）" data-sec="会社">
+  <div class="x3d full">
+    <img class="x3d-poster" data-src="img/x3d_hero.jpg" alt="">
+    <iframe data-src="x/hero.html" title="工房の光（3DのCG）" tabindex="-1" aria-hidden="true"></iframe>
+    <div class="ov"></div>
+  </div>
+  <div class="txt">
+    <p class="kicker a" style="--i:0">3C Kogei ── Since 2015</p>
+    <h1 class="serif a" style="--i:1">木と、つくる。</h1>
+    <p class="mut a" style="--i:2">オーダー家具・店舗什器の製作</p>
+    <div class="facts a" style="--i:3">
+      <div><b>2015</b><small>年</small><span>設立</span></div>
+      <div><b>24</b><small>名</small><span>社員</span></div>
+      <div><small class="pre">約</small><b>270</b><span>納品現場※</span></div>
+    </div>
+    <p class="note a" style="--i:4">※2023〜2026年の納品現場・概数　背景はCGによるイメージ</p>
   </div>
 </section>
 
@@ -418,6 +470,19 @@ td.k{color:var(--mut);white-space:nowrap;text-align:right}
       <div class="step a" style="--i:7"><div class="n">06</div><div><h3>検査・出荷</h3><p>寸法と仕上がりを確認し、現場へ出荷</p></div></div>
     </div>
     <p class="small dim a" style="--i:8">ひとつの什器を、同じ社員が出荷まで見届けます。</p>
+  </div>
+</section>
+
+<!-- 9 3D NC加工〜組立（中身は src の x フォルダ nc） -->
+<section class="slide" data-t="NC加工から組立まで（3D）" data-sec="会社">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">From Sheet to Cabinet ── 3D</p>
+    <h2 class="a" style="--i:1">合板が、キャビネットに<br>なるまで。</h2>
+    <div class="x3d box a" style="--i:2">
+      <img class="x3d-poster" data-src="img/x3d_nc.jpg" alt="">
+      <iframe data-src="x/nc.html" title="NC加工から組立まで（3DのCG・イメージ）"></iframe>
+    </div>
+    <p class="small dim a" style="--i:3">加工から組立までの流れを3DのCGで再現したイメージです。下のボタンとバーで工程を行き来できます。</p>
   </div>
 </section>
 
@@ -872,7 +937,7 @@ td.k{color:var(--mut);white-space:nowrap;text-align:right}
       <dt>Web</dt><dd><a href="https://3ck.jp" style="color:var(--gold2)">3ck.jp</a></dd>
     </dl>
     <div class="row a" style="--i:3"><div class="qr"><img src="img/qr_3ck.png" alt="3ck.jp"></div><p class="small mut">公式サイト 3ck.jp<br>施工事例・会社概要</p></div>
-    <p class="foot a" style="--i:4">© 2026 MR Design · v2.3.0</p>
+    <p class="foot a" style="--i:4">© 2026 MR Design · v2.5.0</p>
   </div>
 </section>
 </div>
@@ -893,9 +958,9 @@ try{if(localStorage.getItem('pf_ok')===H){L.hidden=true;}}catch(e){}
 async function sha(s){const b=new TextEncoder().encode(s);const d=await crypto.subtle.digest('SHA-256',b);return [...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,'0')).join('');}
 document.getElementById('lockf').addEventListener('submit',async e=>{e.preventDefault();const v=document.getElementById('lockin').value.trim();const h=await sha('3cpitch:'+v);if(h===H){ok();}else{document.getElementById('lockerr').textContent='パスワードが違います';}});})();
 </script>
-<script src="lib/logo-anim.js?v=20261013" defer></script>
+<script src="lib/logo-anim.js?v=20261014" defer></script>
 <script>
-window.BUILD='20261013225457';
+window.BUILD='20261014140946';
 (() => {
 const deck=document.getElementById('deck'), slides=[...document.querySelectorAll('.slide')], N=slides.length;
 let cur=0, seqTimer=null, ringsRAF=null;
@@ -905,7 +970,7 @@ const bar=document.querySelector('#bar i'), cnt=document.getElementById('cnt');
 let bgQueue=null;
 function bgLoad(){ if(bgQueue) return; bgQueue=[...document.querySelectorAll('img[data-src]')]; const step=()=>{ const im=bgQueue.shift(); if(!im) return; if(im.dataset.src){ im.src=im.dataset.src; im.removeAttribute('data-src'); } const nx=()=>setTimeout(step,60); im.complete?nx():(im.onload=nx, im.onerror=nx); }; step(); }
 setTimeout(bgLoad,2500);
-function loadImgs(i){ for(const k of [i-1,i,i+1]) if(slides[k]) slides[k].querySelectorAll('video[data-src]').forEach(v=>{v.src=v.dataset.src; v.removeAttribute('data-src'); v.load();}); for(const k of [i-1,i,i+1]) if(slides[k]) slides[k].querySelectorAll('img[data-src]').forEach(im=>{const u=im.dataset.src; im.removeAttribute('data-src'); let n=0; im.onerror=()=>{ if(n++<4) setTimeout(()=>{ im.src=u+'?r='+n; }, 500+n*900); }; im.src=u;}); }
+function loadImgs(i){ for(const k of [i-1,i,i+1]) if(slides[k]) slides[k].querySelectorAll('iframe[data-src]').forEach(f=>{ const u=f.dataset.src; f.removeAttribute('data-src'); /* 隣の画面は少し待ってから（表紙のアニメを邪魔しない） */ setTimeout(()=>{ f.src=u; }, k===i?0:1200); }); for(const k of [i-1,i,i+1]) if(slides[k]) slides[k].querySelectorAll('video[data-src]').forEach(v=>{v.src=v.dataset.src; v.removeAttribute('data-src'); v.load();}); for(const k of [i-1,i,i+1]) if(slides[k]) slides[k].querySelectorAll('img[data-src]').forEach(im=>{const u=im.dataset.src; im.removeAttribute('data-src'); let n=0; im.onerror=()=>{ if(n++<4) setTimeout(()=>{ im.src=u+'?r='+n; }, 500+n*900); }; im.src=u;}); }
 function go(i,push=true){
   i=Math.max(0,Math.min(N-1,i)); if(i===cur && slides[i].classList.contains('on')) return;
   if(slides[cur]){ slides[cur].classList.remove('on'); slides[cur].classList.remove('done'); } cur=i;
@@ -924,12 +989,12 @@ addEventListener('resize',()=>{deck.style.transition='none';deck.style.transform
 
 // swipe (horizontal only; vertical scroll + strip scroll stay native)
 let sx=0,sy=0,st=0,tracking=false,inStrip=false;
-deck.addEventListener('touchstart',e=>{ if(e.target.closest('.viewer,.cv')){tracking=false;return;} const t=e.touches[0];sx=t.clientX;sy=t.clientY;st=Date.now();tracking=true;inStrip=!!e.target.closest('.strip');},{passive:true});
+deck.addEventListener('touchstart',e=>{ if(e.target.closest('.viewer,.cv,.x3d.box')){tracking=false;return;} const t=e.touches[0];sx=t.clientX;sy=t.clientY;st=Date.now();tracking=true;inStrip=!!e.target.closest('.strip');},{passive:true});
 deck.addEventListener('touchend',e=>{ if(!tracking)return; tracking=false; const t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy, dt=Date.now()-st;
   if(Math.abs(dx)<Math.abs(dy)*1.3) return;
   if(Math.abs(dx)>60 || (Math.abs(dx)>30 && dt<250)) go(cur+(dx<0?1:-1)); },{passive:true});
 // mouse drag for desktop preview
-let mx=null; deck.addEventListener('mousedown',e=>{mx=e.target.closest('.viewer,.cv')?null:e.clientX;}); addEventListener('mouseup',e=>{ if(mx===null)return; const dx=e.clientX-mx; mx=null; if(Math.abs(dx)>80) go(cur+(dx<0?1:-1)); });
+let mx=null; deck.addEventListener('mousedown',e=>{mx=e.target.closest('.viewer,.cv,.x3d.box')?null:e.clientX;}); addEventListener('mouseup',e=>{ if(mx===null)return; const dx=e.clientX-mx; mx=null; if(Math.abs(dx)>80) go(cur+(dx<0?1:-1)); });
 
 // menu
 const menu=document.getElementById('menu'), toc=document.getElementById('toc');
@@ -1007,6 +1072,14 @@ function startRings(){cancelAnimationFrame(ringsRAF); ringT0=performance.now(); 
 function stopRings(){cancelAnimationFrame(ringsRAF); ringsRAF=null;}
 box&&box.addEventListener('click',startRings);
 
+// ---- 3Dスライド（iframe x/hero.html・x/nc.html）: 見えている画面だけ play、他は pause ----
+const x3dFrames=[...document.querySelectorAll('.x3d iframe')];
+function x3dSend(f,m){ try{ f.contentWindow&&f.contentWindow.postMessage(m, location.origin); }catch(e){} }
+x3dFrames.forEach(f=>f.addEventListener('load',()=>{ if(slides[cur]&&slides[cur].contains(f)) x3dSend(f,'play'); }));
+addEventListener('message',e=>{ if(e.origin!==location.origin) return; const f=x3dFrames.find(x=>x.contentWindow===e.source); if(!f) return; const d=e.data||{};
+  if(d.t==='x3d-frame') f.classList.add('live');
+  if(d.t==='x3d-swipe' && slides[cur].contains(f) && !menu.classList.contains('open') && !lb.classList.contains('open')) go(cur+(d.d>0?1:-1)); });
+
 function onEnter(i){
   const s=slides[i];
   document.querySelectorAll('video').forEach(v=>{ if(s.contains(v)){ v.play&&v.play().catch(()=>{}); } else { v.pause&&v.pause(); } });
@@ -1018,6 +1091,7 @@ function onEnter(i){
   s.querySelectorAll('[data-count]').forEach(countUp);
   if(seq){ s.contains(seq)?seq._start():seq._stop(); }
   if(box){ s.contains(box)?startRings():stopRings(); }
+  x3dFrames.forEach(f=>x3dSend(f, s.contains(f)?'play':'pause'));
 }
 
 
