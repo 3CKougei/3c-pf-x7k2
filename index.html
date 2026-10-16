@@ -9,7 +9,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="3C工芸">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="img/logo_mark.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <title>3C工芸 会社紹介</title>
 <style>
 :root{
@@ -958,9 +958,9 @@ try{if(localStorage.getItem('pf_ok')===H){L.hidden=true;}}catch(e){}
 async function sha(s){const b=new TextEncoder().encode(s);const d=await crypto.subtle.digest('SHA-256',b);return [...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,'0')).join('');}
 document.getElementById('lockf').addEventListener('submit',async e=>{e.preventDefault();const v=document.getElementById('lockin').value.trim();const h=await sha('3cpitch:'+v);if(h===H){ok();}else{document.getElementById('lockerr').textContent='パスワードが違います';}});})();
 </script>
-<script src="lib/logo-anim.js?v=20261014" defer></script>
+<script src="lib/logo-anim.js?v=20261016" defer></script>
 <script>
-window.BUILD='20261014140946';
+window.BUILD='20261016102829';
 (() => {
 const deck=document.getElementById('deck'), slides=[...document.querySelectorAll('.slide')], N=slides.length;
 let cur=0, seqTimer=null, ringsRAF=null;
