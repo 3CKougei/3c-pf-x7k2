@@ -937,7 +937,7 @@ td.k{color:var(--mut);white-space:nowrap;text-align:right}
       <dt>Web</dt><dd><a href="https://3ck.jp" style="color:var(--gold2)">3ck.jp</a></dd>
     </dl>
     <div class="row a" style="--i:3"><div class="qr"><img src="img/qr_3ck.png" alt="3ck.jp"></div><p class="small mut">公式サイト 3ck.jp<br>施工事例・会社概要</p></div>
-    <p class="foot a" style="--i:4">© 2026 MR Design · v2.5.1</p>
+    <p class="foot a" style="--i:4">© 2026 MR Design · v2.5.2</p>
   </div>
 </section>
 </div>
@@ -981,7 +981,7 @@ document.getElementById('lockf').addEventListener('submit',async e=>{e.preventDe
 })();
 </script>
 <script>
-window.BUILD='20261104095731';
+window.BUILD='20261104102756';
 (() => {
 const deck=document.getElementById('deck'), slides=[...document.querySelectorAll('.slide')], N=slides.length;
 let cur=0, seqTimer=null, ringsRAF=null;
@@ -1169,13 +1169,17 @@ dnbox&&dnbox.addEventListener('click',startDn);
 // ---- 3D viewer (three.js, loaded on demand) ----
 const viewer=document.getElementById('viewer'); let V=null, vReady=false, vModels=[], vCur=-1;
 document.getElementById('vld').addEventListener('click',()=>{ if(!vReady) viewerOn(); });
-function loadScript(src){return new Promise((res,rej)=>{const s=document.createElement('script'); s.src=src; s.onload=res; s.onerror=rej; document.head.appendChild(s);});}
+// GitHub Pages はたまに 503 を返すので、3Dビューアの読み込みは数回読み直す（読めた物は読み直さない）
+async function withRetry(fn){ for(let n=0;;n++){ try{ return await fn(n); }catch(e){ if(n>=4) throw e; await new Promise(r=>setTimeout(r,800*(n+1))); } } }
+function loadScript(src,n){return new Promise((res,rej)=>{const s=document.createElement('script'); s.src=n?src+'?r='+n:src; s.onload=res; s.onerror=()=>{ s.remove(); rej(new Error(src)); }; document.head.appendChild(s);});}
+function fetchOk(url,n){ return fetch(n?url+(url.includes('?')?'&':'?')+'r='+n:url).then(r=>{ if(!r.ok) throw new Error(url+' '+r.status); return r; }); }
 async function viewerOn(){
   if(!vReady){ vReady=true;
     try{
-      await loadScript('lib/three.min.js');
-      await loadScript('lib/OrbitControls.js');
-      vModels=await fetch('data/models.json?v='+(window.BUILD||'')).then(r=>r.json());
+      document.getElementById('vld').textContent='読み込み中…';
+      if(!window.THREE) await withRetry(n=>loadScript('lib/three.min.js',n));
+      if(!THREE.OrbitControls) await withRetry(n=>loadScript('lib/OrbitControls.js',n));
+      vModels=await withRetry(n=>fetchOk('data/models.json?v='+(window.BUILD||''),n).then(r=>r.json()));
       initViewer();
     }catch(e){ document.getElementById('vld').textContent='3Dの読み込みに失敗 ── タップで再試行'; vReady=false; return; }
   }
@@ -1200,7 +1204,9 @@ async function loadModel(i){
   if(i===vCur) return; vCur=i; const m=vModels[i]; const ld=document.getElementById('vld'); ld.classList.remove('off'); ld.textContent='読み込み中… '+m.name;
   [...document.getElementById('vtabs').children].forEach((b,k)=>b.classList.toggle('cur',k===i)); [...document.getElementById('vcards').children].forEach((c,k)=>c.classList.toggle('cur',k===i)); document.getElementById('vname').textContent=m.short||m.name; document.getElementById('vnote').textContent=m.note||'';
   while(V.group.children.length) V.group.remove(V.group.children[0]);
-  const buf=await fetch(m.file).then(r=>r.arrayBuffer()); const dv=new DataView(buf); const hl=dv.getUint32(0,true); const hdr=JSON.parse(new TextDecoder().decode(new Uint8Array(buf,4,hl)));
+  let buf; try{ buf=await withRetry(n=>fetchOk(m.file,n).then(r=>r.arrayBuffer())); }catch(e){ if(vCur===i){ vCur=-1; ld.textContent='3Dの読み込みに失敗 ── カードをタップで再試行'; } return; }
+  if(vCur!==i) return; // 読み直しの間に別のモデルへ切り替えられた
+  const dv=new DataView(buf); const hl=dv.getUint32(0,true); const hdr=JSON.parse(new TextDecoder().decode(new Uint8Array(buf,4,hl)));
   const off=4+hl; const pos=new Float32Array(buf.slice(off,off+hdr.nv*12)); const idx=new Uint32Array(buf.slice(off+hdr.nv*12,off+hdr.nv*12+hdr.nt*12));
   const geo=new THREE.BufferGeometry(); geo.setAttribute('position',new THREE.BufferAttribute(pos,3)); geo.setIndex(new THREE.BufferAttribute(idx,1));
   // per-group color by height
