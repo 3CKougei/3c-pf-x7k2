@@ -937,7 +937,7 @@ td.k{color:var(--mut);white-space:nowrap;text-align:right}
       <dt>Web</dt><dd><a href="https://3ck.jp" style="color:var(--gold2)">3ck.jp</a></dd>
     </dl>
     <div class="row a" style="--i:3"><div class="qr"><img src="img/qr_3ck.png" alt="3ck.jp"></div><p class="small mut">公式サイト 3ck.jp<br>施工事例・会社概要</p></div>
-    <p class="foot a" style="--i:4">© 2026 MR Design · v2.5.0</p>
+    <p class="foot a" style="--i:4">© 2026 MR Design · v2.5.1</p>
   </div>
 </section>
 </div>
@@ -958,9 +958,30 @@ try{if(localStorage.getItem('pf_ok')===H){L.hidden=true;}}catch(e){}
 async function sha(s){const b=new TextEncoder().encode(s);const d=await crypto.subtle.digest('SHA-256',b);return [...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,'0')).join('');}
 document.getElementById('lockf').addEventListener('submit',async e=>{e.preventDefault();const v=document.getElementById('lockin').value.trim();const h=await sha('3cpitch:'+v);if(h===H){ok();}else{document.getElementById('lockerr').textContent='パスワードが違います';}});})();
 </script>
-<script src="lib/logo-anim.js?v=20261019" defer></script>
 <script>
-window.BUILD='20261019175014';
+// 表紙ロゴの読み込み。GitHub Pages はたまに 503 を返すので、失敗したらまず静止画を出し、裏で読み直す
+// 読み直しに成功すると logo-anim.js の build() が svg を空にしてアニメを描くので、静止画は自動で消える
+(function(){
+  const SRC='lib/logo-anim.js?v=20261104', PNG='img/logo_glass_dark.png', NS='http://www.w3.org/2000/svg';
+  const svg=document.querySelector('#logo-anim svg');
+  let stillStarted=false;
+  function still(n){
+    const u=n?PNG+'?r='+n:PNG, im=new Image();
+    im.onload=()=>{ if(window.playLogoAnim||!svg) return; const g=document.createElementNS(NS,'image'); g.setAttribute('href',u); g.setAttribute('width','512'); g.setAttribute('height','512'); svg.appendChild(g); };
+    im.onerror=()=>{ if(n<4) setTimeout(()=>still(n+1),500+n*900); };
+    im.src=u;
+  }
+  function load(n){
+    const s=document.createElement('script');
+    s.src=SRC+(n?'&r='+n:'');
+    s.onerror=()=>{ s.remove(); if(!stillStarted){ stillStarted=true; still(0); } if(n<5) setTimeout(()=>load(n+1),800*(n+1)); };
+    document.body.appendChild(s);
+  }
+  load(0);
+})();
+</script>
+<script>
+window.BUILD='20261104095731';
 (() => {
 const deck=document.getElementById('deck'), slides=[...document.querySelectorAll('.slide')], N=slides.length;
 let cur=0, seqTimer=null, ringsRAF=null;
