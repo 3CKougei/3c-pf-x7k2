@@ -405,6 +405,19 @@ body{font-family:var(--sans)}
 @keyframes wDrip{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 .w-brand .note{max-width:1180px;margin:0 auto;padding:18px max(20px,var(--sar)) 0 max(20px,var(--sal));font-size:11px;color:var(--dim);letter-spacing:.08em;font-weight:300}
 
+/* スクロールしたら上にブランド名の帯（2026-11-16）。スライド自体がスクロールするので sticky は各スライドの中で効く。
+   高さ0の箱に入れてレイアウトを押さない。出す／隠すは works.js が .stuck を付け外し */
+.w-brand .stick{position:sticky;top:0;height:0;z-index:6;pointer-events:none}
+.w-brand .stick .bar{display:flex;align-items:baseline;gap:14px;padding:calc(14px + var(--sat)) calc(64px + var(--sar)) 13px max(20px,var(--sal));
+  background:rgba(11,10,9,.82);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid rgba(200,178,138,.16);
+  transform:translateY(-100%);opacity:0;transition:transform .7s var(--out),opacity .5s var(--out);white-space:nowrap;overflow:hidden}
+.w-brand.stuck .stick .bar{transform:none;opacity:1}
+.w-brand .stick .sno{font-size:11px;letter-spacing:.24em;color:var(--gold2);font-weight:300}
+.w-brand .stick .snm{font-size:clamp(16px,4.2vw,20px);color:var(--fg)}
+.w-brand .stick .sst{font-size:11.5px;color:var(--mut);letter-spacing:.08em;font-weight:300;overflow:hidden;text-overflow:ellipsis;min-width:0}
+@media (max-width:420px){.w-brand .stick .sst{display:none}}
+@media (prefers-reduced-motion:reduce){.w-brand .stick .bar{transition:none}}
+
 /* 工場写真のブランド: 全画面にせず、見出しの下に整列（工場の背景を大きく見せない） */
 .w-fac .fhead{max-width:1180px;margin:0 auto;padding:calc(54px + var(--sat)) max(20px,var(--sar)) 0 max(20px,var(--sal))}
 .w-fac .gal{padding-top:clamp(22px,4vw,40px)}
@@ -529,6 +542,7 @@ body{font-family:var(--sans)}
 
 <!-- Six Senses Kyoto シックスセンシズ京都（gen_works.py が生成） -->
 <section class="slide w w-brand" data-t="Six Senses Kyoto シックスセンシズ京都" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">01</span><span class="snm nmf">Six Senses Kyoto</span><span class="sst">シックスセンシズ京都</span></div></div>
   <div class="hero">
     <img class="ph" data-src="img/s_inst3.jpg" alt="" data-cap="Six Senses Kyoto シックスセンシズ京都">
     <div class="veil"></div>
@@ -557,6 +571,7 @@ body{font-family:var(--sans)}
 
 <!-- 鶴屋八幡 京阪百貨店守口店（gen_works.py が生成） -->
 <section class="slide w w-brand" data-t="鶴屋八幡 京阪百貨店守口店" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">02</span><span class="snm nmf">鶴屋八幡</span><span class="sst">京阪百貨店守口店</span></div></div>
   <div class="hero">
     <img class="ph" data-src="img/works/tsuru_08_h.jpg" alt="" data-cap="鶴屋八幡 京阪百貨店守口店">
     <div class="veil"></div>
@@ -582,6 +597,7 @@ body{font-family:var(--sans)}
 
 <!-- 赤福 阪神梅田本店（gen_works.py が生成） -->
 <section class="slide w w-brand" data-t="赤福 阪神梅田本店" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">03</span><span class="snm nmf">赤福</span><span class="sst">阪神梅田本店</span></div></div>
   <div class="hero">
     <img class="ph" data-src="img/works/akafuku_01_h.jpg" alt="" data-cap="赤福 阪神梅田本店">
     <div class="veil"></div>
@@ -606,6 +622,7 @@ body{font-family:var(--sans)}
 
 <!-- Heather ルミネ横浜（gen_works.py が生成） -->
 <section class="slide w w-brand" data-t="Heather ルミネ横浜" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">04</span><span class="snm nmf">Heather</span><span class="sst">ルミネ横浜</span></div></div>
   <div class="hero">
     <img class="ph" data-src="img/works/heather_01_h.jpg" alt="" data-cap="Heather ルミネ横浜">
     <div class="veil"></div>
@@ -630,6 +647,7 @@ body{font-family:var(--sans)}
 
 <!-- 御堂筋ダイビル 共用ラウンジ（gen_works.py が生成） -->
 <section class="slide w w-brand" data-t="御堂筋ダイビル 共用ラウンジ" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">05</span><span class="snm nmf">御堂筋ダイビル</span><span class="sst">共用ラウンジ</span></div></div>
   <div class="hero">
     <img class="ph" data-src="img/works/midosuji_02_h.jpg" alt="" data-cap="御堂筋ダイビル 共用ラウンジ">
     <div class="veil"></div>
@@ -654,6 +672,7 @@ body{font-family:var(--sans)}
 
 <!-- ISSEY MIYAKE 阪急うめだ本店（gen_works.py が生成） -->
 <section class="slide w w-brand w-fac" data-t="ISSEY MIYAKE 阪急うめだ本店" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">06</span><span class="snm nmf">ISSEY MIYAKE</span><span class="sst">阪急うめだ本店</span></div></div>
   <div class="fhead">
       <div class="no up" style="--d:0">06 / 17</div>
       <p class="kick up" style="--d:1;margin-top:12px">Fashion · 2025</p>
@@ -673,6 +692,7 @@ body{font-family:var(--sans)}
 
 <!-- Vivienne Westwood RED＋MAN LUCUA大阪 ／ 池袋東武本館（gen_works.py が生成） -->
 <section class="slide w w-brand w-fac" data-t="Vivienne Westwood RED＋MAN LUCUA大阪 ／ 池袋東武本館" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">07</span><span class="snm nmf">Vivienne Westwood</span><span class="sst">RED＋MAN LUCUA大阪 ／ 池袋東武本館</span></div></div>
   <div class="fhead">
       <div class="no up" style="--d:0">07 / 17</div>
       <p class="kick up" style="--d:1;margin-top:12px">Fashion · 2026</p>
@@ -693,6 +713,7 @@ body{font-family:var(--sans)}
 
 <!-- JINS 加西北条 ／ 神戸伊川谷 ／ みのおキューズモール ／ 京都ファミリー ほか（gen_works.py が生成） -->
 <section class="slide w w-brand w-fac" data-t="JINS 加西北条 ／ 神戸伊川谷 ／ みのおキューズモール ／ 京都ファミリー ほか" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">08</span><span class="snm nmf">JINS</span><span class="sst">加西北条 ／ 神戸伊川谷 ／ みのおキューズモール ／ 京都ファミリー ほか</span></div></div>
   <div class="fhead">
       <div class="no up" style="--d:0">08 / 17</div>
       <p class="kick up" style="--d:1;margin-top:12px">Retail · 2025–2026</p>
@@ -716,6 +737,7 @@ body{font-family:var(--sans)}
 
 <!-- どうとんぼり神座 ルクア大阪 ／ 関西国際空港 ／ 和歌山平井 ／ 八尾 ほか（gen_works.py が生成） -->
 <section class="slide w w-brand w-fac" data-t="どうとんぼり神座 ルクア大阪 ／ 関西国際空港 ／ 和歌山平井 ／ 八尾 ほか" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">09</span><span class="snm nmf">どうとんぼり神座</span><span class="sst">ルクア大阪 ／ 関西国際空港 ／ 和歌山平井 ／ 八尾 ほか</span></div></div>
   <div class="fhead">
       <div class="no up" style="--d:0">09 / 17</div>
       <p class="kick up" style="--d:1;margin-top:12px">Restaurant · 2025–2026</p>
@@ -738,6 +760,7 @@ body{font-family:var(--sans)}
 
 <!-- ALBION フランス屋 ゆめタウン廿日市（gen_works.py が生成） -->
 <section class="slide w w-brand w-fac" data-t="ALBION フランス屋 ゆめタウン廿日市" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">10</span><span class="snm nmf">ALBION</span><span class="sst">フランス屋 ゆめタウン廿日市</span></div></div>
   <div class="fhead">
       <div class="no up" style="--d:0">10 / 17</div>
       <p class="kick up" style="--d:1;margin-top:12px">Cosmetics · 2026</p>
@@ -759,6 +782,7 @@ body{font-family:var(--sans)}
 
 <!-- SK-II ラゾーナ川崎（gen_works.py が生成） -->
 <section class="slide w w-brand w-fac" data-t="SK-II ラゾーナ川崎" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">11</span><span class="snm nmf">SK-II</span><span class="sst">ラゾーナ川崎</span></div></div>
   <div class="fhead">
       <div class="no up" style="--d:0">11 / 17</div>
       <p class="kick up" style="--d:1;margin-top:12px">Cosmetics · 2024</p>
@@ -776,6 +800,7 @@ body{font-family:var(--sans)}
 
 <!-- FANCL 中部国際空港 ／ 関西国際空港（gen_works.py が生成） -->
 <section class="slide w w-brand w-fac" data-t="FANCL 中部国際空港 ／ 関西国際空港" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">12</span><span class="snm nmf">FANCL</span><span class="sst">中部国際空港 ／ 関西国際空港</span></div></div>
   <div class="fhead">
       <div class="no up" style="--d:0">12 / 17</div>
       <p class="kick up" style="--d:1;margin-top:12px">Cosmetics · 2026</p>
@@ -794,6 +819,7 @@ body{font-family:var(--sans)}
 
 <!-- BEAMS マリンピア神戸（gen_works.py が生成） -->
 <section class="slide w w-brand w-fac" data-t="BEAMS マリンピア神戸" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">13</span><span class="snm nmf">BEAMS</span><span class="sst">マリンピア神戸</span></div></div>
   <div class="fhead">
       <div class="no up" style="--d:0">13 / 17</div>
       <p class="kick up" style="--d:1;margin-top:12px">Fashion · 2024</p>
@@ -813,6 +839,7 @@ body{font-family:var(--sans)}
 
 <!-- ふふ軽井沢（gen_works.py が生成） -->
 <section class="slide w w-brand w-fac" data-t="ふふ軽井沢" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">14</span><span class="snm nmf">ふふ軽井沢</span></div></div>
   <div class="fhead">
       <div class="no up" style="--d:0">14 / 17</div>
       <p class="kick up" style="--d:1;margin-top:12px">Hotel · 2023</p>
@@ -831,6 +858,7 @@ body{font-family:var(--sans)}
 
 <!-- APAホテル 大阪なんば駅前タワー ほか（gen_works.py が生成） -->
 <section class="slide w w-brand w-fac" data-t="APAホテル 大阪なんば駅前タワー ほか" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">15</span><span class="snm nmf">APAホテル</span><span class="sst">大阪なんば駅前タワー ほか</span></div></div>
   <div class="fhead">
       <div class="no up" style="--d:0">15 / 17</div>
       <p class="kick up" style="--d:1;margin-top:12px">Hotel · 2024</p>
@@ -850,6 +878,7 @@ body{font-family:var(--sans)}
 
 <!-- 吉野家 大国町 ／ 鶴橋駅（gen_works.py が生成） -->
 <section class="slide w w-brand w-fac" data-t="吉野家 大国町 ／ 鶴橋駅" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">16</span><span class="snm nmf">吉野家</span><span class="sst">大国町 ／ 鶴橋駅</span></div></div>
   <div class="fhead">
       <div class="no up" style="--d:0">16 / 17</div>
       <p class="kick up" style="--d:1;margin-top:12px">Restaurant · 2023–2024</p>
@@ -869,6 +898,7 @@ body{font-family:var(--sans)}
 
 <!-- PELLE MORBIDA（gen_works.py が生成） -->
 <section class="slide w w-brand w-fac" data-t="PELLE MORBIDA" data-sec="Brands">
+  <div class="stick" aria-hidden="true"><div class="bar"><span class="sno">17</span><span class="snm nmf">PELLE MORBIDA</span></div></div>
   <div class="fhead">
       <div class="no up" style="--d:0">17 / 17</div>
       <p class="kick up" style="--d:1;margin-top:12px">Fashion</p>
@@ -967,7 +997,7 @@ document.getElementById('lockf').addEventListener('submit',async e=>{e.preventDe
 })();
 </script>
 <script>
-window.BUILD='20261116165628';
+window.BUILD='20261116170727';
 (() => {
 const deck=document.getElementById('deck'), slides=[...document.querySelectorAll('.slide')], N=slides.length;
 let cur=0, seqTimer=null, ringsRAF=null;
@@ -1223,6 +1253,14 @@ addEventListener('hashchange',()=>{const k=parseInt(location.hash.slice(1))||1; 
 // ギャラリーの写真は、その頁を下にスクロールして見えた時に1枚ずつマスクが開く（root＝各スライド。スライド自体がスクロールする）
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // ブランド頁: 最初の写真（工場写真の頁は見出し）を過ぎたら上にブランド名の帯を出す
+  document.querySelectorAll('.slide.w-brand').forEach((s) => {
+    const head = s.querySelector('.hero, .fhead');
+    if (!head) return;
+    const upd = () => s.classList.toggle('stuck', s.scrollTop > head.offsetTop + head.offsetHeight - 70);
+    s.addEventListener('scroll', upd, { passive: true });
+    upd();
+  });
   document.querySelectorAll('.slide.w').forEach((s) => {
     const figs = [...s.querySelectorAll('.gal figure')];
     if (!figs.length) return;
