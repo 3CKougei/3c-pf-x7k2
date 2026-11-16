@@ -1,0 +1,1466 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="theme-color" content="#0c0a16">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="3C工芸">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<title>3C工芸 会社紹介・製作事例</title>
+<style>
+:root{
+  --bg:#0c0a16; --bg2:#140f24; --card:#181230; --line:#2d2450;
+  --fg:#f3effb; --mut:#aaa0c8; --dim:#6f6694;
+  --gold:#b078ff; --gold2:#d6c3ff; --wood:#5a4a8a;
+  --sat:env(safe-area-inset-top,0px); --sab:env(safe-area-inset-bottom,0px);
+  --sal:env(safe-area-inset-left,0px); --sar:env(safe-area-inset-right,0px);
+  --nav:58px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:"Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",system-ui,sans-serif;-webkit-font-smoothing:antialiased;overscroll-behavior:none}
+body{overflow:hidden;position:fixed;inset:0}
+#deck{position:absolute;inset:0;display:flex;height:100%;transition:transform .48s cubic-bezier(.3,.9,.3,1);will-change:transform;touch-action:pan-y}
+.slide{flex:0 0 100vw;width:100vw;height:100%;overflow-y:auto;overflow-x:hidden;position:relative;
+  padding:calc(18px + var(--sat)) max(18px,var(--sar)) calc(var(--nav) + 14px + var(--sab)) max(18px,var(--sal));
+  scrollbar-width:none}
+.slide::-webkit-scrollbar{display:none}
+.slide.photo-bg{padding:0}
+.in{max-width:560px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;justify-content:center;gap:14px}
+.in.top{justify-content:flex-start;padding-top:8px}
+@media (min-width:900px){.slide{flex-basis:100vw}.in{max-width:760px}}
+
+/* type */
+.kicker{font-size:10.5px;letter-spacing:.16em;color:var(--gold);text-transform:uppercase;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+h1{font-size:clamp(30px,9vw,46px);line-height:1.22;margin:0;font-weight:700;letter-spacing:.02em}
+h2{font-size:clamp(22px,6.6vw,32px);line-height:1.28;margin:0;font-weight:700;letter-spacing:.01em}
+h3{font-size:17px;margin:0;font-weight:700}
+p{margin:0;line-height:1.75;font-size:15px}
+p.lead{font-size:16px;color:var(--fg)}
+.mut{color:var(--mut)}.dim{color:var(--dim)}.small{font-size:12.5px;line-height:1.6}
+.gold{color:var(--gold)}
+.serif{font-family:"Hiragino Mincho ProN","Yu Mincho","Noto Serif JP",serif}
+.rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent);width:72px}
+
+/* cover */
+.cover{background:radial-gradient(120% 80% at 50% 110%,#2a1850 0%,var(--bg) 60%)}
+.cover .in{align-items:flex-start}
+.logo{width:120px;color:var(--gold2)}
+.logo svg{width:100%;height:auto;display:block}
+.hint{display:flex;align-items:center;gap:8px;color:var(--mut);font-size:13px}
+.hint .arrow{width:34px;height:18px;overflow:hidden}
+.hint .arrow svg{width:34px;height:18px;animation:nudge 1.8s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateX(0)}50%{transform:translateX(7px)}}
+
+/* photo hero */
+.hero{position:relative;height:100%;min-height:100%}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.78)}
+.hero .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,10,22,.25) 0%,rgba(12,10,22,0) 35%,rgba(12,10,22,.92) 100%)}
+.hero h1{font-size:clamp(26px,7.4vw,40px)}
+.hero .txt{position:absolute;left:max(20px,var(--sal));right:max(20px,var(--sar));bottom:calc(var(--nav) + 18px + var(--sab));display:flex;flex-direction:column;gap:10px}
+
+/* cards */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 14px}
+.card h3{font-size:15px;margin-bottom:4px}
+.num{font-size:clamp(30px,9vw,40px);font-weight:700;color:var(--gold2);line-height:1.05;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.num small{font-size:14px;color:var(--mut);margin-left:3px;font-weight:600}
+.lab{font-size:12px;color:var(--mut);margin-top:4px;letter-spacing:.04em}
+
+/* photo strips */
+.strip{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -18px;padding:0 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.strip::-webkit-scrollbar{display:none}
+.strip figure{flex:0 0 78%;scroll-snap-align:center;margin:0;position:relative;border-radius:12px;overflow:hidden;background:var(--bg2)}
+.strip figure.sq{flex-basis:62%}
+.strip figure img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block}
+.strip figure.wide img{aspect-ratio:4/3}
+.strip figcaption,.tile figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 10px 9px;font-size:12px;line-height:1.4;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.72))}
+.strip.tall figure img{aspect-ratio:3/4}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tiles.c3{grid-template-columns:1fr 1fr 1fr}
+.tile{position:relative;border-radius:10px;overflow:hidden;margin:0;background:var(--bg2)}
+.tile img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.tile.w2{grid-column:span 2}.tile.w2 img{aspect-ratio:2/1}
+.tile figcaption{font-size:11px;padding-top:18px;line-height:1.35}
+.tiles.c3 .tile figcaption{font-size:10.5px;padding:14px 7px 7px}
+.ph{cursor:zoom-in}
+.chip{display:inline-block;font-size:11px;padding:3px 9px;border:1px solid var(--line);border-radius:999px;color:var(--mut)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+
+/* enter animations */
+.a{opacity:0;transform:translateY(16px)}
+.slide.on .a{animation:rise .62s cubic-bezier(.2,.8,.2,1) forwards;animation-delay:calc(var(--i,0)*90ms + 80ms)}
+@keyframes rise{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.a{opacity:1;transform:none}.slide.on .a{animation:none}}
+
+/* nav */
+#nav{position:absolute;left:0;right:0;bottom:0;height:calc(var(--nav) + var(--sab));padding:0 max(14px,var(--sal)) var(--sab) max(14px,var(--sar));display:flex;align-items:center;gap:10px;background:linear-gradient(180deg,rgba(12,10,22,0),rgba(12,10,22,.96) 40%);z-index:20}
+#nav button{appearance:none;border:1px solid var(--line);background:rgba(24,18,48,.9);color:var(--fg);border-radius:12px;height:40px;min-width:44px;padding:0 12px;font-size:14px;display:flex;align-items:center;justify-content:center;gap:6px;backdrop-filter:blur(8px)}
+#nav button:active{background:#2d2450}
+#nav button svg{width:16px;height:16px}
+#prog{flex:1;display:flex;align-items:center;gap:6px;height:40px;cursor:pointer}
+#bar{flex:1;height:3px;background:#231b3e;border-radius:3px;overflow:hidden;position:relative}
+#bar i{position:absolute;left:0;top:0;bottom:0;background:var(--gold);width:0;transition:width .4s}
+#cnt{font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums;min-width:46px;text-align:center}
+
+/* menu */
+#menu{position:absolute;inset:0;background:rgba(12,10,22,.96);z-index:30;display:none;flex-direction:column;padding:calc(16px + var(--sat)) max(18px,var(--sar)) calc(18px + var(--sab)) max(18px,var(--sal));overflow-y:auto}
+#menu.open{display:flex}
+#menu h3{font-size:12px;letter-spacing:.2em;color:var(--gold);margin:6px 0 10px}
+#menu ol{list-style:none;margin:0;padding:0;display:grid;gap:4px}
+#menu li{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;border:1px solid transparent;font-size:15px}
+#menu li.cur{border-color:var(--line);background:var(--card)}
+#menu li b{color:var(--dim);font-weight:600;font-size:12px;min-width:22px;font-variant-numeric:tabular-nums}
+#menu li .sec{color:var(--dim);font-size:11px;margin-left:auto}
+#menu .close{margin-top:12px;align-self:flex-end;border:1px solid var(--line);background:none;color:var(--fg);border-radius:10px;padding:8px 14px;font-size:14px}
+
+/* lightbox */
+#lb{position:absolute;inset:0;background:#000;z-index:40;display:none;align-items:center;justify-content:center;touch-action:none}
+#lb.open{display:flex}
+#lb img{max-width:100vw;max-height:100%;object-fit:contain;display:block;transition:opacity .2s}
+#lb .cap{position:absolute;left:0;right:0;bottom:calc(14px + var(--sab));text-align:center;font-size:13px;color:#ddd;padding:0 20px}
+#lb .x{position:absolute;top:calc(12px + var(--sat));right:max(12px,var(--sar));width:40px;height:40px;border-radius:20px;background:rgba(255,255,255,.14);border:0;color:#fff;font-size:22px;line-height:40px;text-align:center}
+#lb .n{position:absolute;top:calc(22px + var(--sat));left:max(16px,var(--sal));font-size:12px;color:#bbb;font-variant-numeric:tabular-nums}
+
+/* process */
+.proc{position:relative;display:grid;gap:10px}
+.step{display:grid;grid-template-columns:40px 1fr;gap:12px;align-items:start}
+.step .n{width:40px;height:40px;border-radius:20px;border:1.5px solid var(--gold);color:var(--gold2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;font-variant-numeric:tabular-nums;background:var(--bg)}
+.step h3{font-size:16px}
+.step p{font-size:13.5px;color:var(--mut)}
+.proc .ln{position:absolute;left:19px;top:20px;bottom:20px;width:2px;background:var(--line);z-index:0}
+.proc .ln i{display:block;width:100%;background:var(--gold);height:0;transition:height 2.2s cubic-bezier(.3,.7,.3,1)}
+.slide.on .proc .ln i{height:100%}
+.step{position:relative;z-index:1}
+
+/* sequence */
+.seq{position:relative;border-radius:14px;overflow:hidden;background:#fff;aspect-ratio:1/1;cursor:pointer}
+.seq img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity .7s;background:#fff}
+.seq img.cur{opacity:1}
+.seq .sl{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,.75));color:#fff;font-size:13px;display:flex;justify-content:space-between;align-items:flex-end}
+.seq .dots{display:flex;gap:4px}
+.seq .dots i{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.4)}
+.seq .dots i.cur{background:var(--gold)}
+
+/* rings canvas */
+.cv{position:relative;border-radius:14px;overflow:hidden;background:radial-gradient(80% 70% at 50% 60%,#1d1535,#0c0a16);aspect-ratio:1/1.05}
+.cv canvas{width:100%;height:100%;display:block}
+.cv .hud{position:absolute;left:12px;bottom:10px;font-size:12px;color:var(--mut);font-variant-numeric:tabular-nums;line-height:1.5}
+.cv .hud b{color:var(--gold2);font-size:22px;font-weight:700}
+.cv .tap{position:absolute;right:12px;bottom:10px;font-size:11px;color:var(--dim)}
+
+/* sites table */
+.srows{display:grid;gap:0}
+.srow{padding:9px 0;border-bottom:1px solid var(--line)}
+.srow .sh{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:3px}
+.srow .sh span{color:var(--gold);font-weight:600;font-size:13px}
+.srow .sh em{font-style:normal;color:var(--mut);font-size:11.5px;white-space:nowrap}
+.srow p{font-size:12.5px;line-height:1.6;color:var(--fg)}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+td,th{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;line-height:1.5}
+th{color:var(--gold);font-weight:600;white-space:nowrap;width:30%}
+td.k{color:var(--mut);white-space:nowrap;text-align:right}
+.foot{font-size:10px;color:var(--dim);text-align:right;margin-top:6px;letter-spacing:.04em}
+.row{display:flex;gap:12px;align-items:center}
+.ic{width:38px;height:38px;flex:0 0 38px;border-radius:10px;background:var(--bg2);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--gold2)}
+.ic svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.contact dl{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;margin:0;font-size:14px}
+.contact dt{color:var(--gold);font-size:12px;letter-spacing:.1em;padding-top:2px}
+.contact dd{margin:0}
+.qr{width:110px;height:110px;border-radius:10px;background:#fff;padding:6px}
+.qr img{width:100%;height:100%;display:block}
+@media (orientation:landscape) and (max-height:520px){
+  .in{max-width:92vw;display:grid;grid-template-columns:1fr 1fr;align-content:center;column-gap:24px}
+  .in>h2,.in>h1,.in>.kicker,.in>.rule{grid-column:1/-1}
+  .cv,.seq{aspect-ratio:16/10}
+}
+
+/* v2 additions */
+/* lock */
+#lock{position:absolute;inset:0;z-index:60;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px}
+#lock[hidden]{display:none}
+#lock .bx{width:100%;max-width:340px;text-align:center}
+#lock img{width:96px;height:auto;margin:0 auto 14px;display:block}
+#lock h3{margin:0 0 4px;font-size:18px}
+#lock p{color:var(--mut);font-size:13px;margin:0 0 16px}
+#lock input{width:100%;box-sizing:border-box;font-size:17px;padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--fg);outline:none;text-align:center;letter-spacing:.08em}
+#lock input:focus{border-color:var(--gold)}
+#lock button{margin-top:10px;width:100%;font-size:15px;padding:12px;border-radius:12px;border:0;background:var(--gold);color:#140c28;font-weight:700}
+#lock .err{color:#ff8fa3;min-height:18px;margin-top:8px;font-size:12.5px}
+#lock .foot{margin-top:18px;font-size:10.5px;color:var(--dim)}
+.vcards{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.vcard{position:relative;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.vcard img{width:100%;aspect-ratio:16/11;object-fit:cover;display:block;opacity:.85}
+.vcard b{display:block;font-size:12.5px;padding:7px 10px 1px;font-weight:700}
+.vcard small{display:block;font-size:10.5px;color:var(--mut);padding:0 10px 8px}
+.vcard.cur{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.vcard.cur img{opacity:1}
+.vcard.cur::after{content:'表示中';position:absolute;top:8px;left:8px;font-size:10px;padding:2px 7px;border-radius:999px;background:var(--gold);color:#140c28;font-weight:700}
+.viewer .tabs[hidden]{display:none}
+.viewer .vname{position:absolute;left:12px;top:10px;font-size:12.5px;color:var(--fg);background:rgba(12,10,22,.55);padding:4px 9px;border-radius:999px;backdrop-filter:blur(6px)}
+.logo-wrap{display:block;width:150px;cursor:pointer;user-select:none;-webkit-user-select:none;margin-left:-14px}
+.logo-wrap .logo-mark{width:150px;height:150px;display:block;overflow:visible}
+.marq{display:grid;gap:8px;margin:0 -18px;overflow:hidden}
+.mrow{overflow:hidden;width:100%}
+.mtrack{display:flex;gap:8px;width:max-content;animation:drift 42s linear infinite}
+.r2 .mtrack{animation-direction:reverse;animation-duration:50s}
+.marq:active .mtrack{animation-play-state:paused}
+.mi{flex:0 0 auto;width:62vw;max-width:340px;margin:0;border-radius:12px;overflow:hidden;background:var(--bg2);position:relative}
+.mi img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.mtrack{animation:none}}
+.strip{display:grid;grid-template-columns:1fr 1fr;gap:8px;overflow:visible;margin:0;padding:0;scroll-snap-type:none}
+.strip figure{flex:none;scroll-snap-align:none}
+.strip figure:first-child{grid-column:span 2}
+.strip figure:first-child img{aspect-ratio:16/10}
+.strip figure img{aspect-ratio:1/1}
+.strip.tall figure img{aspect-ratio:4/5}
+.strip figure.wide img{aspect-ratio:4/3}
+.strip figure.wide:first-child img{aspect-ratio:16/10}
+/* photo wall */
+.wall{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:calc((100vw - 36px - 15px)/6);grid-auto-flow:dense;gap:3px;margin:0 -8px;max-width:100%;overflow:hidden;contain:paint}
+.wall .wi{position:relative;border-radius:4px;background:transparent;margin:0}
+.wall .wi .k{position:absolute;inset:0;border-radius:4px;overflow:hidden;background:var(--bg2);opacity:0;transform:translate(var(--dx),var(--dy)) scale(.25);transition:transform .9s cubic-bezier(.2,.9,.25,1.05),opacity .7s ease-out;transition-delay:var(--d,0ms);will-change:transform,opacity}
+.wall .wi.in .k{opacity:1;transform:none}
+.wall .wi img{width:100%;height:100%;object-fit:cover;display:block}
+.wall .xl{grid-column:span 3;grid-row:span 3}.wall .l{grid-column:span 2;grid-row:span 2}.wall .w{grid-column:span 2}.wall .t{grid-row:span 2}
+.wallhead{position:sticky;top:0;z-index:2;padding:6px 0 30px;margin:0 -18px -22px;padding-left:18px;padding-right:18px;background:linear-gradient(180deg,var(--bg) 0%,var(--bg) 55%,rgba(12,10,22,.92) 70%,rgba(12,10,22,.6) 85%,rgba(12,10,22,0) 100%);pointer-events:none}
+.wallhead *{pointer-events:auto}
+.stars{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(1px 1px at 20% 30%,rgba(214,195,255,.5),transparent 60%),radial-gradient(1px 1px at 70% 10%,rgba(214,195,255,.35),transparent 60%),radial-gradient(1.5px 1.5px at 40% 80%,rgba(176,120,255,.4),transparent 60%),radial-gradient(1px 1px at 85% 60%,rgba(214,195,255,.4),transparent 60%),radial-gradient(1px 1px at 10% 70%,rgba(214,195,255,.3),transparent 60%)}
+@media (prefers-reduced-motion:reduce){.wall .wi .k{transition:none;opacity:1;transform:none}}
+.slide.done .a{opacity:1;transform:none;animation:none}
+.kicker{padding-right:44px}
+.vid{position:relative;border-radius:14px;overflow:hidden;background:#000}
+.vid video{width:100%;display:block}
+.vid .sl{position:absolute;left:0;right:0;bottom:0;padding:22px 12px 10px;background:linear-gradient(transparent,rgba(0,0,0,.7));color:#fff;font-size:12.5px}
+.viewer{position:relative;border-radius:14px;overflow:hidden;background:radial-gradient(80% 70% at 50% 60%,#1d1535,#0c0a16);aspect-ratio:1/1.05;touch-action:none}
+.viewer canvas{width:100%;height:100%;display:block}
+.viewer .tabs{position:absolute;left:0;right:0;top:0;display:flex;gap:6px;flex-wrap:nowrap;overflow-x:auto;padding:10px 10px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch;background:linear-gradient(rgba(12,10,22,.85),rgba(12,10,22,0))}
+.viewer .tabs::-webkit-scrollbar{display:none}
+.viewer .tabs button{white-space:nowrap;flex:0 0 auto;appearance:none;border:1px solid var(--line);background:rgba(24,18,48,.85);color:var(--mut);border-radius:999px;padding:5px 10px;font-size:11.5px}
+.viewer .tabs button.cur{color:var(--fg);border-color:var(--gold);background:rgba(176,120,255,.18)}
+.viewer .hint{position:absolute;left:12px;bottom:10px;font-size:11px;color:var(--dim)}
+.viewer .ld{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--mut);font-size:13px;background:rgba(12,10,22,.6)}
+.viewer .ld.off{display:none}
+#fs{position:absolute;top:calc(10px + var(--sat));right:max(10px,var(--sar));z-index:21;width:36px;height:36px;border-radius:10px;border:1px solid var(--line);background:rgba(24,18,48,.75);color:var(--mut);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+#fs svg{width:16px;height:16px}
+#tip{position:absolute;inset:0;z-index:35;background:rgba(12,10,22,.94);display:none;align-items:center;justify-content:center;padding:24px}
+#tip.open{display:flex}
+#tip .bx{max-width:360px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+#tip h3{margin:0 0 10px;font-size:16px}
+#tip ol{margin:0 0 12px;padding-left:20px;font-size:14px;line-height:1.8}
+#tip button{appearance:none;border:1px solid var(--line);background:none;color:var(--fg);border-radius:10px;padding:8px 14px;font-size:14px}
+.big2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.big2 .tile img{aspect-ratio:3/4}
+.q{font-size:14.5px;line-height:1.8;color:var(--fg)}
+.q b{color:var(--gold2);font-weight:600}
+
+/* ---- タブレット（iPad 縦 768〜 / 横 1024〜）・PC ---- */
+@media (min-width:700px){
+  .in{max-width:700px}
+  .tiles{grid-template-columns:repeat(3,1fr)}
+  .tiles .tile.w2{grid-column:span 2}
+  .tiles.c3{grid-template-columns:repeat(3,1fr)}
+  .strip{grid-template-columns:repeat(3,1fr)}
+  .strip figure:first-child{grid-column:span 3}
+  .strip figure:first-child img{aspect-ratio:21/9}
+  .vcards{grid-template-columns:repeat(3,1fr)}
+  .cv,.viewer{aspect-ratio:16/11}
+  .vid video{max-height:62vh;object-fit:cover}
+  .hero .txt{left:50%;transform:translateX(-50%);width:min(92vw,760px);right:auto}
+  .marq .mi{width:40vw;max-width:360px}
+  h1{font-size:44px}h2{font-size:32px}p{font-size:16px}.small{font-size:13.5px}.q{font-size:16px}
+  #nav{padding-left:max(24px,var(--sal));padding-right:max(24px,var(--sar))}
+  #prog{max-width:520px;margin:0 auto}
+}
+@media (min-width:1000px){
+  .in{max-width:860px}
+  .tiles.c3{grid-template-columns:repeat(3,1fr)}
+  .vcards{grid-template-columns:repeat(5,1fr)}
+  .cv,.viewer{aspect-ratio:16/10}
+  .slide{padding-left:max(32px,var(--sal));padding-right:max(32px,var(--sar))}
+}
+/* iPad横（高さは十分あるので2カラムにはせず、幅だけ使う） */
+@media (orientation:landscape) and (min-width:900px) and (min-height:600px){
+  .in{max-width:900px}
+  .cv,.viewer,.vid{max-width:560px;margin-left:auto;margin-right:auto;width:100%}
+}
+
+/* ---- 3Dスライド（v2.5・iframe で x/hero.html と x/nc.html を出す。中身は src/x/）---- */
+.x3d{position:relative;overflow:hidden;background:#15100c}
+.x3d .x3d-poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;pointer-events:none;-webkit-user-drag:none}
+.x3d iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block;opacity:0;transition:opacity .6s;background:transparent}
+.x3d iframe.live{opacity:1}
+.slide.x3d-hero{padding:0;background:#15100c}
+.x3d.full{position:absolute;inset:0}
+.x3d-hero iframe{pointer-events:none}  /* 表紙の次はスワイプを最優先（3Dは見るだけ） */
+.x3d-hero .ov{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(12,10,22,.2) 0%,rgba(12,10,22,0) 26%,rgba(12,10,22,.35) 52%,rgba(12,10,22,.9) 78%,rgba(12,10,22,.97) 100%)}
+.x3d-hero .txt{position:absolute;left:max(22px,var(--sal));right:max(22px,var(--sar));bottom:calc(var(--nav) + 20px + var(--sab));display:flex;flex-direction:column;gap:8px}
+.x3d-hero h1{font-size:clamp(36px,10.5vw,56px);letter-spacing:.1em;font-weight:600;text-shadow:0 4px 30px rgba(0,0,0,.6)}
+.x3d-hero p.mut{letter-spacing:.16em;font-size:14px}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);margin-top:8px;padding-top:12px;border-top:1px solid rgba(214,195,255,.2)}
+.facts>div{padding:0 0 0 12px;border-left:1px solid rgba(214,195,255,.2);white-space:nowrap}
+.facts>div:first-child{border-left:0;padding-left:0}
+.facts b{font-size:clamp(22px,6.6vw,30px);color:var(--gold2);font-weight:700;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.facts small{font-size:12px;color:var(--mut);margin-left:2px;font-weight:600}
+.facts small.pre{margin:0 2px 0 0}
+.facts span{display:block;font-size:11.5px;color:var(--mut);letter-spacing:.08em;margin-top:1px}
+.x3d-hero .note{font-size:10.5px;line-height:1.6;color:var(--dim)}
+.x3d.box{border-radius:14px;border:1px solid var(--line);background:#d6d0c6;height:clamp(340px,calc(100vh - 300px),640px);height:clamp(340px,calc(100svh - 300px),640px)}
+@media (min-width:700px){
+  .x3d-hero .txt{left:50%;right:auto;transform:translateX(-50%);width:min(92vw,760px)}
+  .x3d-hero h1{font-size:60px}
+  .facts{max-width:520px}
+}
+@media (orientation:landscape) and (max-height:520px){
+  .in>.x3d{grid-column:1/-1;height:calc(100vh - 140px)}
+  .x3d-hero .txt{bottom:calc(var(--nav) + 8px)}
+  .x3d-hero h1{font-size:30px}
+}
+
+/* © 2026 MR Design · 製作事例（works.html）専用の見た目。style.css の後に読む（build.py の DECKS 参照）
+   方針（2026-11-16 水戸さんと決定）:
+   ・写真が主役。家具を鈍らせない（彩度を落とさない・暗くするのは文字の後ろだけ）
+   ・書体は役割で2つだけ。ブランド名と見出し＝ヒラギノ明朝 W3（欧文も明朝付属の欧文で揃える）
+                           ラベル・数字・小さい文字＝ヒラギノ角ゴ W3（暗い背景の小さい明朝は細線がかすれる）
+     筆記体・斜体・極細の欧文大文字は使わない。どちらも iPad/Mac 標準なので Webフォントは読まない
+   ・動きは「見せるため」だけ（マスクの出現・ゆっくり引くズーム）。視差効果を減らす設定では止める */
+:root{
+  --bg:#0b0a09; --bg2:#12100e; --card:#161412; --line:#2b2723;
+  --fg:#f2ede4; --mut:#b5ac9e; --dim:#7d7568;
+  --gold:#c8b28a; --gold2:#e7d8b8; --wood:#6b5a43;
+  --ease:cubic-bezier(.77,0,.175,1); --out:cubic-bezier(.16,1,.3,1);
+  --mincho:"Hiragino Mincho ProN","Hiragino Mincho Pro","Yu Mincho","YuMincho","Noto Serif JP",serif;
+  --sans:"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",system-ui,sans-serif;
+}
+body{font-family:var(--sans)}
+#nav{background:linear-gradient(180deg,rgba(11,10,9,0),rgba(11,10,9,.9) 45%)}
+#nav button{background:rgba(22,20,18,.72);border-color:rgba(200,178,138,.22)}
+#nav button:active{background:#2b2723}
+#fs{background:rgba(22,20,18,.6);border-color:rgba(200,178,138,.22)}
+#bar{background:rgba(200,178,138,.16);height:2px}
+#menu{background:rgba(11,10,9,.97)}
+#menu li{font-family:var(--mincho)}
+
+/* ---------- 共通 ---------- */
+.w{padding:0;background:var(--bg)}
+.w .nmf{font-family:var(--mincho);font-weight:300;letter-spacing:.04em}          /* ブランド名・見出し */
+.w .kick{font-family:var(--sans);font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:300}
+.w .ln{display:block;height:1px;background:var(--gold);width:0;transition:width 1.4s var(--out) .5s}
+.w.on .ln{width:56px}
+.w .up{opacity:0;transform:translateY(18px)}
+.w.on .up{animation:wUp 1.1s var(--out) both;animation-delay:calc(.25s + var(--d,0) * .12s)}
+@keyframes wUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+/* ---------- 表紙: 現場写真がゆっくり入れ替わる ---------- */
+.w-cover{position:relative;overflow:hidden}
+.w-cover .bgs{position:absolute;inset:0;overflow:hidden}
+.w-cover .bgs img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);animation:wFade 30s linear infinite;animation-delay:calc(var(--k) * 6s)}
+@keyframes wFade{0%{opacity:0;transform:scale(1.1)}4%{opacity:1}20%{opacity:1}26%{opacity:0;transform:scale(1)}100%{opacity:0}}
+.w-cover .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,9,.3) 0%,rgba(11,10,9,0) 22%,rgba(11,10,9,0) 50%,rgba(11,10,9,.88) 100%)}
+.w-cover .tx{position:absolute;left:0;right:0;bottom:0;padding:0 max(24px,var(--sal)) calc(var(--nav) + 48px + var(--sab));max-width:1180px;margin:0 auto}
+.w-cover .brandmark{position:absolute;top:calc(22px + var(--sat));left:max(24px,var(--sal));font-size:11px;letter-spacing:.34em;color:var(--fg);font-weight:300}
+.w-cover h1{font-size:clamp(40px,10vw,88px);line-height:1.1;letter-spacing:.16em;margin:14px 0 4px}
+.w-cover .meta{margin-top:18px;font-size:12.5px;color:var(--fg);opacity:.82;letter-spacing:.06em;line-height:1.9;font-weight:300}
+
+/* ---------- 目次: ブランドのカード ---------- */
+.w-index .wrap{max-width:1180px;margin:0 auto;padding:calc(34px + var(--sat)) max(20px,var(--sar)) calc(var(--nav) + 40px + var(--sab)) max(20px,var(--sal))}
+.w-index h2,.w-more h2{font-size:clamp(28px,6.4vw,46px);line-height:1.2;margin:12px 0 8px;font-weight:300}
+.w-index .sub{color:var(--mut);font-size:12px;letter-spacing:.12em;margin-bottom:26px;font-weight:300}
+.cards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+@media (min-width:900px){.cards{grid-template-columns:repeat(3,1fr);gap:18px}}
+.card-w{position:relative;display:block;overflow:hidden;border-radius:2px;aspect-ratio:4/5;color:var(--fg);text-decoration:none;background:var(--bg2)}
+.card-w img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.04);transition:transform 1.6s var(--out)}
+.card-w:hover img{transform:scale(1.09)}
+.card-w::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,10,9,0) 55%,rgba(11,10,9,.82) 100%)}
+.card-w .t{position:absolute;left:14px;right:14px;bottom:14px;z-index:1}
+.card-w .no{font-size:11px;color:var(--gold2);letter-spacing:.24em;font-weight:300}
+.card-w .nm{display:block;font-size:clamp(17px,4.4vw,23px);line-height:1.3;margin-top:5px}
+.card-w .st{display:block;font-size:11px;color:var(--mut);margin-top:5px;letter-spacing:.06em;line-height:1.5;font-weight:300}
+.card-w.more{aspect-ratio:auto;grid-column:1/-1;min-height:120px;display:flex;align-items:flex-end}
+@media (min-width:900px){.card-w.more{grid-column:auto;aspect-ratio:4/5}}
+/* カードの出現: 下から順にマスクが開く */
+.cards .card-w{clip-path:inset(100% 0 0 0)}
+.w.on .cards .card-w{animation:wMask 1.3s var(--ease) both;animation-delay:calc(.3s + var(--d,0) * .09s)}
+@keyframes wMask{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+
+/* ---------- ブランドの頁 ---------- */
+.w-brand .hero{position:relative;height:100%;min-height:520px;overflow:hidden}
+.w-brand .hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;clip-path:inset(0 0 100% 0);transform:scale(1.14)}
+.w-brand.on .hero img{animation:wHeroMask 1.5s var(--ease) .05s both,wHeroZoom 9s var(--out) .05s both}
+@keyframes wHeroMask{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes wHeroZoom{from{transform:scale(1.14)}to{transform:scale(1)}}
+.w-brand .hero .veil{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(11,10,9,.12) 0%,rgba(11,10,9,0) 18%,rgba(11,10,9,0) 52%,rgba(11,10,9,.86) 100%)}
+.w-brand .hero .tx{position:absolute;left:0;right:0;bottom:0;pointer-events:none;padding:0 max(24px,var(--sal)) calc(var(--nav) + 34px + var(--sab));max-width:1180px;margin:0 auto}
+.w-brand .no{font-size:11px;letter-spacing:.3em;color:var(--gold2);font-weight:300}
+.w-brand .nm{font-size:clamp(32px,8.6vw,64px);line-height:1.15;margin:8px 0 0}
+.w-brand .store{font-size:clamp(13px,3.4vw,15px);color:var(--fg);letter-spacing:.12em;margin-top:12px;font-weight:300}
+.w-brand .what{font-size:12px;color:var(--fg);opacity:.75;margin-top:10px;letter-spacing:.05em;line-height:1.8;max-width:560px;font-weight:300}
+.w-brand .scroll{position:absolute;right:max(24px,var(--sar));bottom:calc(var(--nav) + 34px + var(--sab));font-size:10px;letter-spacing:.32em;color:var(--mut);writing-mode:vertical-rl;pointer-events:none;font-weight:300}
+.w-brand .scroll::after{content:'';display:block;width:1px;height:46px;margin:10px auto 0;background:linear-gradient(var(--gold),transparent);animation:wDrip 2.4s var(--out) infinite}
+@keyframes wDrip{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.w-brand .note{max-width:1180px;margin:0 auto;padding:18px max(20px,var(--sar)) 0 max(20px,var(--sal));font-size:11px;color:var(--dim);letter-spacing:.08em;font-weight:300}
+
+/* 工場写真のブランド: 全画面にせず、見出しの下に整列（工場の背景を大きく見せない） */
+.w-fac .fhead{max-width:1180px;margin:0 auto;padding:calc(54px + var(--sat)) max(20px,var(--sar)) 0 max(20px,var(--sal))}
+.w-fac .gal{padding-top:clamp(22px,4vw,40px)}
+.w-fac .gal figure{background:#1a1714}
+
+/* ギャラリー: 雑誌の見開きのように大小を組む */
+.gal{max-width:1180px;margin:0 auto;padding:clamp(28px,6vw,72px) max(20px,var(--sar)) 0 max(20px,var(--sal));display:grid;grid-template-columns:repeat(6,1fr);gap:clamp(8px,1.4vw,18px)}
+.gal figure{margin:0;position:relative;overflow:hidden;background:var(--bg2);grid-column:span 6}
+.gal figure.h{grid-column:span 3}
+.gal figure.t3{grid-column:span 3}
+@media (min-width:900px){.gal figure.t3{grid-column:span 2}}
+.gal img{display:block;width:100%;height:100%;object-fit:cover;cursor:zoom-in;transform:scale(1.12);clip-path:inset(100% 0 0 0);transition:clip-path 1.25s var(--ease),transform 1.8s var(--out)}
+/* 切り抜きは img に掛ける（figure に掛けると交差監視が「見えていない」と判定して開かない・Chrome） */
+.gal figure.vis img{clip-path:inset(0 0 0 0);transform:scale(1)}
+.gal figure:hover img{transform:scale(1.035)}
+.nextw{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;max-width:1180px;margin:0 auto;padding:clamp(40px,8vw,90px) max(20px,var(--sar)) calc(var(--nav) + 30px + var(--sab)) max(20px,var(--sal));color:var(--fg);text-decoration:none}
+.nextw .l{font-size:10.5px;letter-spacing:.3em;color:var(--gold);font-weight:300}
+.nextw .n{display:block;font-size:clamp(20px,5vw,32px);margin-top:8px}
+.nextw .ar{font-size:26px;color:var(--gold);font-weight:300;transition:transform .8s var(--out)}
+.nextw:hover .ar{transform:translateX(8px)}
+
+/* ---------- そのほか ---------- */
+.w-more .wrap{max-width:1180px;margin:0 auto;padding:calc(34px + var(--sat)) max(20px,var(--sar)) 0 max(20px,var(--sal))}
+.w-more .sec{font-size:clamp(20px,5vw,28px);margin:clamp(34px,6vw,60px) auto 0;padding:0 max(20px,var(--sar)) 0 max(20px,var(--sal));max-width:1180px}
+.w-more .sec small{display:block;font-family:var(--sans);font-size:11px;color:var(--gold);letter-spacing:.28em;margin-bottom:8px;font-weight:300}
+.w-more .gal{padding-top:14px}
+
+/* ---------- 連絡先 ---------- */
+.w-end{display:flex;align-items:center}
+.w-end .wrap{max-width:760px;margin:0 auto;padding:calc(40px + var(--sat)) max(24px,var(--sar)) calc(var(--nav) + 30px + var(--sab)) max(24px,var(--sal));width:100%}
+.w-end h2{font-size:clamp(24px,6.2vw,36px);line-height:1.55;margin:16px 0 22px}
+.w-end dl{display:grid;grid-template-columns:64px 1fr;gap:9px 12px;margin:0;font-size:13.5px;line-height:1.7;font-weight:300}
+.w-end dt{color:var(--gold);font-size:11px;letter-spacing:.2em;padding-top:3px}
+.w-end dd{margin:0}
+.w-end a{color:var(--fg)}
+.w-end .qrrow{display:flex;gap:16px;align-items:center;margin-top:24px}
+.w-end .qr{width:96px;height:96px;border-radius:4px;background:#fff;padding:6px}
+.w-end .qr img{width:100%;height:100%;display:block}
+.w-end .foot{margin-top:30px;font-size:10.5px;color:var(--dim);letter-spacing:.1em}
+
+@media (prefers-reduced-motion:reduce){
+  .w .up,.w.on .up{animation:none;opacity:1;transform:none}
+  .w .ln{transition:none;width:56px}
+  .w-brand .hero img,.w-brand.on .hero img{animation:none;clip-path:none;transform:none}
+  .cards .card-w,.w.on .cards .card-w{animation:none;clip-path:none}
+  .gal img{clip-path:none;transform:none;transition:none}
+  .w-cover .bgs img{animation:none;opacity:0;transform:none}.w-cover .bgs img:first-child{opacity:1}
+  .w-brand .scroll::after{animation:none}
+}
+
+/* © 2026 MR Design · ショート版＋製作事例（combo.html）専用。works.css の後に読む
+   ショート版の画面（.w 以外）を、製作事例と同じ書体・色の決まりに揃える:
+   見出し＝ヒラギノ明朝 W3／ラベル＝ヒラギノ角ゴ W3／紫の直書き色は温かい黒とシャンパンに置き換える */
+.slide:not(.w) h1,.slide:not(.w) h2{font-family:var(--mincho);font-weight:300;letter-spacing:.04em}
+.slide:not(.w) h3{font-weight:600}
+.slide:not(.w) .kicker{font-weight:300;letter-spacing:.24em}
+.slide:not(.w) .serif{font-family:var(--mincho);font-weight:300}
+.cover{background:radial-gradient(120% 80% at 50% 110%,#2a2116 0%,var(--bg) 60%)}
+.hero .ov{background:linear-gradient(180deg,rgba(11,10,9,.15) 0%,rgba(11,10,9,0) 35%,rgba(11,10,9,.9) 100%)}
+.cv,.viewer{background:radial-gradient(80% 70% at 50% 60%,#211c16,#0b0a09)}
+.viewer .vname,.viewer .ld{background:rgba(11,10,9,.55)}
+.viewer .tabs button.cur{background:rgba(200,178,138,.16)}
+.facts{border-top-color:rgba(200,178,138,.22)}
+.facts>div{border-left-color:rgba(200,178,138,.22)}
+.wallhead{background:linear-gradient(180deg,var(--bg) 0%,var(--bg) 55%,rgba(11,10,9,.92) 70%,rgba(11,10,9,.6) 85%,rgba(11,10,9,0) 100%)}
+#tip{background:rgba(11,10,9,.94)}
+.card{background:var(--card);border-color:var(--line)}
+.strip figcaption,.tile figcaption{font-weight:300}
+</style>
+</head>
+<body>
+<div id="lock"><form id="lockf" autocomplete="off"><div class="bx"><img src="img/logo_mark.png" alt="3C"><h3>3C工芸 会社紹介</h3><p>パスワードを入力してください</p><input id="lockin" type="password" inputmode="text" autocapitalize="off" autocorrect="off" placeholder="パスワード"><button type="submit">開く</button><div class="err" id="lockerr"></div><div class="foot">株式会社３C工芸 ／ この資料は関係者向けです</div></div></form></div>
+<button id="fs" aria-label="全画面"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg></button>
+<div id="deck">
+
+<!-- S1 表紙 -->
+<section class="slide cover" data-t="表紙" data-sec="">
+  <div class="in">
+    <div class="logo-wrap a" id="logo-anim" style="--i:0" role="img" aria-label="3C"><svg class="logo-mark" viewBox="0 0 512 512"></svg></div>
+    <div class="rule a" style="--i:1"></div>
+    <h1 class="a serif" style="--i:2">想いを、<br>木でかたちに。</h1>
+    <p class="kicker a" style="--i:3">Custom Woodworking Factory</p>
+    <p class="mut a" style="--i:4">株式会社３C工芸 ── 会社紹介・製作事例<br><span class="small">店舗什器・オーダー家具・別注家具の製作工場（大阪・堺市美原区）</span></p>
+    <div class="hint a" style="--i:6"><span class="arrow"><svg viewBox="0 0 34 18" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 9h26M22 3l6 6-6 6"/></svg></span>スワイプで進む／戻る。左下の「目次」から各ブランドへ</div>
+  </div>
+</section>
+
+<!-- S2 理念と数字 -->
+<section class="slide photo-bg" data-t="ともにつくる" data-sec="会社">
+  <div class="hero">
+    <img data-src="img/f3_workers.jpg" alt="">
+    <div class="ov"></div>
+    <div class="txt">
+      <p class="kicker a" style="--i:0">Our Philosophy</p>
+      <h1 class="serif a" style="--i:1">ともに、つくる。</h1>
+      <p class="a" style="--i:2">設計は行わず、いただいた図面をもとに構造を検討し、加工・組立・塗装・検品までを自社で行う家具づくりの専門集団です。</p>
+      <div class="facts a" style="--i:3">
+        <div><b>2015</b><small>年</small><span>設立</span></div>
+        <div><b>24</b><small>名</small><span>社員</span></div>
+        <div><small class="pre">約</small><b>270</b><span>納品現場※</span></div>
+      </div>
+      <p class="small mut a" style="--i:4">代表取締役　新里 優　<span class="dim">※2023〜2026年・概数</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- S3 2工場・本社と設備 -->
+<section class="slide" data-t="工場と設備" data-sec="会社">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Factories &amp; Equipment</p>
+    <h2 class="a" style="--i:1">美原の2工場に、<br>木工機械とデジタル加工。</h2>
+    <div class="grid2 a" style="--i:2">
+      <div class="card"><div class="num">20<small>名</small></div><div class="lab">第3工場（太井）<br>事務所・加工・組立・塗装</div></div>
+      <div class="card"><div class="num">4<small>名</small></div><div class="lab">第2工場（今井）<br>加工・組立</div></div>
+    </div>
+    <div class="card a" style="--i:3"><h3>本社（松原）</h3><p class="small mut">大阪府松原市岡。火災のあと復旧工事中で、事務所の機能は第3工場に移しています。下の写真は復旧工事前の本社です。</p></div>
+    <div class="tiles c3 a" style="--i:4">
+      <figure class="tile"><img class="ph" data-src="img/f3_panelsaw.jpg" alt=""><figcaption>パネルソー</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_nc.jpg" alt=""><figcaption>NCルーター</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_laser.jpg" alt=""><figcaption>レーザー加工機</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_3dp.jpg" alt=""><figcaption>3Dプリンター</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_booth.jpg" alt=""><figcaption>塗装ブース</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_paintroom.jpg" alt=""><figcaption>調色室</figcaption></figure>
+    </div>
+    <p class="small dim a" style="--i:5">ほかに昇降盤・プレス機・集塵設備・3Dスキャナー。塗装まで外注せず、自社工場で仕上げます。</p>
+    <p class="kicker a" style="--i:6;margin-top:14px">Our Sites ── 工場と本社の様子</p>
+    <div class="strip a" style="--i:7">
+      <figure class="wide"><img class="ph" data-src="img/f3_ext.jpg" alt=""><figcaption>第3工場（美原・太井）</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/ext_f1.jpg" alt=""><figcaption>第2工場（美原・今井）</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/f3_wide.jpg" alt=""><figcaption>第3工場 1F 加工フロア</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/f3_wide2.jpg" alt=""><figcaption>第3工場 1F ── 材料棚と加工機</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/f3_wide3.jpg" alt=""><figcaption>第3工場 2F 組立フロア</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/f3_bench.jpg" alt=""><figcaption>組立ベンチ</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/f1_meet.jpg" alt=""><figcaption>図面を囲んで打合せ</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/f3_in2026.jpg" alt=""><figcaption>第3工場 1F ── 2026年3月、機械を移した直後</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/f2_in2.jpg" alt=""><figcaption>第2工場 ── 床を打ち直した内部（2025年12月）</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/hq_1f.jpg" alt=""><figcaption>本社 1F 事務所（復旧工事前）</figcaption></figure>
+      <figure class="wide"><img class="ph" data-src="img/hq_2f.jpg" alt=""><figcaption>本社 2F 打合せスペース（復旧工事前）</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- S4 つくり方（実例: シックスセンシズ京都 リテールカウンター） -->
+<section class="slide" data-t="図面から据付まで" data-sec="つくり方">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Our Process ── 実例で見る</p>
+    <h2 class="a" style="--i:1">図面から、<br>据付まで。</h2>
+    <p class="q a" style="--i:2">シックスセンシズ京都の3段円形カウンターを例に。<b>3Dで部材に分解し、工場で組んで仕上げ、確かめてから現地へ。</b>ひとつの什器を同じ社員が最後まで見届けます。</p>
+    <div class="vid a" style="--i:3"><video data-src="vid/retail_explode.mp4" muted loop playsinline preload="none" poster="img/r3d_whole.jpg"></video><div class="sl">分解アニメーション（Fusion）── 天板・側板・リング・台輪がユニットごとに分かれる</div></div>
+    <div class="tiles c3 a" style="--i:3">
+      <figure class="tile"><img class="ph" data-src="img/r_draw.jpg" alt="" style="background:#fff"><figcaption>01 図面を読み、製作図に</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/r3d_exploded.jpg" alt=""><figcaption>02 3Dで部材に分解</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f_parts.jpg" alt=""><figcaption>03 板取りしてNC加工</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f_assy4.jpg" alt=""><figcaption>04 工場で組立</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f_fin2.jpg" alt=""><figcaption>05 突板・塗装で仕上げ</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/s_inst3.jpg" alt=""><figcaption>06 検品して据付</figcaption></figure>
+    </div>
+    <p class="small mut a" style="--i:4">写真をタップで拡大。部材データ・部品表・加工依頼書は、設計者・現場と共有できます。</p>
+  </div>
+</section>
+
+<!-- S5 得意な仕事 -->
+<section class="slide" data-t="得意な仕事" data-sec="つくり方">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">What We Do Best</p>
+    <h2 class="a" style="--i:1">曲面も、手の仕事も、<br>色合わせも。</h2>
+    <p class="small mut a" style="--i:2">3Cがいちばん多くつくっているのは曲面の什器。機械が出せない精度は、社員の手が最後に整えます。チェーン店舗の什器一式も、NCデータを使い回して同じ品質で店舗数分。</p>
+    <div class="tiles a" style="--i:3">
+      <figure class="tile"><img class="ph" data-src="img/k981.jpg" alt=""><figcaption>曲面・R ── リブ仕上げのカウンター（心斎橋ライム）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/k252.jpg" alt=""><figcaption>曲面・R ── ルーバーソファ（ドーミー山科）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/k286.jpg" alt=""><figcaption>楕円 ── リングベンチ（瀬戸内海放送 岡山本社）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/k378.jpg" alt=""><figcaption>組子 ── 透かしのアーチ（後楽園飯店）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/k540.jpg" alt=""><figcaption>無垢・突板 ── ウォルナットのショーケース</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/f3_paint.jpg" alt="" style="object-position:center 30%"><figcaption>塗装 ── 指定色に調色して自社で塗る</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/k1117.jpg" alt=""><figcaption>大型 ── 楕円テーブル（大阪・関西万博）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/k605.jpg" alt=""><figcaption>円筒 ── 什器（Aesop 関西国際空港）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/k834.jpg" alt=""><figcaption>多店舗 ── 柱巻きRカウンター（どうとんぼり神座）</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- 目次 -->
+<section class="slide w w-index" data-t="掲載ブランド" data-sec="Works">
+  <div class="wrap">
+    <p class="kick up" style="--d:0">Index — 18 Brands</p>
+    <h2 class="up nmf" style="--d:1">掲載ブランド</h2>
+    <p class="sub up" style="--d:2">見たいブランドをタップ。01〜06 は店舗で、07〜18 は出荷前の工場で撮った完成写真です。</p>
+    <div class="cards">
+      <a class="card-w" href="#7" style="--d:0"><img data-src="img/s_inst3.jpg" alt="">
+        <span class="t"><span class="no">01</span><span class="nm nmf">Six Senses Kyoto</span><span class="st">シックスセンシズ京都</span></span></a>
+      <a class="card-w" href="#8" style="--d:1"><img data-src="img/works/tsuru_08_h.jpg" alt="">
+        <span class="t"><span class="no">02</span><span class="nm nmf">鶴屋八幡</span><span class="st">京阪百貨店守口店</span></span></a>
+      <a class="card-w" href="#9" style="--d:2"><img data-src="img/works/akafuku_01_h.jpg" alt="">
+        <span class="t"><span class="no">03</span><span class="nm nmf">赤福</span><span class="st">阪神梅田本店</span></span></a>
+      <a class="card-w" href="#10" style="--d:3"><img data-src="img/works/heather_01_h.jpg" alt="">
+        <span class="t"><span class="no">04</span><span class="nm nmf">Heather</span><span class="st">ルミネ横浜</span></span></a>
+      <a class="card-w" href="#11" style="--d:4"><img data-src="img/works/petit_04_h.jpg" alt="">
+        <span class="t"><span class="no">05</span><span class="nm nmf">petit main</span><span class="st">あべのハルカス近鉄本店</span></span></a>
+      <a class="card-w" href="#12" style="--d:5"><img data-src="img/works/midosuji_02_h.jpg" alt="">
+        <span class="t"><span class="no">06</span><span class="nm nmf">御堂筋ダイビル</span><span class="st">共用ラウンジ</span></span></a>
+      <a class="card-w" href="#13" style="--d:6"><img data-src="img/works/issey_01.jpg" alt="">
+        <span class="t"><span class="no">07</span><span class="nm nmf">ISSEY MIYAKE</span><span class="st">阪急うめだ本店</span></span></a>
+      <a class="card-w" href="#14" style="--d:7"><img data-src="img/works/vivienne_01.jpg" alt="">
+        <span class="t"><span class="no">08</span><span class="nm nmf">Vivienne Westwood</span><span class="st">RED＋MAN LUCUA大阪 ／ 池袋東武本館</span></span></a>
+      <a class="card-w" href="#15" style="--d:8"><img data-src="img/works/jins_01.jpg" alt="">
+        <span class="t"><span class="no">09</span><span class="nm nmf">JINS</span><span class="st">加西北条 ／ 神戸伊川谷 ／ みのおキューズモール ／ 京都ファミリー ほか</span></span></a>
+      <a class="card-w" href="#16" style="--d:8"><img data-src="img/works/kamukura_01.jpg" alt="">
+        <span class="t"><span class="no">10</span><span class="nm nmf">どうとんぼり神座</span><span class="st">ルクア大阪 ／ 関西国際空港 ／ 和歌山平井 ／ 八尾 ほか</span></span></a>
+      <a class="card-w" href="#17" style="--d:8"><img data-src="img/works/albion_01.jpg" alt="">
+        <span class="t"><span class="no">11</span><span class="nm nmf">ALBION</span><span class="st">フランス屋 ゆめタウン廿日市</span></span></a>
+      <a class="card-w" href="#18" style="--d:8"><img data-src="img/works/skii_01.jpg" alt="">
+        <span class="t"><span class="no">12</span><span class="nm nmf">SK-II</span><span class="st">ラゾーナ川崎</span></span></a>
+      <a class="card-w" href="#19" style="--d:8"><img data-src="img/works/fancl_01.jpg" alt="">
+        <span class="t"><span class="no">13</span><span class="nm nmf">FANCL</span><span class="st">中部国際空港 ／ 関西国際空港</span></span></a>
+      <a class="card-w" href="#20" style="--d:8"><img data-src="img/works/beams_01.jpg" alt="">
+        <span class="t"><span class="no">14</span><span class="nm nmf">BEAMS</span><span class="st">マリンピア神戸</span></span></a>
+      <a class="card-w" href="#21" style="--d:8"><img data-src="img/works/fufu_01.jpg" alt="">
+        <span class="t"><span class="no">15</span><span class="nm nmf">ふふ軽井沢</span><span class="st"></span></span></a>
+      <a class="card-w" href="#22" style="--d:8"><img data-src="img/works/apa_01.jpg" alt="">
+        <span class="t"><span class="no">16</span><span class="nm nmf">APAホテル</span><span class="st">大阪なんば駅前タワー ほか</span></span></a>
+      <a class="card-w" href="#23" style="--d:8"><img data-src="img/works/yoshinoya_01.jpg" alt="">
+        <span class="t"><span class="no">17</span><span class="nm nmf">吉野家</span><span class="st">大国町 ／ 鶴橋駅</span></span></a>
+      <a class="card-w" href="#24" style="--d:8"><img data-src="img/works/pelle_01.jpg" alt="">
+        <span class="t"><span class="no">18</span><span class="nm nmf">PELLE MORBIDA</span><span class="st"></span></span></a>
+      <a class="card-w more" href="#25" style="--d:8"><img data-src="img/works/obayashi_02_h.jpg" alt="">
+        <span class="t"><span class="no">19</span><span class="nm nmf">そのほかの現場</span><span class="st">小林聖心女子学院 ／ 大津展示場 ／ 企業オフィス</span></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- Six Senses Kyoto シックスセンシズ京都（gen_works.py が生成） -->
+<section class="slide w w-brand" data-t="Six Senses Kyoto シックスセンシズ京都" data-sec="Brands">
+  <div class="hero">
+    <img class="ph" data-src="img/s_inst3.jpg" alt="" data-cap="Six Senses Kyoto シックスセンシズ京都">
+    <div class="veil"></div>
+    <div class="tx">
+      <div class="no up" style="--d:0">01 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Hotel · Kyoto · 2023–2024</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">Six Senses Kyoto</span></h2>
+      <p class="store up" style="--d:3">シックスセンシズ京都</p>
+      <p class="what up" style="--d:4">スパ・客室まわりの造作家具一式と、物販エリアのリテールカウンター。館内 約90品目を製作・据付</p>
+      <span class="ln" style="margin-top:16px"></span>
+    </div>
+    <div class="scroll">SCROLL</div>
+  </div>
+  <div class="gal">
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/g177.jpg" alt="" data-cap="Six Senses Kyoto シックスセンシズ京都"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/g114.jpg" alt="" data-cap="Six Senses Kyoto シックスセンシズ京都"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/g153.jpg" alt="" data-cap="Six Senses Kyoto シックスセンシズ京都"></figure>
+      <figure class="h" style="aspect-ratio:3/4"><img class="ph" data-src="img/s_inst2.jpg" alt="" data-cap="Six Senses Kyoto シックスセンシズ京都"></figure>
+      <figure class="h" style="aspect-ratio:3/4"><img class="ph" data-src="img/ss_01.jpg" alt="" data-cap="Six Senses Kyoto シックスセンシズ京都"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/ss_03.jpg" alt="" data-cap="Six Senses Kyoto シックスセンシズ京都"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/ss_09.jpg" alt="" data-cap="Six Senses Kyoto シックスセンシズ京都"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/ss_22.jpg" alt="" data-cap="Six Senses Kyoto シックスセンシズ京都"></figure>
+  </div>
+  <a class="nextw" href="#8"><span><span class="l">NEXT</span><span class="n nmf">鶴屋八幡</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- 鶴屋八幡 京阪百貨店守口店（gen_works.py が生成） -->
+<section class="slide w w-brand" data-t="鶴屋八幡 京阪百貨店守口店" data-sec="Brands">
+  <div class="hero">
+    <img class="ph" data-src="img/works/tsuru_08_h.jpg" alt="" data-cap="鶴屋八幡 京阪百貨店守口店">
+    <div class="veil"></div>
+    <div class="tx">
+      <div class="no up" style="--d:0">02 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Department Store · 2025</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">鶴屋八幡</span></h2>
+      <p class="store up" style="--d:3">京阪百貨店守口店</p>
+      <p class="what up" style="--d:4">L字ショーケースカウンター</p>
+      <span class="ln" style="margin-top:16px"></span>
+    </div>
+    <div class="scroll">SCROLL</div>
+  </div>
+  <div class="gal">
+      <figure class="" style="aspect-ratio:16/10"><img class="ph" data-src="img/works/tsuru_13.jpg" alt="" data-cap="鶴屋八幡 京阪百貨店守口店"></figure>
+      <figure class="h" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/tsuru_03.jpg" alt="" data-cap="鶴屋八幡 京阪百貨店守口店"></figure>
+      <figure class="h" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/tsuru_10.jpg" alt="" data-cap="鶴屋八幡 京阪百貨店守口店"></figure>
+      <figure class="h" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/tsuru_01.jpg" alt="" data-cap="鶴屋八幡 京阪百貨店守口店"></figure>
+      <figure class="h" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/tsuru_11.jpg" alt="" data-cap="鶴屋八幡 京阪百貨店守口店"></figure>
+  </div>
+  <a class="nextw" href="#9"><span><span class="l">NEXT</span><span class="n nmf">赤福</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- 赤福 阪神梅田本店（gen_works.py が生成） -->
+<section class="slide w w-brand" data-t="赤福 阪神梅田本店" data-sec="Brands">
+  <div class="hero">
+    <img class="ph" data-src="img/works/akafuku_01_h.jpg" alt="" data-cap="赤福 阪神梅田本店">
+    <div class="veil"></div>
+    <div class="tx">
+      <div class="no up" style="--d:0">03 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Department Store · 2025</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">赤福</span></h2>
+      <p class="store up" style="--d:3">阪神梅田本店</p>
+      <p class="what up" style="--d:4">木格子の店舗ファサード・販売カウンター・什器</p>
+      <span class="ln" style="margin-top:16px"></span>
+    </div>
+    <div class="scroll">SCROLL</div>
+  </div>
+  <div class="gal">
+      <figure class="" style="aspect-ratio:16/10"><img class="ph" data-src="img/works/akafuku_02.jpg" alt="" data-cap="赤福 阪神梅田本店"></figure>
+      <figure class="h" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/akafuku_07.jpg" alt="" data-cap="赤福 阪神梅田本店"></figure>
+      <figure class="h" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/akafuku_03.jpg" alt="" data-cap="赤福 阪神梅田本店"></figure>
+      <figure class="" style="aspect-ratio:16/9"><img class="ph" data-src="img/works/akafuku_05.jpg" alt="" data-cap="赤福 阪神梅田本店"></figure>
+  </div>
+  <a class="nextw" href="#10"><span><span class="l">NEXT</span><span class="n nmf">Heather</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- Heather ルミネ横浜（gen_works.py が生成） -->
+<section class="slide w w-brand" data-t="Heather ルミネ横浜" data-sec="Brands">
+  <div class="hero">
+    <img class="ph" data-src="img/works/heather_01_h.jpg" alt="" data-cap="Heather ルミネ横浜">
+    <div class="veil"></div>
+    <div class="tx">
+      <div class="no up" style="--d:0">04 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Commercial Facility · 2025</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">Heather</span></h2>
+      <p class="store up" style="--d:3">ルミネ横浜</p>
+      <p class="what up" style="--d:4">ロゴ壁と楕円テーブル什器・アーチ型木製ディスプレイ棚</p>
+      <span class="ln" style="margin-top:16px"></span>
+    </div>
+    <div class="scroll">SCROLL</div>
+  </div>
+  <div class="gal">
+      <figure class="" style="aspect-ratio:16/10"><img class="ph" data-src="img/works/heather_02.jpg" alt="" data-cap="Heather ルミネ横浜"></figure>
+      <figure class="h" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/heather_07.jpg" alt="" data-cap="Heather ルミネ横浜"></figure>
+      <figure class="h" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/heather_03.jpg" alt="" data-cap="Heather ルミネ横浜"></figure>
+      <figure class="" style="aspect-ratio:16/9"><img class="ph" data-src="img/works/heather_06.jpg" alt="" data-cap="Heather ルミネ横浜"></figure>
+  </div>
+  <a class="nextw" href="#11"><span><span class="l">NEXT</span><span class="n nmf">petit main</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- petit main あべのハルカス近鉄本店（gen_works.py が生成） -->
+<section class="slide w w-brand" data-t="petit main あべのハルカス近鉄本店" data-sec="Brands">
+  <div class="hero">
+    <img class="ph" data-src="img/works/petit_04_h.jpg" alt="" data-cap="petit main あべのハルカス近鉄本店">
+    <div class="veil"></div>
+    <div class="tx">
+      <div class="no up" style="--d:0">05 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Department Store · 2026</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">petit main</span></h2>
+      <p class="store up" style="--d:3">あべのハルカス近鉄本店</p>
+      <span class="ln" style="margin-top:16px"></span>
+    </div>
+    <div class="scroll">SCROLL</div>
+  </div>
+  <div class="gal">
+      <figure class="" style="aspect-ratio:16/10"><img class="ph" data-src="img/works/petit_03.jpg" alt="" data-cap="petit main あべのハルカス近鉄本店"></figure>
+      <figure class="h" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/petit_08.jpg" alt="" data-cap="petit main あべのハルカス近鉄本店"></figure>
+      <figure class="h" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/petit_06.jpg" alt="" data-cap="petit main あべのハルカス近鉄本店"></figure>
+      <figure class="h" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/petit_11.jpg" alt="" data-cap="petit main あべのハルカス近鉄本店"></figure>
+      <figure class="h" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/petit_01.jpg" alt="" data-cap="petit main あべのハルカス近鉄本店"></figure>
+  </div>
+  <a class="nextw" href="#12"><span><span class="l">NEXT</span><span class="n nmf">御堂筋ダイビル</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- 御堂筋ダイビル 共用ラウンジ（gen_works.py が生成） -->
+<section class="slide w w-brand" data-t="御堂筋ダイビル 共用ラウンジ" data-sec="Brands">
+  <div class="hero">
+    <img class="ph" data-src="img/works/midosuji_02_h.jpg" alt="" data-cap="御堂筋ダイビル 共用ラウンジ">
+    <div class="veil"></div>
+    <div class="tx">
+      <div class="no up" style="--d:0">06 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Office Lounge · 2024</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">御堂筋ダイビル</span></h2>
+      <p class="store up" style="--d:3">共用ラウンジ</p>
+      <p class="what up" style="--d:4">木口寄木天板のビッグテーブル・プランター一体部</p>
+      <span class="ln" style="margin-top:16px"></span>
+    </div>
+    <div class="scroll">SCROLL</div>
+  </div>
+  <div class="gal">
+      <figure class="" style="aspect-ratio:16/10"><img class="ph" data-src="img/works/midosuji_04.jpg" alt="" data-cap="御堂筋ダイビル 共用ラウンジ"></figure>
+      <figure class="h" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/midosuji_01.jpg" alt="" data-cap="御堂筋ダイビル 共用ラウンジ"></figure>
+      <figure class="h" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/midosuji_06.jpg" alt="" data-cap="御堂筋ダイビル 共用ラウンジ"></figure>
+      <figure class="" style="aspect-ratio:16/9"><img class="ph" data-src="img/works/midosuji_05.jpg" alt="" data-cap="御堂筋ダイビル 共用ラウンジ"></figure>
+  </div>
+  <a class="nextw" href="#13"><span><span class="l">NEXT</span><span class="n nmf">ISSEY MIYAKE</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- ISSEY MIYAKE 阪急うめだ本店（gen_works.py が生成） -->
+<section class="slide w w-brand w-fac" data-t="ISSEY MIYAKE 阪急うめだ本店" data-sec="Brands">
+  <div class="fhead">
+      <div class="no up" style="--d:0">07 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Fashion · 2025</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">ISSEY MIYAKE</span></h2>
+      <p class="store up" style="--d:3">阪急うめだ本店</p>
+      <span class="ln" style="margin-top:16px"></span>
+  </div>
+  <div class="gal">
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/issey_01.jpg" alt="" data-cap="ISSEY MIYAKE 阪急うめだ本店"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/issey_02.jpg" alt="" data-cap="ISSEY MIYAKE 阪急うめだ本店"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/issey_03.jpg" alt="" data-cap="ISSEY MIYAKE 阪急うめだ本店"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/issey_04.jpg" alt="" data-cap="ISSEY MIYAKE 阪急うめだ本店"></figure>
+  </div>
+  <p class="note">写真は出荷前の工場で撮影</p>
+  <a class="nextw" href="#14"><span><span class="l">NEXT</span><span class="n nmf">Vivienne Westwood</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- Vivienne Westwood RED＋MAN LUCUA大阪 ／ 池袋東武本館（gen_works.py が生成） -->
+<section class="slide w w-brand w-fac" data-t="Vivienne Westwood RED＋MAN LUCUA大阪 ／ 池袋東武本館" data-sec="Brands">
+  <div class="fhead">
+      <div class="no up" style="--d:0">08 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Fashion · 2026</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">Vivienne Westwood</span></h2>
+      <p class="store up" style="--d:3">RED＋MAN LUCUA大阪 ／ 池袋東武本館</p>
+      <span class="ln" style="margin-top:16px"></span>
+  </div>
+  <div class="gal">
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/vivienne_01.jpg" alt="" data-cap="Vivienne Westwood RED＋MAN LUCUA大阪 ／ 池袋東武本館"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/vivienne_02.jpg" alt="" data-cap="Vivienne Westwood RED＋MAN LUCUA大阪 ／ 池袋東武本館"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/vivienne_03.jpg" alt="" data-cap="Vivienne Westwood RED＋MAN LUCUA大阪 ／ 池袋東武本館"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/vivienne_04.jpg" alt="" data-cap="Vivienne Westwood RED＋MAN LUCUA大阪 ／ 池袋東武本館"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/vivienne_05.jpg" alt="" data-cap="Vivienne Westwood RED＋MAN LUCUA大阪 ／ 池袋東武本館"></figure>
+  </div>
+  <p class="note">写真は出荷前の工場で撮影</p>
+  <a class="nextw" href="#15"><span><span class="l">NEXT</span><span class="n nmf">JINS</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- JINS 加西北条 ／ 神戸伊川谷 ／ みのおキューズモール ／ 京都ファミリー ほか（gen_works.py が生成） -->
+<section class="slide w w-brand w-fac" data-t="JINS 加西北条 ／ 神戸伊川谷 ／ みのおキューズモール ／ 京都ファミリー ほか" data-sec="Brands">
+  <div class="fhead">
+      <div class="no up" style="--d:0">09 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Retail · 2025–2026</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">JINS</span></h2>
+      <p class="store up" style="--d:3">加西北条 ／ 神戸伊川谷 ／ みのおキューズモール ／ 京都ファミリー ほか</p>
+      <span class="ln" style="margin-top:16px"></span>
+  </div>
+  <div class="gal">
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/jins_01.jpg" alt="" data-cap="JINS 加西北条 ／ 神戸伊川谷 ／ みのおキューズモール ／ 京都ファミリー ほか"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/jins_02.jpg" alt="" data-cap="JINS 加西北条 ／ 神戸伊川谷 ／ みのおキューズモール ／ 京都ファミリー ほか"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/jins_03.jpg" alt="" data-cap="JINS 加西北条 ／ 神戸伊川谷 ／ みのおキューズモール ／ 京都ファミリー ほか"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/jins_04.jpg" alt="" data-cap="JINS 加西北条 ／ 神戸伊川谷 ／ みのおキューズモール ／ 京都ファミリー ほか"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/jins_05.jpg" alt="" data-cap="JINS 加西北条 ／ 神戸伊川谷 ／ みのおキューズモール ／ 京都ファミリー ほか"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/jins_06.jpg" alt="" data-cap="JINS 加西北条 ／ 神戸伊川谷 ／ みのおキューズモール ／ 京都ファミリー ほか"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/jins_07.jpg" alt="" data-cap="JINS 加西北条 ／ 神戸伊川谷 ／ みのおキューズモール ／ 京都ファミリー ほか"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/jins_08.jpg" alt="" data-cap="JINS 加西北条 ／ 神戸伊川谷 ／ みのおキューズモール ／ 京都ファミリー ほか"></figure>
+  </div>
+  <p class="note">写真は出荷前の工場で撮影</p>
+  <a class="nextw" href="#16"><span><span class="l">NEXT</span><span class="n nmf">どうとんぼり神座</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- どうとんぼり神座 ルクア大阪 ／ 関西国際空港 ／ 和歌山平井 ／ 八尾 ほか（gen_works.py が生成） -->
+<section class="slide w w-brand w-fac" data-t="どうとんぼり神座 ルクア大阪 ／ 関西国際空港 ／ 和歌山平井 ／ 八尾 ほか" data-sec="Brands">
+  <div class="fhead">
+      <div class="no up" style="--d:0">10 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Restaurant · 2025–2026</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">どうとんぼり神座</span></h2>
+      <p class="store up" style="--d:3">ルクア大阪 ／ 関西国際空港 ／ 和歌山平井 ／ 八尾 ほか</p>
+      <span class="ln" style="margin-top:16px"></span>
+  </div>
+  <div class="gal">
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/kamukura_01.jpg" alt="" data-cap="どうとんぼり神座 ルクア大阪 ／ 関西国際空港 ／ 和歌山平井 ／ 八尾 ほか"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/kamukura_02.jpg" alt="" data-cap="どうとんぼり神座 ルクア大阪 ／ 関西国際空港 ／ 和歌山平井 ／ 八尾 ほか"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/kamukura_03.jpg" alt="" data-cap="どうとんぼり神座 ルクア大阪 ／ 関西国際空港 ／ 和歌山平井 ／ 八尾 ほか"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/kamukura_04.jpg" alt="" data-cap="どうとんぼり神座 ルクア大阪 ／ 関西国際空港 ／ 和歌山平井 ／ 八尾 ほか"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/kamukura_05.jpg" alt="" data-cap="どうとんぼり神座 ルクア大阪 ／ 関西国際空港 ／ 和歌山平井 ／ 八尾 ほか"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/kamukura_06.jpg" alt="" data-cap="どうとんぼり神座 ルクア大阪 ／ 関西国際空港 ／ 和歌山平井 ／ 八尾 ほか"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/kamukura_07.jpg" alt="" data-cap="どうとんぼり神座 ルクア大阪 ／ 関西国際空港 ／ 和歌山平井 ／ 八尾 ほか"></figure>
+  </div>
+  <p class="note">1枚目は店舗での完成写真、ほかは出荷前の工場で撮影</p>
+  <a class="nextw" href="#17"><span><span class="l">NEXT</span><span class="n nmf">ALBION</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- ALBION フランス屋 ゆめタウン廿日市（gen_works.py が生成） -->
+<section class="slide w w-brand w-fac" data-t="ALBION フランス屋 ゆめタウン廿日市" data-sec="Brands">
+  <div class="fhead">
+      <div class="no up" style="--d:0">11 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Cosmetics · 2026</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">ALBION</span></h2>
+      <p class="store up" style="--d:3">フランス屋 ゆめタウン廿日市</p>
+      <p class="what up" style="--d:4">化粧品フロアの円形什器一式</p>
+      <span class="ln" style="margin-top:16px"></span>
+  </div>
+  <div class="gal">
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/albion_01.jpg" alt="" data-cap="ALBION フランス屋 ゆめタウン廿日市"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/albion_02.jpg" alt="" data-cap="ALBION フランス屋 ゆめタウン廿日市"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/albion_03.jpg" alt="" data-cap="ALBION フランス屋 ゆめタウン廿日市"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/albion_04.jpg" alt="" data-cap="ALBION フランス屋 ゆめタウン廿日市"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/albion_05.jpg" alt="" data-cap="ALBION フランス屋 ゆめタウン廿日市"></figure>
+  </div>
+  <p class="note">写真は出荷前の工場で撮影</p>
+  <a class="nextw" href="#18"><span><span class="l">NEXT</span><span class="n nmf">SK-II</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- SK-II ラゾーナ川崎（gen_works.py が生成） -->
+<section class="slide w w-brand w-fac" data-t="SK-II ラゾーナ川崎" data-sec="Brands">
+  <div class="fhead">
+      <div class="no up" style="--d:0">12 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Cosmetics · 2024</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">SK-II</span></h2>
+      <p class="store up" style="--d:3">ラゾーナ川崎</p>
+      <span class="ln" style="margin-top:16px"></span>
+  </div>
+  <div class="gal">
+      <figure class="h" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/skii_01.jpg" alt="" data-cap="SK-II ラゾーナ川崎"></figure>
+      <figure class="h" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/skii_02.jpg" alt="" data-cap="SK-II ラゾーナ川崎"></figure>
+  </div>
+  <p class="note">写真は出荷前の工場で撮影</p>
+  <a class="nextw" href="#19"><span><span class="l">NEXT</span><span class="n nmf">FANCL</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- FANCL 中部国際空港 ／ 関西国際空港（gen_works.py が生成） -->
+<section class="slide w w-brand w-fac" data-t="FANCL 中部国際空港 ／ 関西国際空港" data-sec="Brands">
+  <div class="fhead">
+      <div class="no up" style="--d:0">13 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Cosmetics · 2026</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">FANCL</span></h2>
+      <p class="store up" style="--d:3">中部国際空港 ／ 関西国際空港</p>
+      <span class="ln" style="margin-top:16px"></span>
+  </div>
+  <div class="gal">
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/fancl_01.jpg" alt="" data-cap="FANCL 中部国際空港 ／ 関西国際空港"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/fancl_02.jpg" alt="" data-cap="FANCL 中部国際空港 ／ 関西国際空港"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/fancl_03.jpg" alt="" data-cap="FANCL 中部国際空港 ／ 関西国際空港"></figure>
+  </div>
+  <p class="note">写真は出荷前の工場で撮影</p>
+  <a class="nextw" href="#20"><span><span class="l">NEXT</span><span class="n nmf">BEAMS</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- BEAMS マリンピア神戸（gen_works.py が生成） -->
+<section class="slide w w-brand w-fac" data-t="BEAMS マリンピア神戸" data-sec="Brands">
+  <div class="fhead">
+      <div class="no up" style="--d:0">14 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Fashion · 2024</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">BEAMS</span></h2>
+      <p class="store up" style="--d:3">マリンピア神戸</p>
+      <span class="ln" style="margin-top:16px"></span>
+  </div>
+  <div class="gal">
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/beams_01.jpg" alt="" data-cap="BEAMS マリンピア神戸"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/beams_02.jpg" alt="" data-cap="BEAMS マリンピア神戸"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/beams_03.jpg" alt="" data-cap="BEAMS マリンピア神戸"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/beams_04.jpg" alt="" data-cap="BEAMS マリンピア神戸"></figure>
+  </div>
+  <p class="note">写真は出荷前の工場で撮影</p>
+  <a class="nextw" href="#21"><span><span class="l">NEXT</span><span class="n nmf">ふふ軽井沢</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- ふふ軽井沢（gen_works.py が生成） -->
+<section class="slide w w-brand w-fac" data-t="ふふ軽井沢" data-sec="Brands">
+  <div class="fhead">
+      <div class="no up" style="--d:0">15 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Hotel · 2023</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">ふふ軽井沢</span></h2>
+      <span class="ln" style="margin-top:16px"></span>
+  </div>
+  <div class="gal">
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/fufu_01.jpg" alt="" data-cap="ふふ軽井沢"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/fufu_02.jpg" alt="" data-cap="ふふ軽井沢"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/fufu_03.jpg" alt="" data-cap="ふふ軽井沢"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/fufu_04.jpg" alt="" data-cap="ふふ軽井沢"></figure>
+  </div>
+  <p class="note">写真は出荷前の工場で撮影</p>
+  <a class="nextw" href="#22"><span><span class="l">NEXT</span><span class="n nmf">APAホテル</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- APAホテル 大阪なんば駅前タワー ほか（gen_works.py が生成） -->
+<section class="slide w w-brand w-fac" data-t="APAホテル 大阪なんば駅前タワー ほか" data-sec="Brands">
+  <div class="fhead">
+      <div class="no up" style="--d:0">16 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Hotel · 2024</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">APAホテル</span></h2>
+      <p class="store up" style="--d:3">大阪なんば駅前タワー ほか</p>
+      <span class="ln" style="margin-top:16px"></span>
+  </div>
+  <div class="gal">
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/apa_01.jpg" alt="" data-cap="APAホテル 大阪なんば駅前タワー ほか"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/apa_02.jpg" alt="" data-cap="APAホテル 大阪なんば駅前タワー ほか"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/apa_03.jpg" alt="" data-cap="APAホテル 大阪なんば駅前タワー ほか"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/apa_04.jpg" alt="" data-cap="APAホテル 大阪なんば駅前タワー ほか"></figure>
+  </div>
+  <p class="note">写真は出荷前の工場で撮影</p>
+  <a class="nextw" href="#23"><span><span class="l">NEXT</span><span class="n nmf">吉野家</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- 吉野家 大国町 ／ 鶴橋駅（gen_works.py が生成） -->
+<section class="slide w w-brand w-fac" data-t="吉野家 大国町 ／ 鶴橋駅" data-sec="Brands">
+  <div class="fhead">
+      <div class="no up" style="--d:0">17 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Restaurant · 2023–2024</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">吉野家</span></h2>
+      <p class="store up" style="--d:3">大国町 ／ 鶴橋駅</p>
+      <span class="ln" style="margin-top:16px"></span>
+  </div>
+  <div class="gal">
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/yoshinoya_01.jpg" alt="" data-cap="吉野家 大国町 ／ 鶴橋駅"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/yoshinoya_02.jpg" alt="" data-cap="吉野家 大国町 ／ 鶴橋駅"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/yoshinoya_03.jpg" alt="" data-cap="吉野家 大国町 ／ 鶴橋駅"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/yoshinoya_04.jpg" alt="" data-cap="吉野家 大国町 ／ 鶴橋駅"></figure>
+  </div>
+  <p class="note">写真は出荷前の工場で撮影</p>
+  <a class="nextw" href="#24"><span><span class="l">NEXT</span><span class="n nmf">PELLE MORBIDA</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- PELLE MORBIDA（gen_works.py が生成） -->
+<section class="slide w w-brand w-fac" data-t="PELLE MORBIDA" data-sec="Brands">
+  <div class="fhead">
+      <div class="no up" style="--d:0">18 / 18</div>
+      <p class="kick up" style="--d:1;margin-top:12px">Fashion</p>
+      <h2 class="up" style="--d:2;margin:0"><span class="nm nmf">PELLE MORBIDA</span></h2>
+      <span class="ln" style="margin-top:16px"></span>
+  </div>
+  <div class="gal">
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/pelle_01.jpg" alt="" data-cap="PELLE MORBIDA"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/pelle_02.jpg" alt="" data-cap="PELLE MORBIDA"></figure>
+      <figure class="t3" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/pelle_04.jpg" alt="" data-cap="PELLE MORBIDA"></figure>
+  </div>
+  <p class="note">写真は出荷前の工場で撮影</p>
+  <a class="nextw" href="#25"><span><span class="l">NEXT</span><span class="n nmf">そのほかの現場</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- そのほかの現場 -->
+<section class="slide w w-more" data-t="そのほかの現場" data-sec="More">
+  <div class="wrap">
+    <p class="kick up" style="--d:0">More Works</p>
+    <h2 class="up nmf" style="--d:1">そのほかの現場</h2>
+  </div>
+  <h3 class="sec nmf"><small>School · 2026</small>小林聖心女子学院</h3>
+  <div class="gal">
+      <figure class="h" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/obayashi_02_h.jpg" alt="" data-cap="小林聖心女子学院"></figure>
+      <figure class="h" style="aspect-ratio:4/3"><img class="ph" data-src="img/works/obayashi_01.jpg" alt="" data-cap="小林聖心女子学院"></figure>
+  </div>
+  <h3 class="sec nmf"><small>Showroom · 2024</small>大津展示場</h3>
+  <div class="gal">
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/otsu_01_h.jpg" alt="" data-cap="大津展示場"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/otsu_03.jpg" alt="" data-cap="大津展示場"></figure>
+      <figure class="t3" style="aspect-ratio:3/4"><img class="ph" data-src="img/works/otsu_02.jpg" alt="" data-cap="大津展示場"></figure>
+  </div>
+  <h3 class="sec nmf"><small>Office</small>企業オフィス</h3>
+  <div class="gal">
+      <figure class="h" style="aspect-ratio:4/3"><img class="ph" data-src="img/wworks_03_office_lounge.jpg" alt="" data-cap="企業オフィス"></figure>
+      <figure class="h" style="aspect-ratio:4/3"><img class="ph" data-src="img/wworks_04_office_shelf.jpg" alt="" data-cap="企業オフィス"></figure>
+  </div>
+  <a class="nextw" href="#26"><span><span class="l">NEXT</span><span class="n nmf">3Dで確かめてから、つくる</span></span><span class="ar">→</span></a>
+</section>
+
+<!-- S7 3D（ビューア）＋ 立命館R大階段・積層・事務所パース -->
+<section class="slide" data-t="3Dで確かめてからつくる" data-sec="3D">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">3D ── Check First, Then Build</p>
+    <h2 class="a" style="--i:1">3Dで確かめてから、<br>つくる。</h2>
+    <div class="viewer a" style="--i:2" id="viewer" data-models="data/models_short.json">
+      <canvas id="v3d"></canvas>
+      <div class="tabs" id="vtabs" hidden></div>
+      <div class="vname" id="vname"></div>
+      <div class="hint">1本指で回転 ・ 2本指でズーム／移動</div>
+      <div class="ld" id="vld">読み込み中…</div>
+    </div>
+    <div class="vcards a" style="--i:3" id="vcards"></div>
+    <p class="small mut a" style="--i:4" id="vnote">製作前に部材分けまで検討した、実際の3Dデータです。</p>
+
+    <p class="kicker a" style="--i:5;margin-top:18px">Case 02 ── 立命館中学校・高等学校（京都）2025</p>
+    <h3 class="a" style="--i:6">現場を3Dスキャンして、<br>R大階段を工場で組む。</h3>
+    <p class="small mut a" style="--i:7">据える前の現場を3Dスキャナーで取り込み、R形の下地と柱の位置に合わせて段を設計。タモ集成材の大階段を工場で組み上げ、検品してから現地へ（上の3Dで「R大階段の現場」を選ぶとスキャンが回せます）。</p>
+    <div class="tiles a" style="--i:8">
+      <figure class="tile"><img class="ph" data-src="img/rits_1.jpg" alt=""><figcaption>R大階段 ── 工場で組み上げたところ</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/rits_3.jpg" alt=""><figcaption>段の曲面と小口</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/rits_2.jpg" alt=""><figcaption>全長を通して組んだ状態</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/rits_4.jpg" alt=""><figcaption>端部の階段ユニット</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/rits_5.jpg" alt=""><figcaption>正面から</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/rits_6.jpg" alt=""><figcaption>タモ集成材の踏面</figcaption></figure>
+    </div>
+
+    <p class="kicker a" style="--i:9;margin-top:18px">Case 03 ── Stacked Curves, 2026</p>
+    <h3 class="a" style="--i:10">すり鉢も、S字も、<br>板を削って積む。</h3>
+    <div class="cv a" style="--i:11" id="ringbox">
+      <canvas id="rings"></canvas>
+      <div class="hud"><b id="rc">0</b> / 72 枚<br><span id="rz">z 0 mm</span></div>
+      <div class="tap">タップでもう一度</div>
+    </div>
+    <p class="small dim a" style="--i:11">分解アニメーション ── 実際の3Dデータ（半径・高さ・角度）から描画。すり鉢状の曲面を、30mmの板から削り出す帯72枚に分けて積み上げます。</p>
+    <div class="grid3 a" style="--i:11">
+      <div class="card"><div class="num" style="font-size:24px"><span data-count="72">0</span><small>枚</small></div><div class="lab">ライズ鉾町 積層リング</div></div>
+      <div class="card"><div class="num" style="font-size:24px">26.5<small>h</small></div><div class="lab">NC加工時間</div></div>
+      <div class="card"><div class="num" style="font-size:24px">8.2<small>m</small></div><div class="lab">I'm donut S字カウンター</div></div>
+    </div>
+    <div class="tiles a" style="--i:12">
+      <figure class="tile"><img class="ph" data-src="img/rise_done2.jpg" alt=""><figcaption>ライズ鉾町（京都）── 削り出した帯を積んだ曲面</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/rise_done1.jpg" alt=""><figcaption>ライズ鉾町 ── 内側の棚と開口</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/imd_f1.jpg" alt=""><figcaption>I'm donut ? 寺町三条 ── 全長8.2mのS字</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/imd_f2.jpg" alt=""><figcaption>I'm donut ? ── オープン棚とSUS天板の受け</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/alb_cnt3.jpg" alt=""><figcaption>ALBION ── 扇形部材でつくる円形カウンター</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/alb_shelf2.jpg" alt=""><figcaption>ALBION ── 3段の曲面ディスプレイ棚</figcaption></figure>
+    </div>
+
+    <p class="kicker a" style="--i:13;margin-top:18px">Our Office ── 自社設計</p>
+    <h3 class="a" style="--i:14">事務所の拡張スペースも、<br>3Dで描いてから。</h3>
+    <p class="small mut a" style="--i:15">事務所の中2階を広げる計画。現場を3Dスキャンし、その上にガラスの手摺・格子のカウンター・木の柱を置いて完成形を検討しました。</p>
+    <div class="tiles a" style="--i:16">
+      <figure class="tile"><img class="ph" data-src="img/ex_r4.jpg" alt=""><figcaption>完成パース ── 格子カウンターと間接照明</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ex_r3.jpg" alt=""><figcaption>完成パース ── 木の柱と棚</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ex_r1.jpg" alt=""><figcaption>完成パース ── 吹抜け側から</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ex_lat1.jpg" alt=""><figcaption>格子パネルの柄の検討（麻の葉）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ex_lat2.jpg" alt=""><figcaption>格子パネルの柄の検討（三角）</figcaption></figure>
+      <figure class="tile"><img class="ph" data-src="img/ex_table.jpg" alt=""><figcaption>テーブルの設計案</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- S9 納品先 -->
+<section class="slide" data-t="主な納品先" data-sec="実績">
+  <div class="in top">
+    <p class="kicker a" style="--i:0">Clients ── 2023〜2026</p>
+    <h2 class="a" style="--i:1">主な納品先。</h2>
+    <div class="srows a" style="--i:2">
+      <div class="srow"><div class="sh"><span>ハイブランド・専門店</span><em>30件前後</em></div><p>HERMES／GIRARD-PERREGAUX／ISSEY MIYAKE／SK-II／Aesop／BEAMS ほか</p></div>
+      <div class="srow"><div class="sh"><span>チェーン店舗</span><em>60件超</em></div><p>JINS／どうとんぼり神座／吉野家／コメダ珈琲／マクドナルド／タリーズ ほか</p></div>
+      <div class="srow"><div class="sh"><span>ホテル・レジャー</span><em>約20件</em></div><p>シックスセンシズ京都／エースホテル京都／ふふ軽井沢／スイスホテル南海大阪 ほか</p></div>
+      <div class="srow"><div class="sh"><span>飲食・百貨店</span><em>30件超</em></div><p>後楽園飯店／ビフテキのカワムラ／赤福／鶴屋八幡 ほか</p></div>
+      <div class="srow"><div class="sh"><span>オフィス・企業施設</span><em>約15件</em></div><p>川崎重工業 神戸本社／瀬戸内海放送 岡山本社／御堂筋ダイビル ほか</p></div>
+      <div class="srow"><div class="sh"><span>公共・医療・教育</span><em>30件超</em></div><p>大阪・関西万博／関西国際空港／兵庫医科大学 新病棟／立教小学校 ほか</p></div>
+    </div>
+    <p class="foot a" style="--i:3">件数は2023〜2026年に納品した現場数のおおよその目安</p>
+    <p class="kicker a" style="--i:4;margin-top:18px">Works ── At the Factory</p>
+    <h3 class="a" style="--i:5">つくってきたもの <span class="gold" id="wn"></span><small class="mut">点</small></h3><span id="wsites" hidden></span>
+    <p class="small mut a" style="--i:6">2023〜2026年、出荷前の工場で撮った完成写真。下にスクロール、タップで拡大。</p>
+    <div class="wall a" style="--i:7" id="wall"></div>
+    <p class="foot" style="text-align:left;margin-top:10px">現場名はお客様の店名・施設名のみ表記</p>
+  </div>
+</section>
+
+<!-- S10 協力会社として＋会社概要・連絡先 -->
+<section class="slide cover" data-t="お受けできること・連絡先" data-sec="ご提案">
+  <div class="in contact">
+    <div class="logo a" style="--i:0"><img src="img/logo_mark.png" alt="3C" style="width:96px;height:auto;display:block;margin-left:-6px"></div>
+    <h2 class="serif a" style="--i:1">協力会社として、<br>お受けできること。</h2>
+    <div class="chips a" style="--i:2"><span class="chip">図面からの構造検討・製作図</span><span class="chip">曲面・R・大型の什器</span><span class="chip">多店舗展開・量産</span><span class="chip">塗装・検品まで一貫</span><span class="chip">3D・NCデータの共有</span></div>
+    <dl class="a" style="--i:3">
+      <dt>社名</dt><dd>株式会社３C工芸（3C KOGEI CO., LTD.）</dd>
+      <dt>代表</dt><dd>代表取締役　新里 優</dd>
+      <dt>設立</dt><dd>2015年11月　資本金 900万円</dd>
+      <dt>工場</dt><dd>第3工場　堺市美原区太井404-12（事務所）<br>第2工場　堺市美原区今井95-1</dd>
+      <dt>本社</dt><dd>大阪府松原市岡7丁目64-2<br><span class="mut small">火災後の復旧工事中（事務所は第3工場）</span></dd>
+      <dt>TEL</dt><dd><a href="tel:0723496182" style="color:var(--fg)">072-349-6182</a>　<span class="mut">FAX 072-349-6183</span></dd>
+      <dt>Mail</dt><dd><a href="mailto:info@3ck.jp" style="color:var(--fg)">info@3ck.jp</a></dd>
+    </dl>
+    <div class="row a" style="--i:4"><div class="qr"><img src="img/qr_3ck.png" alt="3ck.jp"></div><p class="small mut">公式サイト 3ck.jp<br>施工事例・会社概要</p></div>
+    <p class="foot a" style="--i:5">© 2026 MR Design · ショート版 v2.5.2</p>
+  </div>
+</section>
+</div>
+
+<!-- nav -->
+<div id="nav">
+  <button id="bMenu" aria-label="目次"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>目次</button>
+  <div id="prog"><div id="bar"><i></i></div><span id="cnt">1 / 1</span></div>
+  <button id="bPrev" aria-label="前へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button id="bNext" aria-label="次へ"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+
+<div id="menu"><h3>CONTENTS</h3><ol id="toc"></ol><button class="close" id="bClose">閉じる</button></div>
+<div id="tip"><div class="bx"><h3>iPhoneで全画面にするには</h3><ol><li>Safariの「共有」ボタンをタップ</li><li>「ホーム画面に追加」を選ぶ</li><li>ホーム画面のアイコンから開くと、アドレスバーなしの全画面になります</li></ol><button id="tipx">閉じる</button></div></div>
+<div id="lb"><span class="n" id="lbn"></span><button class="x" id="lbx" aria-label="閉じる">×</button><img id="lbi" alt=""><div class="cap" id="lbc"></div></div>
+<script>(function(){const H='10d8cf5b3e7ffa5c0c48c62181203aeaf29aa305c4be67eadbb1333833373500';const L=document.getElementById('lock');const ok=()=>{L.hidden=true;try{localStorage.setItem('pf_ok',H)}catch(e){}};
+try{if(localStorage.getItem('pf_ok')===H){L.hidden=true;}}catch(e){}
+async function sha(s){const b=new TextEncoder().encode(s);const d=await crypto.subtle.digest('SHA-256',b);return [...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,'0')).join('');}
+document.getElementById('lockf').addEventListener('submit',async e=>{e.preventDefault();const v=document.getElementById('lockin').value.trim();const h=await sha('3cpitch:'+v);if(h===H){ok();}else{document.getElementById('lockerr').textContent='パスワードが違います';}});})();
+</script>
+<script>
+// 表紙ロゴの読み込み。GitHub Pages はたまに 503 を返すので、失敗したらまず静止画を出し、裏で読み直す
+// 読み直しに成功すると logo-anim.js の build() が svg を空にしてアニメを描くので、静止画は自動で消える
+(function(){
+  const SRC='lib/logo-anim.js?v=20261116', PNG='img/logo_glass_dark.png', NS='http://www.w3.org/2000/svg';
+  const svg=document.querySelector('#logo-anim svg');
+  let stillStarted=false;
+  function still(n){
+    const u=n?PNG+'?r='+n:PNG, im=new Image();
+    im.onload=()=>{ if(window.playLogoAnim||!svg) return; const g=document.createElementNS(NS,'image'); g.setAttribute('href',u); g.setAttribute('width','512'); g.setAttribute('height','512'); svg.appendChild(g); };
+    im.onerror=()=>{ if(n<4) setTimeout(()=>still(n+1),500+n*900); };
+    im.src=u;
+  }
+  function load(n){
+    const s=document.createElement('script');
+    s.src=SRC+(n?'&r='+n:'');
+    s.onerror=()=>{ s.remove(); if(!stillStarted){ stillStarted=true; still(0); } if(n<5) setTimeout(()=>load(n+1),800*(n+1)); };
+    document.body.appendChild(s);
+  }
+  load(0);
+})();
+</script>
+<script>
+window.BUILD='20261116161719';
+(() => {
+const deck=document.getElementById('deck'), slides=[...document.querySelectorAll('.slide')], N=slides.length;
+let cur=0, seqTimer=null, ringsRAF=null;
+const bar=document.querySelector('#bar i'), cnt=document.getElementById('cnt');
+
+// lazy images: load current ±1 first, then everything else in the background one by one
+let bgQueue=null;
+function bgLoad(){ if(bgQueue) return; bgQueue=[...document.querySelectorAll('img[data-src]')]; const step=()=>{ const im=bgQueue.shift(); if(!im) return; if(im.dataset.src){ im.src=im.dataset.src; im.removeAttribute('data-src'); } const nx=()=>setTimeout(step,60); im.complete?nx():(im.onload=nx, im.onerror=nx); }; step(); }
+setTimeout(bgLoad,2500);
+function loadImgs(i){ for(const k of [i-1,i,i+1]) if(slides[k]) slides[k].querySelectorAll('iframe[data-src]').forEach(f=>{ const u=f.dataset.src; f.removeAttribute('data-src'); /* 隣の画面は少し待ってから（表紙のアニメを邪魔しない） */ setTimeout(()=>{ f.src=u; }, k===i?0:1200); }); for(const k of [i-1,i,i+1]) if(slides[k]) slides[k].querySelectorAll('video[data-src]').forEach(v=>{v.src=v.dataset.src; v.removeAttribute('data-src'); v.load();}); for(const k of [i-1,i,i+1]) if(slides[k]) slides[k].querySelectorAll('img[data-src]').forEach(im=>{const u=im.dataset.src; im.removeAttribute('data-src'); let n=0; im.onerror=()=>{ if(n++<4) setTimeout(()=>{ im.src=u+'?r='+n; }, 500+n*900); }; im.src=u;}); }
+function go(i,push=true){
+  i=Math.max(0,Math.min(N-1,i)); if(i===cur && slides[i].classList.contains('on')) return;
+  if(slides[cur]){ slides[cur].classList.remove('on'); slides[cur].classList.remove('done'); } cur=i;
+  deck.style.transform=`translateX(${-i*100}vw)`;
+  loadImgs(i); slides[i].scrollTop=0;
+  void slides[i].offsetWidth; slides[i].classList.add('on');
+  bar.style.width=((i+1)/N*100)+'%'; cnt.textContent=(i+1)+' / '+N;
+  if(push) history.replaceState(null,'','#'+(i+1));
+  onEnter(i);
+  clearTimeout(window._doneT); window._doneT=setTimeout(()=>slides[i].classList.add('done'),1300);
+}
+document.getElementById('bPrev').onclick=()=>go(cur-1);
+document.getElementById('bNext').onclick=()=>go(cur+1);
+addEventListener('keydown',e=>{ if(lb.classList.contains('open')){ if(e.key==='Escape')closeLb(); if(e.key==='ArrowRight')lbGo(1); if(e.key==='ArrowLeft')lbGo(-1); return;} if(e.key==='ArrowRight'||e.key===' ')go(cur+1); if(e.key==='ArrowLeft')go(cur-1); if(e.key==='Escape')menu.classList.remove('open'); });
+addEventListener('resize',()=>{deck.style.transition='none';deck.style.transform=`translateX(${-cur*100}vw)`;requestAnimationFrame(()=>deck.style.transition='');});
+
+// swipe (horizontal only; vertical scroll + strip scroll stay native)
+let sx=0,sy=0,st=0,tracking=false,inStrip=false;
+deck.addEventListener('touchstart',e=>{ if(e.target.closest('.viewer,.cv,.x3d.box')){tracking=false;return;} const t=e.touches[0];sx=t.clientX;sy=t.clientY;st=Date.now();tracking=true;inStrip=!!e.target.closest('.strip');},{passive:true});
+deck.addEventListener('touchend',e=>{ if(!tracking)return; tracking=false; const t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy, dt=Date.now()-st;
+  if(Math.abs(dx)<Math.abs(dy)*1.3) return;
+  if(Math.abs(dx)>60 || (Math.abs(dx)>30 && dt<250)) go(cur+(dx<0?1:-1)); },{passive:true});
+// mouse drag for desktop preview
+let mx=null; deck.addEventListener('mousedown',e=>{mx=e.target.closest('.viewer,.cv,.x3d.box')?null:e.clientX;}); addEventListener('mouseup',e=>{ if(mx===null)return; const dx=e.clientX-mx; mx=null; if(Math.abs(dx)>80) go(cur+(dx<0?1:-1)); });
+
+// menu
+const menu=document.getElementById('menu'), toc=document.getElementById('toc');
+slides.forEach((s,i)=>{const li=document.createElement('li');li.innerHTML=`<b>${String(i+1).padStart(2,'0')}</b><span>${s.dataset.t}</span><span class="sec">${s.dataset.sec||''}</span>`;li.onclick=()=>{menu.classList.remove('open');go(i);};toc.appendChild(li);});
+document.getElementById('bMenu').onclick=()=>{[...toc.children].forEach((li,i)=>li.classList.toggle('cur',i===cur));menu.classList.add('open');};
+document.getElementById('bClose').onclick=()=>menu.classList.remove('open');
+document.getElementById('prog').onclick=document.getElementById('bMenu').onclick;
+
+// lightbox
+const lb=document.getElementById('lb'), lbi=document.getElementById('lbi'), lbc=document.getElementById('lbc'), lbn=document.getElementById('lbn');
+let lbList=[], lbIdx=0;
+function openLb(list,i){lbList=list;lbIdx=i;showLb();lb.classList.add('open');}
+function showLb(){const im=lbList[lbIdx];lbi.style.opacity=0;const src=im.dataset.m||im.dataset.src||im.src;const pre=new Image();pre.onload=()=>{lbi.src=src;lbi.style.opacity=1;};pre.src=src;const cap=im.closest('figure')?.querySelector('figcaption')?.textContent||im.dataset.cap||'';lbc.textContent=cap;lbn.textContent=(lbIdx+1)+' / '+lbList.length;}
+function lbGo(d){lbIdx=(lbIdx+d+lbList.length)%lbList.length;showLb();}
+function closeLb(){lb.classList.remove('open');}
+document.getElementById('lbx').onclick=closeLb;
+lb.addEventListener('click',e=>{ if(e.target===lb||e.target===lbi){ /* tap left/right third to move */ const x=e.clientX/innerWidth; if(lbList.length>1 && x>0.66) lbGo(1); else if(lbList.length>1 && x<0.33) lbGo(-1); else closeLb(); } });
+let lx=0,ly=0; lb.addEventListener('touchstart',e=>{lx=e.touches[0].clientX;ly=e.touches[0].clientY;},{passive:true});
+lb.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-lx,dy=e.changedTouches[0].clientY-ly; if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)) lbGo(dx<0?1:-1); else if(dy>80&&Math.abs(dy)>Math.abs(dx)) closeLb();},{passive:true});
+document.querySelectorAll('.slide').forEach(s=>{ s.addEventListener('click',e=>{ const im=e.target.closest('img.ph'); if(!im) return; const list=[...s.querySelectorAll('img.ph')]; openLb(list,list.indexOf(im)); }); });
+
+// counters
+function countUp(el){const to=+el.dataset.count, t0=performance.now(), d=1100; const f=t=>{const p=Math.min(1,(t-t0)/d), e=1-Math.pow(1-p,3); el.textContent=Math.round(to*e); if(p<1) requestAnimationFrame(f);}; requestAnimationFrame(f);}
+
+// sequence (slide 11)
+const seq=document.getElementById('seq1'); let seqI=0;
+if(seq){ const imgs=[...seq.querySelectorAll('img')], dots=seq.querySelector('.dots'), cap=seq.querySelector('.cap'); imgs.forEach(()=>dots.appendChild(document.createElement('i')));
+  function show(i){seqI=(i+imgs.length)%imgs.length; imgs.forEach((im,k)=>im.classList.toggle('cur',k===seqI)); [...dots.children].forEach((d,k)=>d.classList.toggle('cur',k===seqI)); cap.textContent=imgs[seqI].dataset.cap;}
+  seq.addEventListener('click',()=>{show(seqI+1); restartSeq();});
+  function restartSeq(){clearInterval(seqTimer); seqTimer=setInterval(()=>show(seqI+1),3200);}
+  seq._start=()=>{show(0);restartSeq();}; seq._stop=()=>clearInterval(seqTimer);
+}
+
+// rings (slide 15): real geometry from data/rings.json
+const box=document.getElementById('ringbox'), cv=document.getElementById('rings'); let rings=null, ringT0=0;
+fetch('data/rings.json').then(r=>r.json()).then(j=>{rings=j.sort((a,b)=>a.z0-b.z0||a.a0-b.a0);}).catch(()=>{});
+const rc=document.getElementById('rc'), rz=document.getElementById('rz');
+function drawRings(now){
+  if(!rings) {ringsRAF=requestAnimationFrame(drawRings);return;}
+  const dpr=Math.min(2,devicePixelRatio||1), W=box.clientWidth, H=box.clientHeight;
+  if(cv.width!==W*dpr){cv.width=W*dpr;cv.height=H*dpr;}
+  const g=cv.getContext('2d'); g.setTransform(dpr,0,0,dpr,0,0); g.clearRect(0,0,W,H);
+  const t=(now-ringT0)/1000;
+  const total=rings.length, per=0.05, dur=0.55, start=0.5;
+  const yaw=-0.35+t*0.12, pitch=0.62; // camera elevation
+  const cy=Math.cos(yaw), sy=Math.sin(yaw), sp=Math.sin(pitch), cp=Math.cos(pitch);
+  const S=Math.min(W,H)/3150; const cx=W/2, cz=H*0.5;
+  const P=(x,y,z)=>{const X=x*cy-y*sy, Y=x*sy+y*cy; return [cx+X*S, cz+(Y*sp-z*cp)*S, Y];};
+  // floor ellipse
+  g.strokeStyle='rgba(176,120,255,.28)'; g.lineWidth=1; g.beginPath(); for(let a=0;a<=360;a+=6){const r=a*Math.PI/180,p=P(1350*Math.cos(r),-600+1350*Math.sin(r),0); a?g.lineTo(p[0],p[1]):g.moveTo(p[0],p[1]);} g.stroke();
+  let placed=0, topZ=0;
+  const items=rings.map((r,k)=>{const p=Math.min(1,Math.max(0,(t-start-k*per)/dur)); if(p>=1)placed++; if(p>0)topZ=Math.max(topZ,r.z1); return {r,p,k};});
+  // draw order: by z0 then depth
+  items.filter(o=>o.p>0).forEach(o=>{
+    const {r,p}=o; const e=1-Math.pow(1-p,3), lift=(1-e)*500; const z0=r.z0+lift, z1=r.z1+lift;
+    const steps=18, a0=r.a0*Math.PI/180, a1=r.a1*Math.PI/180;
+    const arc=(rad,z)=>{const out=[];for(let i=0;i<=steps;i++){const a=a0+(a1-a0)*i/steps;out.push(P(rad*Math.cos(a),rad*Math.sin(a),z));}return out;};
+    const oT=arc(r.ro,z1), oB=arc(r.ro,z0), iT=arc(r.ri,z1), iB=arc(r.ri,z0);
+    g.globalAlpha=0.25+0.75*e;
+    // inner wall (visible from inside: camera looks into the bowl)
+    g.fillStyle='#6e5f9e'; g.beginPath(); iT.forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1])); for(let i=iB.length-1;i>=0;i--)g.lineTo(iB[i][0],iB[i][1]); g.closePath(); g.fill();
+    // outer wall segments shaded by angle
+    for(let i=0;i<steps;i++){const am=a0+(a1-a0)*(i+.5)/steps; const nx=Math.cos(am+yaw), l=0.45+0.55*Math.max(0,(nx*0.3+Math.sin(am+yaw)*-0.95)); const c=Math.round(90+100*l); g.fillStyle=`rgb(${c-5},${c-20},${c+30})`; g.beginPath(); g.moveTo(oT[i][0],oT[i][1]); g.lineTo(oT[i+1][0],oT[i+1][1]); g.lineTo(oB[i+1][0],oB[i+1][1]); g.lineTo(oB[i][0],oB[i][1]); g.closePath(); g.fill();}
+    // end caps
+    g.fillStyle='#a393d2'; [[0],[steps]].forEach(([i])=>{g.beginPath();g.moveTo(oT[i][0],oT[i][1]);g.lineTo(iT[i][0],iT[i][1]);g.lineTo(iB[i][0],iB[i][1]);g.lineTo(oB[i][0],oB[i][1]);g.closePath();g.fill();});
+    // top face
+    g.fillStyle=r.s==='L'?'#ebe2ff':'#dccdfb'; g.strokeStyle='rgba(40,25,70,.55)'; g.lineWidth=.6;
+    g.beginPath(); oT.forEach((q,i)=>i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1])); for(let i=iT.length-1;i>=0;i--)g.lineTo(iT[i][0],iT[i][1]); g.closePath(); g.fill(); g.stroke();
+  });
+  g.globalAlpha=1;
+  rc.textContent=placed; rz.textContent='高さ '+Math.round(topZ)+' mm';
+  ringsRAF=requestAnimationFrame(drawRings);
+}
+function startRings(){cancelAnimationFrame(ringsRAF); ringT0=performance.now(); ringsRAF=requestAnimationFrame(drawRings);}
+function stopRings(){cancelAnimationFrame(ringsRAF); ringsRAF=null;}
+box&&box.addEventListener('click',startRings);
+
+// ---- 3Dスライド（iframe x/hero.html・x/nc.html）: 見えている画面だけ play、他は pause ----
+const x3dFrames=[...document.querySelectorAll('.x3d iframe')];
+function x3dSend(f,m){ try{ f.contentWindow&&f.contentWindow.postMessage(m, location.origin); }catch(e){} }
+x3dFrames.forEach(f=>f.addEventListener('load',()=>{ if(slides[cur]&&slides[cur].contains(f)) x3dSend(f,'play'); }));
+addEventListener('message',e=>{ if(e.origin!==location.origin) return; const f=x3dFrames.find(x=>x.contentWindow===e.source); if(!f) return; const d=e.data||{};
+  if(d.t==='x3d-frame') f.classList.add('live');
+  if(d.t==='x3d-swipe' && slides[cur].contains(f) && !menu.classList.contains('open') && !lb.classList.contains('open')) go(cur+(d.d>0?1:-1)); });
+
+function onEnter(i){
+  const s=slides[i];
+  document.querySelectorAll('video').forEach(v=>{ if(s.contains(v)){ v.play&&v.play().catch(()=>{}); } else { v.pause&&v.pause(); } });
+  if(albbox){ s.contains(albbox)?startAlb():stopAlb(); }
+  if(dnbox){ s.contains(dnbox)?startDn():stopDn(); }
+  if(viewer){ s.contains(viewer)?viewerOn():viewerOff(); }
+  if(wall && s.contains(wall)){ if(!wallBuilt) buildWall(); else resetWall(); }
+  if(i===0 && window.playLogoAnim && window._logoPlayed){ window.playLogoAnim(); } window._logoPlayed=true;
+  s.querySelectorAll('[data-count]').forEach(countUp);
+  if(seq){ s.contains(seq)?seq._start():seq._stop(); }
+  if(box){ s.contains(box)?startRings():stopRings(); }
+  x3dFrames.forEach(f=>x3dSend(f, s.contains(f)?'play':'pause'));
+}
+
+
+// ---- photo wall ----
+const wall=document.getElementById('wall'); let wallBuilt=false;
+async function buildWall(){ if(wallBuilt||!wall) return; wallBuilt=true; const list=await fetch('wall/wall.json?v='+(window.BUILD||'')).then(r=>r.json()).catch(()=>[]); document.getElementById('wn').textContent=list.length;
+  const frag=document.createDocumentFragment(); list.forEach((o,i)=>{ const d=document.createElement('figure'); d.className='wi '+o.s; const ang=Math.random()*Math.PI*2, r=120+Math.random()*260; d.style.setProperty('--dx',Math.cos(ang)*r+'px'); d.style.setProperty('--dy',Math.sin(ang)*r+'px'); d.style.setProperty('--d',Math.round(Math.random()*260)+'ms'); const k=document.createElement('div'); k.className='k'; const im=document.createElement('img'); im.className='ph'; im.decoding='async'; im.dataset.t=o.t; im.dataset.m=o.m; im.dataset.cap=o.c; im.alt=''; let tries=0; im.onerror=()=>{ if(tries++<4) setTimeout(()=>{ im.src=o.t+'?r='+tries; }, 600+tries*900); }; k.appendChild(im); d.appendChild(k); frag.appendChild(d); }); wall.appendChild(frag); sizeWall();
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{ if(e.isIntersecting){ const im=e.target.querySelector('img'); if(im&&!im.src){ im.src=im.dataset.t; } e.target.classList.add('in'); io.unobserve(e.target);} });},{root:wall.closest('.slide'),rootMargin:'0px 0px 260px 0px',threshold:0.01}); wall.querySelectorAll('.wi').forEach(el=>io.observe(el)); }
+function sizeWall(){ if(!wall) return; const w=wall.clientWidth; if(!w) return; const cols=Math.max(6, Math.round(w/70)); wall.style.gridTemplateColumns='repeat('+cols+',1fr)'; wall.style.gridAutoRows=((w-3*(cols-1))/cols)+'px'; }
+if(wall){ new ResizeObserver(sizeWall).observe(wall); addEventListener('resize',sizeWall); }
+function resetWall(){ if(!wall) return; wall.querySelectorAll('.wi.in').forEach(el=>el.classList.remove('in')); const io=new IntersectionObserver(es=>{es.forEach(e=>{ if(e.isIntersecting){ const im=e.target.querySelector('img'); if(im&&!im.src){ im.src=im.dataset.t; } e.target.classList.add('in'); io.unobserve(e.target);} });},{root:wall.closest('.slide'),rootMargin:'0px 0px 260px 0px',threshold:0.01}); wall.querySelectorAll('.wi').forEach(el=>io.observe(el)); }
+
+const albbox=null; function startAlb(){} function stopAlb(){}
+
+// ---- I'm donut: 積層 + 曲げベニヤ animation (geometry from the bom section) ----
+const dnbox=document.getElementById('dnbox'), dcv=document.getElementById('dn'); let DN=null, dnT0=0, dnRAF=null;
+fetch('data/donut.json').then(r=>r.json()).then(j=>{DN=j;}).catch(()=>{});
+const dc=document.getElementById('dc'), dz=document.getElementById('dz');
+function drawDn(now){
+  if(!DN){dnRAF=requestAnimationFrame(drawDn);return;}
+  const dpr=Math.min(2,devicePixelRatio||1), W=dnbox.clientWidth, H=dnbox.clientHeight; if(!W||!H){dnRAF=requestAnimationFrame(drawDn);return;}
+  if(dcv.width!==Math.round(W*dpr)||dcv.height!==Math.round(H*dpr)){dcv.width=Math.round(W*dpr);dcv.height=Math.round(H*dpr);}
+  const g=dcv.getContext('2d'); g.setTransform(dpr,0,0,dpr,0,0); g.clearRect(0,0,W,H);
+  const t=(now-dnT0)/1000, yaw=-0.35+t*0.05, pitch=0.9;
+  const cy=Math.cos(yaw), sy=Math.sin(yaw), sp=Math.sin(pitch), cp=Math.cos(pitch);
+  const S=W/7400, cx=W/2, cz=H*0.52;
+  const P=(x,y,z)=>{const X=x*cy-y*sy, Y=x*sy+y*cy; return [cx+X*S, cz+(Y*sp-z*cp)*S];};
+  const poly=(pts,z,fill,stroke,lw)=>{g.beginPath(); pts.forEach((p,i)=>{const q=P(p[0],p[1],z); i?g.lineTo(q[0],q[1]):g.moveTo(q[0],q[1]);}); g.closePath(); if(fill){g.fillStyle=fill;g.fill();} if(stroke){g.strokeStyle=stroke;g.lineWidth=lw||.6;g.stroke();}};
+  const H0=DN.h, NL=DN.layers;
+  // floor outline (dashed)
+  g.setLineDash([4,4]); DN.segs.filter(s=>s.k==='top').forEach(s=>poly(s.pts,0,null,'rgba(176,120,255,.35)',1)); g.setLineDash([]);
+  // laminated: layers rise in all 3 pieces, bottom to top
+  const lamStart=0.4, perL=0.09; let placed=0;
+  const lamSegs=DN.segs.filter(s=>s.k==='lam');
+  for(let k=0;k<NL;k++){ const p=Math.min(1,Math.max(0,(t-lamStart-k*perL)/0.5)); if(p<=0) break; const e=1-Math.pow(1-p,3); const z=18+k*30; const lift=(1-e)*300;
+    lamSegs.forEach(s=>{ if(!s.c){ s.c=[s.pts.reduce((a,q)=>a+q[0],0)/s.pts.length, s.pts.reduce((a,q)=>a+q[1],0)/s.pts.length]; } const off=k*1.8; const pts=s.pts.map(q=>{const dx=q[0]-s.c[0], dy=q[1]-s.c[1], L=Math.hypot(dx,dy)||1; return [q[0]+dx/L*off*0.3, q[1]+dy/L*off*0.3];}); g.globalAlpha=0.35+0.65*e; poly(pts,z+lift,'#dccdfb','rgba(40,25,70,.75)',.7); });
+    if(p>=1) placed+=lamSegs.length; }
+  g.globalAlpha=1;
+  // bent veneer: wraps along each segment after lamination
+  const bentStart=lamStart+NL*perL+0.3, bentDur=2.2; const bp=Math.min(1,Math.max(0,(t-bentStart)/bentDur)); const be=1-Math.pow(1-bp,2);
+  DN.segs.filter(s=>s.k==='bent').forEach(s=>{ const n=s.pts.length, m=Math.floor(n*be); if(m<2) return;
+    for(let i=0;i<m-1;i++){ const a=s.pts[i], b=s.pts[i+1]; const q0=P(a[0],a[1],0), q1=P(b[0],b[1],0), q2=P(b[0],b[1],H0), q3=P(a[0],a[1],H0); g.beginPath(); g.moveTo(q0[0],q0[1]); g.lineTo(q1[0],q1[1]); g.lineTo(q2[0],q2[1]); g.lineTo(q3[0],q3[1]); g.closePath(); g.fillStyle='rgba(199,170,255,.55)'; g.fill(); g.strokeStyle='rgba(40,25,70,.35)'; g.lineWidth=.4; g.stroke(); }
+    // leading edge
+    const le=s.pts[m-1]; const e0=P(le[0],le[1],0), e1=P(le[0],le[1],H0); g.beginPath(); g.moveTo(e0[0],e0[1]); g.lineTo(e1[0],e1[1]); g.strokeStyle='#d6c3ff'; g.lineWidth=1.5; g.stroke(); });
+  // SUS top
+  const topStart=bentStart+bentDur+0.2; const tp=Math.min(1,Math.max(0,(t-topStart)/0.8)); if(tp>0){ g.globalAlpha=tp; DN.segs.filter(s=>s.k==='top').forEach(s=>{ const zz=H0+3+(1-tp)*200; poly(s.pts,zz-3,'rgba(120,130,150,.9)','rgba(40,25,70,.5)',.6); poly(s.pts,zz,'rgba(214,222,236,.78)','rgba(60,50,90,.7)',.8); }); g.globalAlpha=1; }
+  dc.textContent=Math.min(84,placed); dz.textContent= bp>0 ? ('曲げベニヤ '+Math.round(bp*100)+'%') : '積層スキン 28段×3ピース';
+  dnRAF=requestAnimationFrame(drawDn);
+}
+function startDn(){cancelAnimationFrame(dnRAF); dnT0=performance.now(); dnRAF=requestAnimationFrame(drawDn);}
+function stopDn(){cancelAnimationFrame(dnRAF); dnRAF=null;}
+dnbox&&dnbox.addEventListener('click',startDn);
+
+// ---- 3D viewer (three.js, loaded on demand) ----
+const viewer=document.getElementById('viewer'); let V=null, vReady=false, vModels=[], vCur=-1;
+document.getElementById('vld')?.addEventListener('click',()=>{ if(!vReady) viewerOn(); });   // ビューアの無いデッキ（製作事例）でも止まらないように
+// GitHub Pages はたまに 503 を返すので、3Dビューアの読み込みは数回読み直す（読めた物は読み直さない）
+async function withRetry(fn){ for(let n=0;;n++){ try{ return await fn(n); }catch(e){ if(n>=4) throw e; await new Promise(r=>setTimeout(r,800*(n+1))); } } }
+function loadScript(src,n){return new Promise((res,rej)=>{const s=document.createElement('script'); s.src=n?src+'?r='+n:src; s.onload=res; s.onerror=()=>{ s.remove(); rej(new Error(src)); }; document.head.appendChild(s);});}
+function fetchOk(url,n){ return fetch(n?url+(url.includes('?')?'&':'?')+'r='+n:url).then(r=>{ if(!r.ok) throw new Error(url+' '+r.status); return r; }); }
+async function viewerOn(){
+  if(!vReady){ vReady=true;
+    try{
+      document.getElementById('vld').textContent='読み込み中…';
+      if(!window.THREE) await withRetry(n=>loadScript('lib/three.min.js',n));
+      if(!THREE.OrbitControls) await withRetry(n=>loadScript('lib/OrbitControls.js',n));
+      vModels=await withRetry(n=>fetchOk((viewer.dataset.models||'data/models.json')+'?v='+(window.BUILD||''),n).then(r=>r.json()));
+      initViewer();
+    }catch(e){ document.getElementById('vld').textContent='3Dの読み込みに失敗 ── タップで再試行'; vReady=false; return; }
+  }
+  if(V) V.active=true, V.loop();
+}
+function viewerOff(){ if(V) V.active=false; }
+function initViewer(){
+  const cv=document.getElementById('v3d'), W=viewer.clientWidth, H=viewer.clientHeight;
+  const renderer=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true}); renderer.setPixelRatio(Math.min(2,devicePixelRatio||1)); renderer.setSize(W,H,false);
+  const scene=new THREE.Scene(); const cam=new THREE.PerspectiveCamera(40,W/H,10,100000); cam.position.set(0,-6000,4000); cam.up.set(0,0,1);
+  const ctl=new THREE.OrbitControls(cam,cv); ctl.enableDamping=true; ctl.dampingFactor=.08; ctl.rotateSpeed=.7; ctl.autoRotate=true; ctl.autoRotateSpeed=.8;
+  cv.addEventListener('pointerdown',()=>{ctl.autoRotate=false;});
+  scene.add(new THREE.HemisphereLight(0xffffff,0x3a2d5c,1.05)); const dl=new THREE.DirectionalLight(0xffffff,.75); dl.position.set(3000,-4000,6000); scene.add(dl);
+  const group=new THREE.Group(); scene.add(group);
+  V={active:true, renderer, scene, cam, ctl, group, loop(){ if(!V.active) return; ctl.update(); renderer.render(scene,cam); requestAnimationFrame(V.loop); }};
+  const tabs=document.getElementById('vtabs'); vModels.forEach((m,i)=>{const b=document.createElement('button'); b.textContent=m.name; b.onclick=()=>loadModel(i); tabs.appendChild(b);});
+  const cards=document.getElementById('vcards'); vModels.forEach((m,i)=>{const c=document.createElement('div'); c.className='vcard'; c.innerHTML='<img src="'+m.thumb+'" alt=""><b>'+(m.short||m.name)+'</b><small>'+(m.sub||'')+'</small>'; c.onclick=()=>loadModel(i); cards.appendChild(c);});
+  addEventListener('resize',()=>{const W=viewer.clientWidth,H=viewer.clientHeight; renderer.setSize(W,H,false); cam.aspect=W/H; cam.updateProjectionMatrix();});
+  loadModel(0); V.loop();
+}
+async function loadModel(i){
+  if(i===vCur) return; vCur=i; const m=vModels[i]; const ld=document.getElementById('vld'); ld.classList.remove('off'); ld.textContent='読み込み中… '+m.name;
+  [...document.getElementById('vtabs').children].forEach((b,k)=>b.classList.toggle('cur',k===i)); [...document.getElementById('vcards').children].forEach((c,k)=>c.classList.toggle('cur',k===i)); document.getElementById('vname').textContent=m.short||m.name; document.getElementById('vnote').textContent=m.note||'';
+  while(V.group.children.length) V.group.remove(V.group.children[0]);
+  let buf; try{ buf=await withRetry(n=>fetchOk(m.file,n).then(r=>r.arrayBuffer())); }catch(e){ if(vCur===i){ vCur=-1; ld.textContent='3Dの読み込みに失敗 ── カードをタップで再試行'; } return; }
+  if(vCur!==i) return; // 読み直しの間に別のモデルへ切り替えられた
+  const dv=new DataView(buf); const hl=dv.getUint32(0,true); const hdr=JSON.parse(new TextDecoder().decode(new Uint8Array(buf,4,hl)));
+  const off=4+hl; const pos=new Float32Array(buf.slice(off,off+hdr.nv*12)); const idx=new Uint32Array(buf.slice(off+hdr.nv*12,off+hdr.nv*12+hdr.nt*12));
+  const geo=new THREE.BufferGeometry(); geo.setAttribute('position',new THREE.BufferAttribute(pos,3)); geo.setIndex(new THREE.BufferAttribute(idx,1));
+  // per-group color by height
+  const col=new Float32Array(hdr.nv*3); let ti=0; const zs=hdr.groups.map(g=>g[2]); const zmin=Math.min(...hdr.groups.map(g=>g[1])), zmax=Math.max(...zs);
+  hdr.groups.forEach(([nt,z0,z1],k)=>{ const u=(z1-zmin)/Math.max(1,zmax-zmin); const c=new THREE.Color().setHSL(0.72-0.06*u, 0.35+0.25*u, 0.62+0.22*u); for(let q=0;q<nt*3;q++){ const v=idx[ti+q]; col[v*3]=c.r; col[v*3+1]=c.g; col[v*3+2]=c.b; } ti+=nt*3; });
+  geo.setAttribute('color',new THREE.BufferAttribute(col,3)); geo.computeVertexNormals();
+  const mesh=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.75,metalness:.05,side:THREE.DoubleSide}));
+  const edges=new THREE.LineSegments(new THREE.EdgesGeometry(geo,25),new THREE.LineBasicMaterial({color:0x2a1f4a,transparent:true,opacity:.35}));
+  geo.computeBoundingBox(); const bb=geo.boundingBox, c=bb.getCenter(new THREE.Vector3()), sz=bb.getSize(new THREE.Vector3()); const R=Math.max(sz.x,sz.y,sz.z);
+  mesh.position.sub(c); edges.position.sub(c); V.group.add(mesh); V.group.add(edges);
+  V.cam.position.set(R*0.9,-R*1.3,R*0.9); V.ctl.target.set(0,0,0); V.cam.near=R/200; V.cam.far=R*20; V.cam.updateProjectionMatrix(); V.ctl.autoRotate=true; V.ctl.update();
+  ld.classList.add('off');
+}
+
+// ---- fullscreen ----
+const fs=document.getElementById('fs'), tip=document.getElementById('tip');
+const standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+if(standalone) fs.style.display='none';
+fs.onclick=()=>{ const el=document.documentElement; if(el.requestFullscreen||el.webkitRequestFullscreen){ if(document.fullscreenElement||document.webkitFullscreenElement){ (document.exitFullscreen||document.webkitExitFullscreen).call(document); } else { (el.requestFullscreen||el.webkitRequestFullscreen).call(el).catch?.(()=>tip.classList.add('open')); } } else { tip.classList.add('open'); } };
+document.getElementById('tipx').onclick=()=>tip.classList.remove('open');
+
+// start
+const h=parseInt(location.hash.slice(1))||1; cur=-1; go(h-1,false);
+addEventListener('hashchange',()=>{const k=parseInt(location.hash.slice(1))||1; if(k-1!==cur) go(k-1,false);});
+})();
+
+// © 2026 MR Design · 製作事例（works.html）専用の動き。app.js の後に読む（build.py の DECKS 参照）
+// ギャラリーの写真は、その頁を下にスクロールして見えた時に1枚ずつマスクが開く（root＝各スライド。スライド自体がスクロールする）
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.slide.w').forEach((s) => {
+    const figs = [...s.querySelectorAll('.gal figure')];
+    if (!figs.length) return;
+    if (reduce || !('IntersectionObserver' in window)) { figs.forEach((f) => f.classList.add('vis')); return; }
+    const io = new IntersectionObserver((es) => {
+      es.forEach((e) => {
+        if (!e.isIntersecting) return;
+        const f = e.target, im = f.querySelector('img');
+        if (im && im.dataset.src && !im.src) { im.src = im.dataset.src; im.removeAttribute('data-src'); }
+        // 同じ段に並ぶ写真は少しずらして開く
+        const row = figs.filter((x) => Math.abs(x.offsetTop - f.offsetTop) < 4);
+        if (im) im.style.transitionDelay = (row.indexOf(f) * 0.12) + 's';
+        f.classList.add('vis');
+        io.unobserve(f);
+      });
+    }, { root: s, rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    figs.forEach((f) => io.observe(f));
+  });
+})();
+</script>
+</body>
+</html>
